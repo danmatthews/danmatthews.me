@@ -4,7 +4,7 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 
-class ResumeEntryData
+class ResumeEntryData extends Data
 {
     public function __construct(
         public string $iconPath,
