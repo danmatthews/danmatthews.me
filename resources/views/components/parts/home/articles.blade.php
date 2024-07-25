@@ -60,10 +60,16 @@
                                     <li class="flex gap-4">
                                         <div
                                             class="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                                            <img alt="" loading="lazy" width="32" height="32"
-                                                 decoding="async" data-nimg="1" class="h-7 w-7"
-                                                 style="color:transparent"
-                                                 src="/_next/static/media/planetaria.ecd81ade.svg"></div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                 class="lucide lucide-hammer text-gray-400">
+                                                <path d="m15 12-8.373 8.373a1 1 0 1 1-3-3L12 9"/>
+                                                <path d="m18 15 4-4"/>
+                                                <path
+                                                    d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172V7l-2.26-2.26a6 6 0 0 0-4.202-1.756L9 2.96l.92.82A6.18 6.18 0 0 1 12 8.4V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/>
+                                            </svg>
+                                        </div>
                                         <dl class="flex flex-auto flex-wrap gap-x-2">
                                             <dt class="sr-only">Company</dt>
                                             <dd
@@ -85,15 +91,15 @@
                                 @endforeach
 
                             </ol>
-                            <a
-                                class="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"
-                                href="#">Download CV
-                                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"
-                                     class="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">
-                                    <path d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5" stroke-width="1.5"
-                                          stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </a>
+                            {{--                            <a--}}
+                            {{--                                class="inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none bg-zinc-50 font-medium text-zinc-900 hover:bg-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/50 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70 group mt-6 w-full"--}}
+                            {{--                                href="#">Download CV--}}
+                            {{--                                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"--}}
+                            {{--                                     class="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50">--}}
+                            {{--                                    <path d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5" stroke-width="1.5"--}}
+                            {{--                                          stroke-linecap="round" stroke-linejoin="round"></path>--}}
+                            {{--                                </svg>--}}
+                            {{--                            </a>--}}
                         </div>
                     </div>
                 </div>
