@@ -1,7 +1,7 @@
 @props([
     'avatar' => false,
 ])
-<header class="pointer-events-none relative z-50 flex flex-none flex-col"
+<header class="pointer-events-none relative z-40 flex flex-none flex-col"
         style="height:var(--header-height);margin-bottom:var(--header-mb)">
     <div class="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"></div>
     <div class="sm:px-8 top-0 order-last -mb-3 pt-3" style="position:var(--header-position)">
@@ -92,46 +92,6 @@
                                     </ul>
                                 </nav>
 
-                                <div
-                                    x-show="mobileMenuOpen"
-                                    class="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-sm duration-150 data-[closed]:opacity-0 data-[enter]:ease-out data-[leave]:ease-in dark:bg-black/80"
-                                    aria-hidden="true"
-                                    data-headlessui-state="open"
-                                    data-open="" style=""></div>
-
-                                <div
-                                    x-show="mobileMenuOpen"
-                                    x-cloak
-                                    class="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 duration-150 data-[closed]:scale-95 data-[closed]:opacity-0 data-[enter]:ease-out data-[leave]:ease-in dark:bg-zinc-900 dark:ring-zinc-800"
-                                    tabindex="-1"
-                                    data-open=""
-                                    style="--button-width: 88.671875px;">
-                                    <div class="flex flex-row-reverse items-center justify-between">
-                                        <button
-                                            @click.prevent="mobileMenuOpen = !mobileMenuOpen"
-                                            aria-label="Close menu" class="-m-1 p-1" type="button"
-                                            data-headlessui-state="open active" data-open="" data-active="">
-                                            <svg viewBox="0 0 24 24" aria-hidden="true"
-                                                 class="h-6 w-6 text-zinc-500 dark:text-zinc-400">
-                                                <path d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5" fill="none"
-                                                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                      stroke-linejoin="round"></path>
-                                            </svg>
-                                        </button>
-                                        <h2 class="text-sm font-medium text-zinc-600 dark:text-zinc-400">Navigation</h2>
-                                    </div>
-                                    <nav class="mt-6">
-                                        <ul class="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                                            @foreach(config('site.navigation') as $item)
-                                                <li><a class="block py-2" data-headlessui-state="open active"
-                                                       data-open=""
-                                                       data-active=""
-                                                       href="{{ url($item->url) }}">{{ $item->title }}</a></li>
-                                            @endforeach
-
-                                        </ul>
-                                    </nav>
-                                </div>
 
                             </div>
                             <div class="flex justify-end md:flex-1">
