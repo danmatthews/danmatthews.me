@@ -30,7 +30,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="flex h-full bg-zinc-50 dark:bg-black">
+<body class="flex h-full bg-zinc-50 dark:bg-black" x-data="site">
 
 <div class="flex w-full">
     <div class="fixed inset-0 flex justify-center sm:px-8">
