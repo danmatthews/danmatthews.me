@@ -83,29 +83,21 @@
                                 <nav class="pointer-events-auto hidden md:block">
                                     <ul
                                         class="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-                                        <li>
-                                            <a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-                                               href="/about">About</a></li>
-                                        <li>
-                                            <a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-                                               href="/posts">Blog</a></li>
-                                        <li>
-                                            <a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-                                               href="/projects">Projects</a></li>
-                                        <li>
-                                            <a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-                                               href="/speaking">Speaking</a></li>
-                                        <li>
-                                            <a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
-                                               href="/uses">Uses</a></li>
+                                        @foreach(config('site.navigation') as $item)
+                                            <li>
+                                                <a class="relative block px-3 py-2 transition hover:text-teal-500 dark:hover:text-teal-400"
+                                                   href="{{ url($item->url) }}">{{ $item->title }}</a></li>
+                                        @endforeach
+
                                     </ul>
                                 </nav>
                             </div>
                             <div class="flex justify-end md:flex-1">
                                 <div class="pointer-events-auto">
-                                    <button type="button"
-                                            aria-label="Switch to light theme"
-                                            class="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20">
+                                    <button
+                                        type="button"
+                                        aria-label="Switch to light theme"
+                                        class="hidden group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20">
                                         <svg
                                             viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round"
                                             stroke-linejoin="round" aria-hidden="true"

@@ -1,11 +1,11 @@
 <x-layouts.app title="Home" :avatar="false">
     <div class="mt-9">
 
-        <x-home-header/>
+        <x-parts.home.header/>
 
-        <x-parts.photos/>
+        <x-parts.home.photos/>
 
-        <x-articles.list/>
+        <x-parts.home.articles/>
 
         <div class="mt-24 md:mt-28">
             <div class="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">

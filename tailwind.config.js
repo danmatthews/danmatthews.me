@@ -1,6 +1,7 @@
 const typographyPlugin = require('@tailwindcss/typography')
 
 const typographyStyles = require('./typography')
+const theme = require('tailwindcss/defaultTheme.js');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -13,6 +14,9 @@ module.exports = {
     darkMode: 'class',
     plugins: [typographyPlugin],
     theme: {
+        fontFamily: {
+            sans: ['DM Sans', ...theme.fontFamily.sans],
+        },
         fontSize: {
             xs: ['0.8125rem', {lineHeight: '1.5rem'}],
             sm: ['0.875rem', {lineHeight: '1.5rem'}],

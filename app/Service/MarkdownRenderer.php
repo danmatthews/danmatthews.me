@@ -53,7 +53,7 @@ class MarkdownRenderer
         return BlogPostData::from([
             'id' => $frontMatter['id'],
             'title' => $frontMatter['title'],
-            'date' => Carbon::createFromFormat('Y-m-d h:i:s', $frontMatter['date']),
+            'date' => Carbon::createFromFormat('Y-m-d H:i:s', $frontMatter['date']),
             'slug' => $frontMatter['slug'],
             'content' => $content,
             'excerpt' => $frontMatter['excerpt'] ?? null,

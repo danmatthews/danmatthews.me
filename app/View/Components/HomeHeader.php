@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\layouts;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class app extends Component
+class HomeHeader extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class app extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layouts.app');
+        return view('components.home-header');
     }
 }

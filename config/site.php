@@ -5,7 +5,17 @@ return [
         'headline' => "Hey, i'm Dan.",
         'subheader' => "I'm a full stack developer, working with Laravel and JS. I'm based in the UK, and currently i'm building charity software at [Social Sync](https://socialsync.io)."
     ],
+    'about' => file_get_contents(resource_path('views/content/about.md')),
+    'posts' => [
+        'headline' => 'Posting about web development, with a little bit of personal stuff thrown in here and there.',
+        'subheading' => 'Talking about Laravel, Svelte, and more.'
+    ],
     'projects' => [
+        new \App\Data\ProjectData(
+            "Social Sync",
+            "Where I work currently heading up the development team.",
+            "https://socialsync.io/",
+        ),
         new \App\Data\ProjectData(
             "The Guild Coworking Teaser Video",
             "I knocked up a little teaser video for the downstairs space at the fantastic Guild Coworking space i use.",
@@ -49,6 +59,20 @@ return [
     ],
     'images' => [
 
+    ],
+    'navigation' => [
+        new \App\Data\NavigationItem(
+            'About',
+            'about'
+        ),
+        new \App\Data\NavigationItem(
+            'Posts',
+            'posts'
+        ),
+        new \App\Data\NavigationItem(
+            'Projects',
+            'projects',
+        ),
     ],
     'social-links' => [
         'twitter' => 'https://twitter.com/danmatthews',
