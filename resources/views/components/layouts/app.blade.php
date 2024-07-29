@@ -1,6 +1,8 @@
 @props([
     'title' => null,
     'avatar' => true,
+    'og_image' => null,
+    'og_description' => null
 ])
 <html lang="en" class="h-full antialiased dark">
 <head>
@@ -24,6 +26,9 @@
                 data-code="CwNjQ2cCkJFwEIEQbsF3kNQIgo4xb17w"></script>
     @endif
 
+    @isset($og_image)
+        <meta property="og:image" content="{{ $og_image }}"/>
+    @endisset
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"/>
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18181B"/>
 

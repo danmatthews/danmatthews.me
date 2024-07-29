@@ -57,6 +57,7 @@ class MarkdownRenderer
             'slug' => $frontMatter['slug'],
             'content' => $content,
             'excerpt' => $frontMatter['excerpt'] ?? null,
+            'published' => $frontMatter['published'] ?? true,
         ]);
     }
 }

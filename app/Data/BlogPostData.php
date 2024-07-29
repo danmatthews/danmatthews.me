@@ -10,16 +10,19 @@ class BlogPostData extends Data
 {
     public function __construct(
         #[Required]
-        public string $id,
+        public string          $id,
         #[Required]
-        public string $title,
+        public string          $title,
         #[Required]
         public CarbonInterface $date,
         #[Required]
-        public string $slug,
+        public string          $slug,
         #[Required]
-        public string $content,
+        public string          $content,
         #[Required]
-        public null|string $excerpt,
-    ) {}
+        public null|string     $excerpt,
+        public bool            $published = true,
+    )
+    {
+    }
 }

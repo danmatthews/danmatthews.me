@@ -5,7 +5,10 @@ use function Laravel\Folio\name;
 name('posts.show');
 ?>
 
-<x-layouts.app title="{{$blogPost->title}}">
+<x-layouts.app title="{{$blogPost->title}}"
+               og_description="{{ $blogPost->excerpt }}"
+               og_image="{{ asset('storage/opengraph/'.$blogPost->id.'.png')  }}"
+>
 
     <div class="sm:px-8 mt-16 lg:mt-32">
         <div class="mx-auto w-full max-w-7xl lg:px-8">
@@ -32,6 +35,9 @@ name('posts.show');
                                             class="ml-3">{{$blogPost->date}}</span></time>
                                 </header>
                                 <div class="mt-8 prose dark:prose-invert" data-mdx-content="true">
+                                    @if ($blogPost->published)
+                                        PUBLISHED
+                                    @endif
                                     {!! $blogPost->content !!}
                                 </div>
                             </article>

@@ -21,19 +21,24 @@ class BlogPost extends Model
 
     public function getRows()
     {
-        return Cache::rememberForever(implode(',', [
-            __CLASS__,
-            __FUNCTION__
-        ]), fn() => collect(File::allFiles(resource_path('views/posts')))
+        $getPosts = (fn() => collect(File::allFiles(resource_path('views/posts')))
             ->map(function ($file) {
                 return (new MarkdownRenderer())->render(file_get_contents($file->getRealPath()));
             })
             ->sortByDesc(fn($s) => $s->date->timestamp)
-            ->map(fn($s) => [
-                ...$s->toArray(),
+            ->map(fn($s) => array_merge($s->toArray(), [
+                'published' => $s->published ?? true,
                 'date' => $s->date->format('F jS, Y')
-            ])
+            ]))
+            ->filter(fn($p) => app()->environment('production') ? $p['published'] : true)
             ->toArray()
         );
+
+        return app()->environment('production')
+            ? Cache::rememberForever(implode(',', [
+                __CLASS__,
+                __FUNCTION__
+            ]), $getPosts)
+            : $getPosts();
     }
 }
