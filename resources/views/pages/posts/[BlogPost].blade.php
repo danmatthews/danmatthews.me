@@ -36,9 +36,6 @@ name('posts.show');
                                             class="ml-3">{{$blogPost->date}}</span></time>
                                 </header>
                                 <div class="mt-8 prose dark:prose-invert" data-mdx-content="true">
-                                    @if ($blogPost->published)
-                                        PUBLISHED
-                                    @endif
                                     {!! $blogPost->content !!}
                                 </div>
                             </article>
