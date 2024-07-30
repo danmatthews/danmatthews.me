@@ -7,6 +7,7 @@ name('posts.show');
 
 <x-layouts.app title="{{$blogPost->title}}"
                og_description="{{ $blogPost->excerpt }}"
+               og_title="{{ $blogPost->title }}"
                og_image="{{ asset('storage/opengraph/'.$blogPost->id.'.png')  }}"
 >
 

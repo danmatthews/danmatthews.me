@@ -26,6 +26,13 @@
                 data-code="CwNjQ2cCkJFwEIEQbsF3kNQIgo4xb17w"></script>
     @endif
 
+
+    @isset($og_title)
+        <meta property="og:title" content="{{ $og_title }}"/>
+    @endisset
+    @isset($og_description)
+        <meta property="og:description" content="{{ $og_description }}"/>
+    @endisset
     @isset($og_image)
         <meta property="og:image" content="{{ $og_image }}"/>
     @endisset
