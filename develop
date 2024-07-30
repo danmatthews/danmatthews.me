@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+phpstorm .;
+herd open;
+npm run dev;
