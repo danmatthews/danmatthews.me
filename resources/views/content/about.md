@@ -3,7 +3,9 @@ at [Social Sync](https://socialsync.io) making charity software better. I've als
 for [baking bread](https://instagram.com/inbreadcarlisle),
 games, movies, and more.
 
-I'm a lover and long-time advocate of [Laravel](https://laravel.com), and a big lover of [Svelte](https://svelte.dev) on
-the front-end. 
+I'm a lover and long-time advocate of [Laravel](https://laravel.com), and a <u>big</u> lover of [Svelte](https://svelte.dev) on
+the front-end, but I also have experience with VueJS and Livewire.
+
+
 
 
