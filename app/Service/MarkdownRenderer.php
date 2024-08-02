@@ -4,15 +4,12 @@ namespace App\Service;
 
 use App\Data\BlogPostData;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
-use Stringy\Stringy;
 
 class MarkdownRenderer
 {
