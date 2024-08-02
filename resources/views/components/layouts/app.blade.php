@@ -31,8 +31,9 @@
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:widgets:new-embed-design" content="on">
-
+<meta property="og:site_name" content="danmatthews.me" />
     @isset($og_title)
+    <meta property="og:type" content="article" />
         <meta property="og:title" content="{!! $og_title !!}"/>
         <meta name="twitter:title" content="{!! $og_title !!}">
     @endisset
