@@ -26,15 +26,23 @@
                 data-code="CwNjQ2cCkJFwEIEQbsF3kNQIgo4xb17w"></script>
     @endif
 
+   <meta name="twitter:site" content="@danmatthews">
+    <meta name="twitter:creator" content="@">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:widgets:new-embed-design" content="on">
 
     @isset($og_title)
         <meta property="og:title" content="{!! $og_title !!}"/>
+        <meta name="twitter:title" content="{!! $og_title !!}">
     @endisset
     @isset($og_description)
         <meta property="og:description" content="{!! $og_description !!}"/>
+        <meta name="twitter:description" content="{!! $og_description !!}">
     @endisset
     @isset($og_image)
         <meta property="og:image" content="{{ $og_image }}"/>
+        <meta name="twitter:image:src" content="{{ $og_image }}">
     @endisset
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"/>
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18181B"/>
