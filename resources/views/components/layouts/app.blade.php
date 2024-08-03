@@ -1,6 +1,7 @@
 @props([
     'title' => null,
     'avatar' => true,
+    'og_title' => null,
     'og_image' => null,
     'og_description' => null
 ])
