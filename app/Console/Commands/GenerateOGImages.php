@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\BlogPost;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Colors\Rgb\Color;
 use SimonHamp\TheOg\Background;
 use SimonHamp\TheOg\Image;
 use SimonHamp\TheOg\Theme\Fonts\Inter;
@@ -50,7 +51,7 @@ class GenerateOGImages extends Command
                         titleFont: Inter::black(),
                     )
                 )
-                ->border(width: 0)
+                ->border(color: Color::create('#272727'), width: 0)
                 ->url(route('posts.show', ['blogPost' => $post]))
                 ->title($post->title)
                 ->description($post->excerpt)
