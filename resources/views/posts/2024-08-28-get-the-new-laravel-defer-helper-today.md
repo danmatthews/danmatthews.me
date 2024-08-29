@@ -6,7 +6,12 @@ slug: get-the-new-laravel-defer-helper-today
 excerpt: 'The new defer() helper is coming to Laravel soon. But you can get it today by writing this little helper function yourself.'
 ---
 
-Laracon US has had it's first day, and mixed in with the BIG announcements were some awesome little tidbits, including the new `defer()` helper, that allows you to push work into the background while sending a swift response to your users.
+**UPDATE 29th Aug. 24:** [Newton Job](https://x.com/_newtonjob) on Twitter pointed out that the `dispatchAfterResponse` function ALWAYS
+uses the `sync` queue driver - so you don't need to add the `->onColllection('sync')` method.
+
+---
+
+Laracon US has had its first day, and mixed in with the BIG announcements were some awesome little tidbits, including the new `defer()` helper, that allows you to push work into the background while sending a swift response to your users.
 
 BUT, you can do this TODAY, but using the existing queue functionality (even if you don't have queues configured!).
 
