@@ -14,9 +14,16 @@ module.exports = {
     darkMode: 'class',
     plugins: [typographyPlugin],
     theme: {
+
+        extend: {
+            colors: {
+                orange: '#FFA132'
+            },
+        },
         fontFamily: {
             sans: ['DM Sans', ...theme.fontFamily.sans],
         },
+
         fontSize: {
             xs: ['0.8125rem', {lineHeight: '1.5rem'}],
             sm: ['0.875rem', {lineHeight: '1.5rem'}],

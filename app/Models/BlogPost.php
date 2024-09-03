@@ -34,7 +34,7 @@ class BlogPost extends Model
             ->toArray()
         );
 
-        return app()->environment('production')
+        return app()->environment('production', 'local')
             ? Cache::rememberForever(implode(',', [
                 __CLASS__,
                 __FUNCTION__

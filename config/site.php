@@ -2,7 +2,7 @@
 
 return [
     'home' => [
-        'headline' => "Hey, i'm Dan.",
+        'headline' => "Dan Matthews",
         'subheader' => "I'm a full stack developer, working with Laravel and JS. I'm based in the UK, and currently i'm building charity software at [Social Sync](https://socialsync.io)."
     ],
     'about' => file_get_contents(resource_path('views/content/about.md')),
