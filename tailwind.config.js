@@ -22,6 +22,7 @@ module.exports = {
         },
         fontFamily: {
             sans: ['DM Sans', ...theme.fontFamily.sans],
+            mono: ['Departure Mono', ...theme.fontFamily.mono]
         },
 
         fontSize: {

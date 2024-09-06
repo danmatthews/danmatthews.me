@@ -16,20 +16,18 @@
                             @foreach(config('site.projects') as $project)
                                 <li class="group relative flex flex-col items-start">
                                     <div
-                                        class="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                                        class="relative z-10 flex h-12 w-12 items-center justify-center rounded-sm bg-orange shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5  dark:ring-0">
                                         @if (!empty($project->icon))
                                             <img alt="" loading="lazy" width="32" height="32" decoding="async"
                                                  data-nimg="1"
                                                  class="h-8 w-8" src="/_next/static/media/planetaria.ecd81ade.svg"
                                                  style="color: transparent;"=
                                         @else
-                                            <svg class="text-gray-400 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13"/>
-                                            </svg>
+                                            <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            class="size-8"
+                                            >
+                                            <path d="M5 5h16v10H7V9h10v2H9v2h10V7H5v10h14v2H3V5h2z"
+                                                  fill="currentColor"/> </svg>
 
                                         @endif
                                     </div>
