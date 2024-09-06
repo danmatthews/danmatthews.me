@@ -2,7 +2,7 @@
 
 return [
     'home' => [
-        'headline' => "Hey, i'm Dan.",
+        'headline' => "Dan Matthews",
         'subheader' => "I'm a full stack developer, working with Laravel and JS. I'm based in the UK, and currently i'm building charity software at [Social Sync](https://socialsync.io)."
     ],
     'about' => file_get_contents(resource_path('views/content/about.md')),
@@ -55,7 +55,7 @@ return [
         new \App\Data\ResumeEntryData(
             'images/fika-apps.png',
             "Fika Apps",
-            'Owner',
+            'Mobile Developer',
             '2018',
             '2019'
         ),
@@ -71,6 +71,10 @@ return [
 
     ],
     'navigation' => [
+        new \App\Data\NavigationItem(
+            'Home',
+            '/'
+        ),
         new \App\Data\NavigationItem(
             'About',
             'about'

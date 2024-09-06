@@ -15,8 +15,10 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@marcreichel/alpine-typewriter": "^1.2.0",
         "alpinejs": "^3.13.10",
         "shiki": "^1.6.0",
+        "svelte": "5.0.0-next.244",
         "usemods": "^1.1.0"
     }
 }
