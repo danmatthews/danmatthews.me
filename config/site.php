@@ -45,7 +45,7 @@ return [
         new \App\Data\ResumeEntryData(
             'images/fika-apps.png',
             "Fika Apps",
-            'Owner',
+            'Mobile Developer',
             '2018',
             '2019'
         ),
@@ -61,6 +61,10 @@ return [
 
     ],
     'navigation' => [
+        new \App\Data\NavigationItem(
+            'Home',
+            '/'
+        ),
         new \App\Data\NavigationItem(
             'About',
             'about'

@@ -9,6 +9,13 @@
                     <div class="flex flex-col gap-16">
                         @foreach ($posts as $post)
                             <article class="group relative flex flex-col items-start">
+                                <div class="flex gap-3 items-center mb-2">
+                                    <div class="h-4 w-2 bg-zinc-400"></div>
+                                    <time class="z-10  flex items-center text-sm text-zinc-600 dark:text-zinc-400"
+                                        datetime="{{ $post->date }}">
+                                        {{ $post->date }}
+                                    </time>
+                                </div>
                                 <h2 class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
                                     <div
                                         class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50">
@@ -17,19 +24,13 @@
                                             class="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl"></span><span
                                             class="relative z-10">{{ $post->title }}</span></a>
                                 </h2>
-                                <div class="flex gap-3 items-center">
-                                    <div class="size-5 bg-zinc-700"></div>
-                                    <time class="z-10  flex items-center text-sm text-zinc-400 dark:text-zinc-500"
-                                        datetime="2022-09-05">
-                                        {{ $post->date }}
-                                    </time>
-                                </div>
+
 
                                 <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                     {{ $post->excerpt }}
                                 </p>
                                 <div aria-hidden="true"
-                                    class="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500">Read
+                                    class="relative z-10 mt-4 flex items-center text-sm font-medium text-orange">Read
                                     article
                                     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"
                                         class="ml-1 h-4 w-4 stroke-current">
@@ -48,8 +49,7 @@
                             @include('components.parts.box-decorator-orange')
                             <h2 class="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                                 <svg width="24" height="24" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="fill-current stroke-[#FFA132]/50 h-6 w-6 fill-[#FFA132]">
+                                    xmlns="http://www.w3.org/2000/svg" class="fill-current text-zinc-600 h-6 w-6 ">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M8 3H16V7H22V21H2V7H8V3ZM10 7H14V5H10V7ZM4 9V19H20V9H4Z" />
                                 </svg>
@@ -60,8 +60,13 @@
                             <ol class="mt-6 space-y-4">
                                 @foreach (\App\Models\ResumeEntry::all() as $job)
                                     <li class="flex gap-4">
-                                        <div class="relative mt-1 size-10 shrink-0 bg-orange">
-
+                                        <div
+                                            class="relative mt-1 size-10 rounded-sm shrink-0 bg-orange flex items-center justify-center">
+                                            <svg class="fill-current text-[#151515] size-6" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                <path d="M10 2h4v4h-4V2zM3 7h18v2h-6v13h-2v-6h-2v6H9V9H3V7z"
+                                                    fill="currentColor" />
+                                            </svg>
                                         </div>
                                         <dl class="flex flex-auto flex-wrap gap-x-2">
                                             <dt class="sr-only">Company</dt>
