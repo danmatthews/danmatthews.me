@@ -12,6 +12,16 @@ return [
     ],
     'projects' => [
         new \App\Data\ProjectData(
+            "Enum Attribute Descriptors",
+            "Add descriptions and titles to your enum cases.",
+            "https://github.com/intrfce/enum-attribute-descriptors",
+        ),
+        new \App\Data\ProjectData(
+            "Laravel Frontend Enums",
+            "Publish your PHP Enums to the frontend for use in your Javascript files.",
+            "https://github.com/intrfce/laravel-frontend-enums",
+        ),
+        new \App\Data\ProjectData(
             "Social Sync",
             "Where I work currently heading up the development team.",
             "https://socialsync.io/",
