@@ -6,7 +6,7 @@
         <div class="relative px-4 sm:px-8 lg:px-12">
             <div class="mx-auto max-w-2xl lg:max-w-5xl flex gap-6">
                 <div class=" w-3 h-[full] shrink-0 overflow-y-hidden border-t-[6px] border-b-[6px] border-[#FFA132]"
-                    x-data="pixels" x-init="pixelate()">
+                    x-data="pixels" x-init="$nextTick(() => pixelate())">
                     <template x-for="(row, index) in rows" class="flex w-full bg-yellow-500 text-white"
                         :key="index" style="height: 2px;">
                         <div class="flex">

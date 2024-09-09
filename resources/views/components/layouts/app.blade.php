@@ -75,9 +75,7 @@
         <nav class="mt-6">
             <ul
                 class="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <li>
-                    <a class="block py-2" href="/">Home</a>
-                </li>
+             
                 @foreach (config('site.navigation') as $item)
                     <li>
                         <a class="block py-2" href="{{ url($item->url) }}">{{ $item->title }}</a>

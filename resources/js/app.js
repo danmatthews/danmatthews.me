@@ -19,6 +19,8 @@ Alpine.data('pixels', () => ({
         height: 0,
         visibility: [],
         decay: 3,
+        decayLimit: 20,
+        decayDirection: 'up',
         pixelate() {
             this.height = this.height || this.$el.getBoundingClientRect().height;
             let width = this.$el.getBoundingClientRect().width;
@@ -28,7 +30,19 @@ Alpine.data('pixels', () => ({
             const c = this.pixelate;
             if (this.interval === undefined) {
                 setInterval(() => {
-                    this.decay++;
+                            if (this.decay > this.decayLimit) {
+                                this.decayDirection = 'down'
+                            }
+                            if (this.decay < 3) {
+                                this.decayDirection = 'up';
+                            }
+                                if (this.decayDirection == 'up') {
+                                    this.decay++;
+                                } else {
+                                    this.decay--;
+                                }
+
+
                 }, 1000);
                 this.interval = setInterval(c.bind(this), 600)
             }
