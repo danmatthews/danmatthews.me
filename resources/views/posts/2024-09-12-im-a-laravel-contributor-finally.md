@@ -42,5 +42,4 @@ public function boot()
         return "<?php echo when($expression) ?>";
     });
 }
-}
 ```
