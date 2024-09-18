@@ -18,14 +18,14 @@ Thanks, [Josh Hanley](https://x.com/_joshhanley) & [Josh Cirre](https://twitter.
 So… yeah, the `when()` helper is now in core as a way of printing or returning something when a condition is truthy:
 
 ```php
-<div {{ when($isTrue, 'wire:poll.5ms="myMethod"') }}>
+<div {!! when($isTrue, 'wire:poll.5ms="myMethod"') !!}>
 ```
 
 ## Add the @when directive to blade in your app.
 
 If you want to use this to add a `@when` directive to your own app to use in blade, you can do it by adding this to your app's `ApplicationServiceProvider`, in the `boot()` method.
 
-I've actually added two directives here: `@when` and `@whenRaw` - `@when` will escace the output like `{{ }}` would do in blade, where as `@whenRaw` won't, like blade's `{!! !!}` tag.
+I've actually added two directives here: `@when` and `@whenRaw` - `@when` will escape the output like `{{ }}` would do in blade, where as `@whenRaw` won't, like blade's `{!! !!}` tag.
 
 ```php
 <?php
