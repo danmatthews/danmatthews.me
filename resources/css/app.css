@@ -19,3 +19,24 @@ pre.shiki {
     font-family: "Departure Mono";
     @apply rounded-lg px-4 py-3 border border-slate-600;
 }
+
+@keyframes cursor-blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+        opacity:0;
+    }
+    1000% {
+        opacity:1;
+    }
+  }
+
+  .blink {
+    animation: cursor-blink 1.5s steps(1) infinite;
+  }
+  .blink-hover {
+    &:hover {
+        animation: cursor-blink 1s steps(1) infinite;
+    }
+  }

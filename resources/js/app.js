@@ -17,19 +17,20 @@ Alpine.data('pixels', () => ({
         cols: 0,
         interval: undefined,
         height: 0,
+        width: 0,
         visibility: [],
         decay: 3,
         decayLimit: 20,
         decayDirection: 'up',
         pixelate() {
-            this.height = this.height || this.$el.getBoundingClientRect().height;
-            let width = this.$el.getBoundingClientRect().width;
-            this.rows = Array(Math.ceil(this.height / this.blocksize)).fill({})
-            this.cols = Array(Math.ceil(width / this.blocksize)).fill({})
+            this.getMetrics()
             this.visibility = this.randomVisibility();
             const c = this.pixelate;
             if (this.interval === undefined) {
                 setInterval(() => {
+
+                            this.getMetrics()
+
                             if (this.decay > this.decayLimit) {
                                 this.decayDirection = 'down'
                             }
@@ -46,6 +47,12 @@ Alpine.data('pixels', () => ({
                 }, 1000);
                 this.interval = setInterval(c.bind(this), 600)
             }
+        },
+        getMetrics() {
+            this.height = this.height || this.$el.getBoundingClientRect().height;
+            this.width = this.$el.getBoundingClientRect().width;
+            this.rows = Array(Math.ceil(this.height / this.blocksize)).fill({})
+            this.cols = Array(Math.ceil(this.width / this.blocksize)).fill({})
         },
         randomVisibility() {
             let vis = [];
