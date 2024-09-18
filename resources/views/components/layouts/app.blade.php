@@ -18,10 +18,10 @@
     <link rel="canonical" href="http://danmatthews.me"/>
 
 
-    <link rel="apple-touch-icon" sizes="180x180" href="https://danmatthews.me/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://danmatthews.me/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://danmatthews.me/icons/favicon-16x16.png">
-    <link rel="manifest" href="https://danmatthews.me/icons/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('icons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('icons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('icons/site.webmanifest') }}">
 
     @if (app()->environment('production'))
         <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js" id="pirschextendedjs"
