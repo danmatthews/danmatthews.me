@@ -8,6 +8,7 @@
 <html lang="en" class="h-full antialiased dark">
 
 <head>
+
     <title>{{ $title ?? null }} | {{ config('app.name') }}</title>
     <meta charSet="utf-8"/>
 

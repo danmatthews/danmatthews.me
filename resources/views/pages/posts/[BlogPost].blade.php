@@ -5,7 +5,10 @@ use function Laravel\Folio\name;
 name('posts.show');
 ?>
 
-<x-layouts.app title="{{ $blogPost->title }}" og_description="{{ $blogPost->excerpt }}" og_title="{{ $blogPost->title }}"
+<x-layouts.app 
+    title="{!! $blogPost->title !!}" 
+    :og_description="$blogPost->excerpt"
+    :og_title="$blogPost->title"
     og_image="{{ asset('storage/opengraph/' . $blogPost->id . '.png') }}">
 
     <div class="sm:px-8 mt-16 lg:mt-32">
