@@ -89,6 +89,7 @@ return [
         ),
     ],
     'social-links' => [
+        'bluesky' => 'https://bsky.app/profile/danmatthews.me',
         'twitter' => 'https://twitter.com/danmatthews',
         'instagram' => 'https://www.instagram.com/danmatthews',
         'linkedin' => 'https://www.linkedin.com/',
