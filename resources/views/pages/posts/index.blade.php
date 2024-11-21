@@ -46,10 +46,16 @@
                                                 </svg>
                                             </div>
                                         </div>
-                                        <time
-                                            class="mt-1 hidden md:block relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
-                                            datetime="2022-09-05">{{ $post->date }}
-                                        </time>
+                                        <div class="order-first mb-3 space-y-1">
+                                        <p
+                                            class=" hidden md:block relative z-10   flex items-center text-sm text-zinc-400 dark:text-zinc-500"
+                                            datetime="2022-09-05">{{ explode(',', $post->date)[1] }}
+                                        </p>
+                                        <p
+                                            class="mt-0 hidden md:block relative z-10  mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500"
+                                            datetime="2022-09-05">{{ trim(explode(',', $post->date)[0]) }}
+                                        </p>
+                                        </div>
                                     </article>
                                 @endforeach
 

@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-layouts.app title="About">
 
     <div class="sm:px-8 mt-16 sm:mt-32">
         <div class="mx-auto w-full max-w-7xl lg:px-8">
@@ -23,24 +23,15 @@
                             <ul role="list">
                              <li class="flex"><a
                                         class="group flex text-sm font-medium text-zinc-800 transition hover:text-orange dark:text-zinc-200 dark:hover:text-orange"
-                                        href="{{ config('site.social-links.twitter') }}">
+                                        href="{{ config('site.social-links.bluesky') }}">
                                         <svg class="w-6 fill-current" fill="none" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 24 24">
                                             <path
                                                 d="M14 3h-4v2H8v4h2v2h1v8H6v-4h2v-2H4v6h2v2h12v-2h2v-6h-4v2h2v4h-5v-8h1V9h2V5h-2V3zm0 2v4h-4V5h4z"
                                                 fill="currentColor" />
                                         </svg>
-                                        <span class="ml-4">Follow on Bluesky<super>*</super></span></a></li>
-                                <li class="flex"><a
-                                        class="group flex text-sm font-medium text-zinc-800 transition hover:text-orange dark:text-zinc-200 dark:hover:text-orange"
-                                        href="{{ config('site.social-links.twitter') }}">
-                                        <svg class="w-6 fill-current" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M14 3h-4v2H8v4h2v2h1v8H6v-4h2v-2H4v6h2v2h12v-2h2v-6h-4v2h2v4h-5v-8h1V9h2V5h-2V3zm0 2v4h-4V5h4z"
-                                                fill="currentColor" />
-                                        </svg>
-                                        <span class="ml-4">Follow on Twitter<super>*</super></span></a></li>
+                                        <span class="ml-4">Follow on Bluesky</span></a></li>
+                               
                                 <li class="mt-4 flex"><a
                                         class="group flex text-sm font-medium text-zinc-800 transition hover:text-orange dark:text-zinc-200 dark:hover:text-orange"
                                         href="{{ config('site.social-links.instagram') }}">
@@ -83,11 +74,7 @@
                                                 fill="currentColor" />
                                         </svg>
                                         <span class="ml-4">dan@danmatthews.me</span></a></li>
-                                <li class="mt-8">
-                                    <p class="text-zinc-400 text-xs">
-                                        <super>*</super>I will never call it 'X'
-                                    </p>
-                                </li>
+                                
                             </ul>
                         </div>
                     </div>
