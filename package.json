@@ -3,7 +3,6 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build-og-images": "php artisan og:create",
         "build": "vite build"
     },
     "devDependencies": {
