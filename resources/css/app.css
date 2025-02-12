@@ -176,7 +176,7 @@ body {
  
  .token.regex,
  .token.important {
-     color: yellow;
+     color: palegreen;
  }
  
  .token.important,
