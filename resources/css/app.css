@@ -2,11 +2,12 @@
 @import '../../public/fonts.css' layer(base);
 
 @import 'tailwindcss' source(none);
+@source '../views';
 
-@source '../views/components';
+/* @source '../views/components';
 @source '../views/content';
 @source '../views/pages';
-@source '../js';
+@source '../js'; */
 @plugin "@tailwindcss/typography";
 
 /*
