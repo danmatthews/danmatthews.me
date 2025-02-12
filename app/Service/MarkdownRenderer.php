@@ -34,7 +34,7 @@ class MarkdownRenderer
 
         // Add the extension
         $environment->addExtension(new FrontMatterExtension());
-        $environment->addExtension(new HighlightCodeExtension(theme: 'nord'));
+        $environment->addExtension(new HighlightCodeExtension(theme: 'nord', throw: true));
         // Instantiate the converter engine and start converting some Markdown!
         $converter = new MarkdownConverter($environment);
         $result = $converter->convert($markdown);
