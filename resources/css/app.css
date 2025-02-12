@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap') layer(base);
 @import '../../public/fonts.css' layer(base);
 
-@import 'tailwindcss' source(none);
-@source '../views';
 
-/* @source '../views/components';
+@import 'tailwindcss' source(none);
+
+@source '../views/components';
 @source '../views/content';
 @source '../views/pages';
-@source '../js'; */
+@source '../js'; 
 @plugin "@tailwindcss/typography";
 
 /*
