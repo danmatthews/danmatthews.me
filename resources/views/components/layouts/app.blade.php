@@ -49,6 +49,13 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"/>
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18181B"/>
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="{{asset('js/prism-svelte.js') }}">
+
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

@@ -6,8 +6,6 @@ slug: you-can-use-svelte-v5-with-inertiajs-really-easily-today
 excerpt: 'Svelte V5 is still in alpha, and a lot of things are still likely to change, but you can try it with InertiaJS today with ONE LINE of code changed.'
 ---
 
-# You can use Svelte v5 with InertiaJS really easily TODAY.
-
 Svelte V5 is still in alpha, and a lot of things are still likely to change, but you can try it with InertiaJS today
 with ONE LINE of code changed.
 

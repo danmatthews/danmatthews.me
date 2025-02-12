@@ -9,7 +9,7 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
-use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
+// use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
 
 class MarkdownRenderer
 {
@@ -34,7 +34,7 @@ class MarkdownRenderer
 
         // Add the extension
         $environment->addExtension(new FrontMatterExtension());
-        $environment->addExtension(new HighlightCodeExtension(theme: 'nord', throw: true));
+        // $environment->addExtension(new HighlightCodeExtension(theme: 'nord', throw: true));
         // Instantiate the converter engine and start converting some Markdown!
         $converter = new MarkdownConverter($environment);
         $result = $converter->convert($markdown);

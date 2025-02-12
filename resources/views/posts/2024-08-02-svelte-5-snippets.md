@@ -5,6 +5,7 @@ date: '2024-08-02 10:13:25'
 slug: svelte-5-snippets
 excerpt: 'Snippets are a new feature of Svelte 5 that allow you to define re-usable chunks of markup that can be passed around as state and props, and rendered when needed.'
 ---
+
 Svelte’s new `snippets` feature is an attempt to solve an issue consistently raised by devs - especially ones who have came across from React who miss being able to components pieces of their application’s HTML by returning a slice of JSX from a function.
 
 Snippets has caught some flak in the lead up to release, but I really like it - it’s strict in that you can only pass one argument, and because they’re just functions, you can pass them around as props, or return them from component files.
@@ -64,8 +65,6 @@ let {header} = $props();
 <header>
  {@render header}
 </header>
-...
-
 ```
 
 ## The ‘children’ snippet.
@@ -88,14 +87,13 @@ In your parent component:
 
 Then in your custom component:
 
-```
+```svelte
 <script>
 </script>
 
 <div>
 	<slot />
 </div>
-
 ```
 
 
@@ -103,7 +101,7 @@ Then in your custom component:
 
 Your parent component will look the same:
 
-```
+```svelte
 <script>
 
 </script>
@@ -131,7 +129,7 @@ Svelte also provides advanced tools to create your own snippet objects using the
 
 This allows you to construct snippets for use with (for example) component libraries.
 
-```svelte
+```javascript
 import { createRawSnippet } from 'svelte';
 
 const Button = createRawSnippet(({text, onclick}) => {
