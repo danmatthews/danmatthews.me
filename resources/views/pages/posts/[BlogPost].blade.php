@@ -18,7 +18,7 @@ name('posts.show');
                     <div class="xl:relative">
                         <div class="mx-auto max-w-2xl">
                             <a type="button" aria-label="Go back to articles" href="{{ url('posts') }}"
-                                class=" blink-hover rounded-sm filter-none group mb-8 flex h-10 w-10 items-center justify-center bg-orange shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0  ">
+                                class=" blink-hover rounded-xs filter-none group mb-8 flex h-10 w-10 items-center justify-center bg-orange shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0  ">
                                 <svg width="24" height="24"
                                     class="h-6 w-6  transition text-[#151515] stroke-[#151515] fill-current"
                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -8,7 +8,7 @@
                         <div class="lg:pl-20">
                             <div class="max-w-xs px-2.5 lg:max-w-none"><img alt="" loading="lazy" width="800"
                                     height="800" decoding="async" data-nimg="1"
-                                    class="aspect-square rounded-sm bg-zinc-100 object-cover dark:bg-zinc-800"
+                                    class="aspect-square rounded-xs bg-zinc-100 object-cover dark:bg-zinc-800"
                                     sizes="(min-width: 1024px) 32rem, 20rem" src="{{ asset('images/me.png') }}"
                                     style="color: transparent;"></div>
                         </div>

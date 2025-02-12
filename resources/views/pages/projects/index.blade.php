@@ -16,7 +16,7 @@
                             @foreach (config('site.projects') as $project)
                                 <li class="group relative flex flex-col items-start">
                                     <div
-                                        class="relative z-10 flex h-12 w-12 items-center justify-center rounded-sm bg-orange shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5  dark:ring-0">
+                                        class="relative z-10 flex h-12 w-12 items-center justify-center rounded-xs bg-orange shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5  dark:ring-0">
                                         @if (!empty($project->icon))
                                             <img alt="" loading="lazy" width="32" height="32"
                                                 decoding="async" data-nimg="1" class="h-8 w-8"

@@ -1,16 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
-@import '../../public/fonts.css';
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap') layer(base);
+@import '../../public/fonts.css' layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss' source(none);
 
+@source '../views/components';
+@source '../views/content';
+@source '../views/pages';
+@source '../js';
+@plugin "@tailwindcss/typography";
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+@theme {
+    --color-orange: #FFA132;
+}
 
 [x-cloak] {
     display: none !important;
 }
 
-/** #FFA132 **/
+
 body {
     font-family: "Departure Mono";
 }
@@ -22,21 +47,22 @@ pre.shiki {
 
 @keyframes cursor-blink {
     0% {
-      opacity: 1;
+        opacity: 1;
     }
     50% {
-        opacity:0;
+        opacity: 0;
     }
     1000% {
-        opacity:1;
+        opacity: 1;
     }
-  }
+}
 
-  .blink {
+.blink {
     animation: cursor-blink 1.5s steps(1) infinite;
-  }
-  .blink-hover {
+}
+
+.blink-hover {
     &:hover {
         animation: cursor-blink 1s steps(1) infinite;
     }
-  }
+}

@@ -43,7 +43,7 @@
                     </div>
                     <div class="space-y-10 lg:pl-16 xl:pl-24">
 
-                        <div class="rounded-sm border border-[#FFA132] p-6 dark:border-[#FFA132]/50 relative">
+                        <div class="rounded-xs border border-[#FFA132] p-6 dark:border-[#FFA132]/50 relative">
 
 
                             @include('components.parts.box-decorator-orange')
@@ -61,7 +61,7 @@
                                 @foreach (\App\Models\ResumeEntry::all() as $job)
                                     <li class="flex gap-4">
                                         <div
-                                            class="relative mt-1 size-10 rounded-sm shrink-0 bg-orange flex items-center justify-center">
+                                            class="relative mt-1 size-10 rounded-xs shrink-0 bg-orange flex items-center justify-center">
                                             <svg class="fill-current text-[#151515] size-6" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                 <path d="M10 2h4v4h-4V2zM3 7h18v2h-6v13h-2v-6h-2v6H9V9H3V7z"
