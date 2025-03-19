@@ -6,7 +6,9 @@ slug: why-we-wont-be-using-laravel-cloud-just-yet
 excerpt: "I work through a few shortcomings of Laravel Cloud that don't make it a great fit for us just yet."
 ---
 
-I was so excited for [Laravel Cloud](https://cloud.laravel.com).
+> Note: i'm very aware of the slight irony that this blog is hosted on Cloud, while writing a post on why it's not suitable for us at work yet.
+
+I was so excited to move to [Laravel Cloud](https://cloud.laravel.com) at [Social Sync](https://socialsync.app).
 
 It was announced at the perfect time for us - we were needing to move away from our Forge based setup that was hard to scale to match Spiky workloads, but it brough the promise of not needing to adapt your application to the unique constraints of serverless like we would have with [Laravel Vapor](https://vapor.laravel.com).
 
