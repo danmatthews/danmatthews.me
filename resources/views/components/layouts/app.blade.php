@@ -51,13 +51,16 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
+            integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"
+            integrity="sha512-SkmBfuA2hqjzEVpmnMt/LINrjop3GKWqsuLSSB3e7iBmYK7JuWw4ldmmxwD9mdm2IRTTi0OxSAfEGvgEi0i2Kw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="{{asset('js/prism-svelte.js') }}"></script>
 
 
-    
 </head>
 
 <body class="flex h-full bg-zinc-100 dark:bg-[#151515]" x-data="site">
@@ -84,7 +87,7 @@
         <nav class="mt-6">
             <ul
                 class="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-             
+
                 @foreach (config('site.navigation') as $item)
                     <li>
                         <a class="block py-2" href="{{ url($item->url) }}">{{ $item->title }}</a>
@@ -116,14 +119,20 @@
                                         @endforeach
                                     </div>
                                     <div class="flex flex-col gap-3 items-end">
-                                    <p class="text-sm text-zinc-400 dark:text-zinc-500">©
-                                        <?php date('Y'); ?>
-                                        Dan Matthews. All rights reserved.</p>
-                                    <div class="flex gap-3 items-center">
-<p class="text-xs text-zinc-400 dark:text-zinc-500">Hosted on Laravel Cloud</p>
-                                        <svg class="size-6 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M10.258 3.175 5.4.475l-4.858 2.7V18.38L9.8 23.524l9.258-5.143v-4.89l4.4-2.444V5.62L18.6 2.92l-4.859 2.7v4.888l-3.483 1.935zm4.4 7.333v-3.84l3.484 1.935v3.84zm-9.716 5.428 4.4 2.445v3.84l-7.884-4.38V4.223l3.484 1.935z" clip-rule="evenodd"></path></svg>
-                                    </div>
-                                    
+                                        <p class="text-sm text-zinc-400 dark:text-zinc-500">©
+                                            <?php date('Y'); ?>
+                                            Dan Matthews. All rights reserved.</p>
+                                        <div class="flex gap-3 items-center">
+                                            <p class="text-xs text-zinc-400 dark:text-zinc-500">Hosted on Laravel
+                                                Cloud</p>
+                                            <svg class="size-6 text-gray-600" xmlns="http://www.w3.org/2000/svg"
+                                                 fill="none" viewBox="0 0 24 24">
+                                                <path fill="currentColor" fill-rule="evenodd"
+                                                      d="M10.258 3.175 5.4.475l-4.858 2.7V18.38L9.8 23.524l9.258-5.143v-4.89l4.4-2.444V5.62L18.6 2.92l-4.859 2.7v4.888l-3.483 1.935zm4.4 7.333v-3.84l3.484 1.935v3.84zm-9.716 5.428 4.4 2.445v3.84l-7.884-4.38V4.223l3.484 1.935z"
+                                                      clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
