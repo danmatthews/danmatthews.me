@@ -6,6 +6,8 @@ slug: optionally-skip-running-migrations-in-laravel
 excerpt: 'A week or so ago, I contributed something Laravel i’ve wanted for a while - a way to skip running migrations unless a certain criteria is met.'
 ---
 
+> Note: if you're reading this before release day, this might not yet be live on a Laravel 12 release JUST yet.
+
 A week or so ago, I [contributed something](https://github.com/laravel/framework/pull/55011) to Laravel i’ve wanted for a while - a way to skip running migrations unless a certain criteria is met.
 
 For [us](https://socialsync.app), this means that we can ship new feature code to production, but not neccessarily run potentially breaking migrations in production unless a feature flag is enabled before deployment, or keep certain migrations that only run on development/local/staging environments for holding debugging information etc.
