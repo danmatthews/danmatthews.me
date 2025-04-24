@@ -43,13 +43,13 @@ class GenerateOGImages extends Command
                     ->accentColor('#cc0000')
                     ->theme(
                         new Theme(
-                            accentColor: '#14b8a6',
+                            accentColor: '#cccccc',
                             baseFont: Inter::bold(),
                             baseColor: '#ffffff',
-                            backgroundColor: '#272727',
+                            backgroundColor: '#ffffff',
                             background: new \SimonHamp\TheOg\Theme\Background(public_path('images/og-background.png')),
-                            callToActionBackgroundColor: '#153B50',
-                            callToActionColor: '#ECEBE4',
+                            callToActionBackgroundColor: '#ffffff',
+                            callToActionColor: '#ffffff',
                             descriptionColor: '#cccccc',
                             descriptionFont: Inter::light(),
                             titleFont: Inter::black(),
