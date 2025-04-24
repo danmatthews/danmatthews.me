@@ -76,6 +76,18 @@ h1, h2, h3, h4, h5, h6 {
             @apply mt-16;
         }
 
+        ul, ol {
+            @apply space-y-4 pl-6;
+        }
+
+        ul li {
+            @apply list-[circle] marker:text-gray-500;
+        }
+
+        ol li {
+            @apply list-[lower-roman] marker:text-gray-500;
+        }
+
         img {
             @apply border-4 border-gray-100 rounded-md;
         }
@@ -83,10 +95,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .phiki-wrapper {
-    @apply border rounded-md overflow-hidden bg-gray-50! p-1;
+    @apply border border-gray-300 rounded-md overflow-hidden bg-transparent!  p-1;
 
     pre {
-        @apply border rounded-md p-4 text-sm;
+        @apply border border-gray-600 rounded-sm p-4 text-sm;
 
         code {
             font-family: 'Geist Mono', monospace;
