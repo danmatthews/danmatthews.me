@@ -12,29 +12,40 @@ return [
     ],
     'projects' => [
         new \App\Data\ProjectData(
-            "Enum Attribute Descriptors",
-            "Add descriptions and titles to your enum cases.",
-            "https://github.com/intrfce/enum-attribute-descriptors",
+            title: "Over Engineered Podcast - 28th March 2025",
+            description: "Chris invited myself and John Drexler to speak about running small engineering teams.",
+            url: "https://www.youtube.com/watch?v=ReYU6YkhLbE&t=4958s",
+            button_text: "Watch On Youtube",
         ),
         new \App\Data\ProjectData(
-            "Laravel Frontend Enums",
-            "Publish your PHP Enums to the frontend for use in your Javascript files.",
-            "https://github.com/intrfce/laravel-frontend-enums",
+            title: "Laravel Package - Enum Attribute",
+            description: "Add descriptions and titles to your enum cases.",
+            url: "https://github.com/intrfce/enum-attribute-descriptors",
+            button_text: "View on Github",
         ),
         new \App\Data\ProjectData(
-            "Social Sync",
-            "Where I work currently heading up the development team.",
-            "https://socialsync.io/",
+            title: "Laravel Package - Frontend Enums",
+            description: "Publish your PHP Enums to the frontend for use in your Javascript files.",
+            url: "https://github.com/intrfce/laravel-frontend-enums",
+            button_text: "View on Github",
         ),
         new \App\Data\ProjectData(
-            "The Guild Coworking Teaser Video",
-            "I knocked up a little teaser video for the downstairs space at the fantastic Guild Coworking space i use.",
-            "https://youtu.be/WmBPpnc-DuQ",
+            title: "Where I Work - Social Sync",
+            description: "Where I work currently heading up the development team.",
+            url: "https://socialsync.io/",
+            button_text: "Visit Website",
         ),
         new \App\Data\ProjectData(
-            "Intrfce on Github",
-            "Intrfce is the name for all my open source packages on Github",
-            "https://github.com/intrfce",
+            title: "The Guild Coworking Teaser Video",
+            description: "I knocked up a little teaser video for the downstairs space at the fantastic Guild Coworking space i use.",
+            url: "https://youtu.be/WmBPpnc-DuQ",
+            button_text: "Watch On Youtube",
+        ),
+        new \App\Data\ProjectData(
+            title: "Intrfce on Github",
+            description: "Intrfce is the name for all my open source packages on Github",
+            url: "https://github.com/intrfce",
+            button_text: "View on Github",
         ),
     ],
     'job_history' => [
@@ -72,7 +83,7 @@ return [
     ],
     'navigation' => [
         new \App\Data\NavigationItem(
-            'Home',
+            'Posts',
             '/'
         ),
         new \App\Data\NavigationItem(
@@ -80,12 +91,8 @@ return [
             'about'
         ),
         new \App\Data\NavigationItem(
-            'Posts',
-            'posts'
-        ),
-        new \App\Data\NavigationItem(
-            'Projects',
-            'projects',
+            'Work',
+            'work',
         ),
     ],
     'social-links' => [

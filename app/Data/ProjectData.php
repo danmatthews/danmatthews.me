@@ -11,6 +11,8 @@ class ProjectData extends Data
         public string  $description,
         public string  $url,
         public ?string $logo = null,
+        public ?string $type = null,
+        public ?string $button_text = "View Project",
     )
     {
     }

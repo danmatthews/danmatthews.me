@@ -9,6 +9,9 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
+use Phiki\CommonMark\PhikiExtension;
+use Phiki\Theme\Theme;
+
 // use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
 
 class MarkdownRenderer
@@ -33,8 +36,8 @@ class MarkdownRenderer
         $environment->addExtension(new CommonMarkCoreExtension());
 
         // Add the extension
-        $environment->addExtension(new FrontMatterExtension());
-        // $environment->addExtension(new HighlightCodeExtension(theme: 'nord', throw: true));
+        $environment->addExtension(new FrontMatterExtension())->addExtension(new PhikiExtension(Theme::NightOwl, withWrapper: true));
+
         // Instantiate the converter engine and start converting some Markdown!
         $converter = new MarkdownConverter($environment);
         $result = $converter->convert($markdown);

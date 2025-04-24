@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap') layer(base);
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Geist+Mono:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import '../../public/fonts.css' layer(base);
 
 @import 'tailwindcss' source(none);
@@ -7,7 +7,6 @@
 @source '../views/content';
 @source '../views/pages';
 @source '../js';
-@plugin "@tailwindcss/typography";
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -28,163 +27,70 @@
 }
 
 @theme {
-    --color-orange: #FFA132;
+
 }
 
 [x-cloak] {
     display: none !important;
 }
 
+html {
+}
+
 body {
-    font-family: "Departure Mono";
+    /* font-family: "Departure Mono"; */
+    font-family: "Inter", sans-serif;
 }
 
-@keyframes cursor-blink {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0;
-    }
-    1000% {
-        opacity: 1;
-    }
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Manrope", sans-serif;
 }
 
-.blink {
-    animation: cursor-blink 1.5s steps(1) infinite;
-}
-
-.blink-hover {
-    &:hover {
-        animation: cursor-blink 1s steps(1) infinite;
+.has-links {
+    a {
+        text-decoration: underline;
     }
 }
 
-/**
- * Nord Theme Originally by Arctic Ice Studio
- * https://nordtheme.com
- *
- * Ported for PrismJS by Zane Hitchcoxc (@zwhitchcox) and Gabriel Ramos (@gabrieluizramos)
- */
+.article-styling {
+    @apply text-base;
 
-code,
-pre {
-    @apply text-sm;
-    @apply text-slate-50;
-    background: none;
-    font-family: "Departure Mono", "Fira Code", Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: normal;
-    line-height: 1.8;
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
+    .article-body {
+        @apply space-y-4;
+
+        p {
+            @apply leading-7;
+        }
+
+        a {
+            text-decoration: underline;
+        }
+
+        h2 {
+            @apply text-xl font-bold;
+            @apply mt-16;
+        }
+
+        h3, h4.h5.h6 {
+            @apply text-base font-bold;
+            @apply mt-16;
+        }
+
+        img {
+            @apply border-4 border-gray-100 rounded-md;
+        }
+    }
 }
 
-/* Code blocks */
-pre {
-    overflow: auto;
-    @apply rounded p-6 shadow;
+.phiki-wrapper {
+    @apply border rounded-md overflow-hidden bg-gray-50! p-1;
+
+    pre {
+        @apply border rounded-md p-4 text-sm;
+
+        code {
+            font-family: 'Geist Mono', monospace;
+        }
+    }
 }
 
-:not(pre) > code,
-pre {
-    background: #1C202A;
-}
-
-/* Inline code */
-:not(pre) > code {
-
-    white-space: normal;
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-    @apply text-slate-400;
-
-}
-
-.token.punctuation {
-    color: #81A1C1;
-    @apply text-slate-400;
-}
-
-.namespace {
-    opacity: .7;
-}
-
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol,
-.token.deleted {
-    @apply text-pink-400;
-}
-
-.token.number {
-    color: #B48EAD;
-    color: green;
-}
-
-.token.boolean {
-    color: #81A1C1;
-    color: palegreen;
-}
-
-.token.selector
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted {
-    @apply text-slate-300;
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-    color: #81A1C1;
-    color: pink;
-}
-
-.token.atrule,
-.token.attr-value,
-.token.function,
-.token.class-name {
-    @apply text-sky-300;
-}
-
-.token.keyword {
-    @apply text-violet-300;
-}
-
-.token.regex,
-.token.important {
-    color: palegreen;
-}
-
-.token.important,
-.token.bold {
-    font-weight: bold;
-}
-
-.token.italic {
-    font-style: italic;
-}
-
-.token.entity {
-    cursor: help;
-}

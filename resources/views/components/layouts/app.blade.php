@@ -5,7 +5,7 @@
     'og_image' => null,
     'og_description' => null,
 ])
-<html lang="en" class="h-full antialiased dark">
+<html lang="en" class="h-full antialiased">
 
 <head>
 
@@ -63,9 +63,9 @@
 
 </head>
 
-<body class="flex h-full bg-zinc-100 dark:bg-[#151515]" x-data="site">
+<body class="h-full" x-data="site">
 
-<div class="flex w-full">
+<div class="w-full">
 
     <div x-show="mobileMenuOpen"
          class="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-xs duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-black/80"
@@ -97,47 +97,19 @@
             </ul>
         </nav>
     </div>
-    <div class="relative flex w-full flex-col">
+    <div class="relative max-w-4xl mx-auto px-4">
         <x-parts.header avatar="{{ $avatar }}"/>
-        <div class="flex-none" style="height:var(--content-offset)"></div>
-        <main class="flex-auto">
+        <main class="w-full">
             {{ $slot }}
         </main>
-        <footer class="mt-32 flex-none">
-            <div class="sm:px-8">
-                <div class="mx-auto w-full max-w-7xl lg:px-8">
-                    <div class="border-t border-zinc-100 pb-16 pt-10 dark:border-zinc-700/40 relative">
+        <footer class="mt-32 max-w-4xl border-t py-4 flex-none">
 
-                        <div class="relative px-4 sm:px-8 lg:px-12">
-                            <div class="mx-auto max-w-2xl lg:max-w-5xl">
-                                <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-                                    <div
-                                        class="flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                                        @foreach (config('site.navigation') as $item)
-                                            <a class="transition hover:text-orange dark:hover:text-orange"
-                                               href="{{ url($item->url) }}">{{ $item->title }}</a>
-                                        @endforeach
-                                    </div>
-                                    <div class="flex flex-col gap-3 items-end">
-                                        <p class="text-sm text-zinc-400 dark:text-zinc-500">©
-                                            <?php date('Y'); ?>
-                                            Dan Matthews. All rights reserved.</p>
-                                        <div class="flex gap-3 items-center">
-                                            <p class="text-xs text-zinc-400 dark:text-zinc-500">Hosted on Laravel
-                                                Cloud</p>
-                                            <svg class="size-6 text-gray-600" xmlns="http://www.w3.org/2000/svg"
-                                                 fill="none" viewBox="0 0 24 24">
-                                                <path fill="currentColor" fill-rule="evenodd"
-                                                      d="M10.258 3.175 5.4.475l-4.858 2.7V18.38L9.8 23.524l9.258-5.143v-4.89l4.4-2.444V5.62L18.6 2.92l-4.859 2.7v4.888l-3.483 1.935zm4.4 7.333v-3.84l3.484 1.935v3.84zm-9.716 5.428 4.4 2.445v3.84l-7.884-4.38V4.223l3.484 1.935z"
-                                                      clip-rule="evenodd"></path>
-                                            </svg>
-                                        </div>
+            <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="flex flex-col gap-3 items-end">
+                    <p class="text-sm text-zinc-400 dark:text-zinc-500">©
+                        <?php date('Y'); ?>
+                        Dan Matthews. All rights reserved.</p>
                 </div>
             </div>
         </footer>
