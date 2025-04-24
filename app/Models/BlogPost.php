@@ -17,7 +17,7 @@ class BlogPost extends Model
 
     public $incrementing = false;
 
-    protected string $slug = 'title';
+    protected string $slug = 'slug';
 
     public function getRows()
     {

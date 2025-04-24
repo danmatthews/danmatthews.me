@@ -1,4 +1,4 @@
-<x-layouts.app title="Projects">
+<x-layouts.app title="Work">
     <div class=" mb-8">
         <h1 class="text-4xl font-extrabold">Work</h1>
     </div>
@@ -12,12 +12,11 @@
         @foreach (config('site.projects') as $project)
             <li class="group relative grid grid-cols-1 md:grid-cols-3 gap-8 items-center py-6">
                 <div class="col-span-2">
-                    <h2 class="text-base font-semibold ">
+                    <h2 class="text-base font-bold">
                         <a href="{{ $project->url }}">{{ $project->title }}</a>
                     </h2>
                     <p class="relative z-10 mt-2 text-sm ">
                         {{ $project->description }}</p>
-
                 </div>
                 <div class="flex items-center sm:justify-end md:justify-start">
                     <a
