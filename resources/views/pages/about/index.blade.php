@@ -27,7 +27,7 @@
                         <div class="py-4 flex items-center justify-between">
                             <div>
                                 <p class="text-sm font-bold">{{ $entry->companyName }}</p>
-                                <p class="text-sm text-gray-500">{{ $entry->jobTitle }}</p>
+                                <p class="text-xs text-gray-500">{{ $entry->jobTitle }}</p>
                             </div>
                             <p class="text-xs">{{ $entry->start }} - {{ $entry->end }}</p>
                         </div>
