@@ -2,8 +2,11 @@
     class="relative z-40 py-4 border-b mb-8 flex justify-between items-center">
     <a href="{{ url('/') }}" class="flex items-center gap-4">
         <img alt="{{ config('app.name') }}" src="{{asset('images/wc-avatar-small.png')}}"
-             class="size-9 rounded-full"/>
+             class="size-10 rounded-full"/>
+             <div>
         <h1 class="font-bold text-slate-600 text-xl ">Dan Matthews</h1>
+        <p class="text-xs text-gray-600">Web Developer</p>
+             </div>
     </a>
 
     <nav class="pointer-events-auto relative gap-6 items-center hidden md:flex">
