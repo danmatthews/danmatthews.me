@@ -3,12 +3,12 @@
 @endphp
 <div class="sm:px-8 mt-9">
 
-    
+
 
     <div class="mx-auto w-full max-w-7xl lg:px-8  bg-green-100">
         <div class="relative px-4 sm:px-8 lg:px-12 bg-red-100">
             <div class="mx-auto bg-yellow-200 max-w-2xl lg:max-w-5xl flex gap-6">
-                
+
                 <div class="max-w-2xl bg-blue-200">
                     <h1 class=" font-extrabold  sm:text-4xl">
                         <span class="inline-block tracking-tighter pr-1  ">{!! markdown(config('site.home.headline')) !!}</span>

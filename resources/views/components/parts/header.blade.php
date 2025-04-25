@@ -3,7 +3,7 @@
     <a href="{{ url('/') }}" class="flex items-center gap-4">
         <img alt="{{ config('app.name') }}" src="{{asset('images/wc-avatar-small.png')}}"
              class="size-9 rounded-full"/>
-        <h1 class="font-bold">Dan Matthews</h1>
+        <h1 class="font-bold text-slate-600 text-xl ">Dan Matthews</h1>
     </a>
 
     <nav class="pointer-events-auto relative gap-6 items-center hidden md:flex">

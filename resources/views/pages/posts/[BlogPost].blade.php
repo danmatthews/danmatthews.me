@@ -17,11 +17,11 @@ name('posts.show');
         <article class="article-styling">
             <header class="flex flex-col space-y-4">
                 <h1
-                    class="text-4xl font-extrabold ">
+                    class="text-4xl font-extrabold">
                     {{ $blogPost->title }}</h1>
 
                 <time datetime="{{ $blogPost->date }}"
-                      class="flex items-center text-gray-500">
+                      class="flex  text-sm items-center text-gray-500">
                     <span
                         class="">{{ $blogPost->date }}</span></time>
             </header>
