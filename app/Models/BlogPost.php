@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Service\MarkdownRenderer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Lukeraymonddowning\SelfHealingUrls\Concerns\HasSelfHealingUrls;
@@ -13,11 +14,9 @@ use Sushi\Sushi;
 class BlogPost extends Model
 {
     use HasFactory, Sushi;
-    use HasSelfHealingUrls;
+
 
     public $incrementing = false;
-
-    protected string $slug = 'slug';
 
     public function getRows()
     {
@@ -41,4 +40,29 @@ class BlogPost extends Model
             ]), $getPosts)
             : $getPosts();
     }
+
+    public function getRouteKey()
+    {
+        return ($this->slug) . '-' . $this->id;
+    }
+
+    public function resolveRouteBinding($value, $field = null)
+    {
+        $id = last(explode('-', $value));
+        $model = parent::resolveRouteBinding($id, $field);
+
+        // Check to see if the model's route key matches
+        // the URL value, or if the model wasn't found.
+        // (Laravel will handle throwing the 404.)
+        if (!$model || $model->getRouteKey() === $value) {
+            // If so, return to Laravel.
+            return $model;
+        }
+
+        // If not, redirect to the right URL.
+        throw new HttpResponseException(
+            redirect()->route('posts.show', ['blog_post' => $model])
+        );
+    }
+
 }
