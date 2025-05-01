@@ -4,8 +4,8 @@
         <img alt="{{ config('app.name') }}" src="{{asset('images/wc-avatar-small.png')}}"
              class="size-10 rounded-full"/>
              <div>
-        <h1 class="font-bold text-slate-600 text-xl ">Dan Matthews</h1>
-        <p class="text-xs text-gray-600">Web Developer</p>
+        <h1 class="font-bold text-black text-xl ">Dan Matthews</h1>
+        <p class="text-xs text-gray-700">Web Developer</p>
              </div>
     </a>
 

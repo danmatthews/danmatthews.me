@@ -1,7 +1,6 @@
 <x-layouts.app title="Posts">
-    <div class=" mb-8">
-        <h1 class="text-4xl font-extrabold">Posts</h1>
-    </div>
+    <x-page-title>Posts</x-page-title>
+   
     <div class="grid grid-cols-1  gap-8 max-w-4xl mx-auto">
         <div class="space-y-10 lg:pl-16 xl:pl-24 hidden">
 

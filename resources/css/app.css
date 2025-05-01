@@ -26,7 +26,7 @@
 }
 
 @theme {
-
+    --color-black: #151515;
 }
 
 [x-cloak] {
@@ -42,11 +42,16 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Archivo Narrow", sans-serif;
+    font-family: "Outfit", sans-serif;
+    @apply text-balance;
 
     pre, code {
         font-family: inherit;
     }
+}
+
+a:hover {
+    color: #E65354;
 }
 
 .has-links {
@@ -70,12 +75,12 @@ h1, h2, h3, h4, h5, h6 {
         }
 
         h2 {
-            @apply text-2xl font-bold;
+            @apply text-3xl font-bold;
             @apply mt-16;
         }
 
-        h3, h4.h5.h6 {
-            @apply text-xl font-bold;
+        h3, h4, h5, h6 {
+            @apply text-2xl font-bold;
             @apply mt-16;
         }
 

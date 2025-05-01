@@ -12,7 +12,7 @@ name('posts.show');
     og_image="{{ asset('storage/opengraph/' . $blogPost->id . '.png') }}">
 
 
-    <div class="max-w-2xl">
+    <div class="max-w-3xl">
 
         <article class="article-styling">
             <header class="flex flex-col space-y-4">
@@ -21,7 +21,7 @@ name('posts.show');
                     {{ $blogPost->title }}</h1>
 
                 <time datetime="{{ $blogPost->date }}"
-                      class="flex  text-sm items-center text-gray-500">
+                      class="flex  text-sm items-center text-gray-600">
                     <span
                         class="">{{ $blogPost->date }}</span></time>
             </header>

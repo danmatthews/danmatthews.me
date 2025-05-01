@@ -2,9 +2,7 @@
     $resume = \App\Models\ResumeEntry::all();
 @endphp
 <x-layouts.app title="About">
-    <div class=" mb-8">
-        <h1 class="text-4xl font-extrabold">About</h1>
-    </div>
+    <x-page-title>About</x-page-title>
 
 
     <div class="max-w-2xl">

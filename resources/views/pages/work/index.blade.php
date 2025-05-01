@@ -1,7 +1,5 @@
 <x-layouts.app title="Work">
-    <div class=" mb-8">
-        <h1 class="text-4xl font-extrabold">Work</h1>
-    </div>
+    <x-page-title>Work</x-page-title>
     <div class="max-w-2xl mb-8">
         <p class="mt-6 text-base">I'm actively trying to increase my
             contributions to open source through <strong>Intrfce</strong> - my vendor name for Laravel and open source
