@@ -93,22 +93,12 @@
             </ul>
         </nav>
     </div>
-    <div class="relative max-w-4xl mx-auto px-4">
+    <div class="relative max-w-4xl mx-auto px-4 pb-32">
         <x-parts.header avatar="{{ $avatar }}"/>
         <main class="w-full">
             {{ $slot }}
         </main>
-        <footer class="mt-32 max-w-4xl border-t py-4 flex-none">
-
-            <div class="flex flex-col items-center justify-between gap-6 sm:flex-row">
-
-                <div class="flex flex-col gap-3 items-end">
-                    <p class="text-sm text-zinc-400 dark:text-zinc-500">©
-                        <?php date('Y'); ?>
-                        Dan Matthews. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
+        
     </div>
 </div>
 

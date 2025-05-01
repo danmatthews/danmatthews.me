@@ -31,7 +31,6 @@ name('posts.show');
                 {!! $blogPost->content !!}
             </div>
         </article>
-    </div>
 
 
 </x-layouts.app>
