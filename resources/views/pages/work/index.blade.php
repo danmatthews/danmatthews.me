@@ -1,10 +1,6 @@
 <x-layouts.app title="Work">
     <x-page-title>Work</x-page-title>
-    <div class="max-w-2xl mb-8">
-        <p class="mt-6 text-base">I'm actively trying to increase my
-            contributions to open source through <strong>Intrfce</strong> - my vendor name for Laravel and open source
-            packages, but there are also some bits and bobs here that i'm especially proud of.</p>
-    </div>
+   
 
     <ul role="list" class="divide-y">
         @foreach (config('site.projects') as $project)
