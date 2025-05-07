@@ -9,6 +9,7 @@ class PostTag extends Model
 {
     protected $guarded;
     public $timestamps = false;
+    public $incrementing = false;
 
     public function blogPost(): BelongsTo
     {
