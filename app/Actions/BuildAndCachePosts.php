@@ -2,14 +2,12 @@
 
 namespace App\Actions;
 
-use App\Data\BlogPostData;
 use App\Models\BlogPost;
 use App\Models\PostTag;
 use App\Service\PostContentParser;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
-use Tests\Fixtures\Models\Post;
 
 class BuildAndCachePosts
 {
