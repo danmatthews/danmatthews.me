@@ -2,6 +2,7 @@
 id: 6c634
 title: 'Optionally skip running migrations in Laravel with the new ‘shouldRun’ method'
 date: '2025-03-31 12:08:55'
+tags: ['laravel']
 slug: optionally-skip-running-migrations-in-laravel
 excerpt: 'A week or so ago, I contributed something Laravel i’ve wanted for a while - a way to skip running migrations unless a certain criteria is met.'
 ---

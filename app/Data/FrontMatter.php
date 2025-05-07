@@ -6,7 +6,7 @@ use Carbon\CarbonInterface;
 use Spatie\LaravelData\Attributes\Validation\Required;
 use Spatie\LaravelData\Data;
 
-class BlogPostData extends Data
+class FrontMatter extends Data
 {
     public function __construct(
         #[Required]
@@ -18,10 +18,9 @@ class BlogPostData extends Data
         #[Required]
         public string          $slug,
         #[Required]
-        public string          $content,
-        #[Required]
         public null|string     $excerpt,
         public bool            $published = true,
+        public ?array          $tags = []
     )
     {
     }

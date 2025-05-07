@@ -5,6 +5,7 @@
 @source '../views/components';
 @source '../views/content';
 @source '../views/pages';
+@source '../views/vendor';
 @source '../js';
 
 /*
@@ -41,9 +42,12 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+.use-heading-font {
+    font-family: "DM Sans", sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Outfit", sans-serif;
-    @apply text-balance;
+    font-family: "DM Sans", sans-serif;
 
     pre, code {
         font-family: inherit;
@@ -60,6 +64,13 @@ a:hover {
     }
 }
 
+.underline-links-subtle {
+    a {
+        text-decoration: underline;
+        @apply decoration-gray-300 underline-offset-4;
+    }
+}
+
 .article-styling {
     @apply text-base;
 
@@ -68,6 +79,11 @@ a:hover {
 
         p {
             @apply leading-7;
+
+        }
+
+        p code {
+            @apply bg-gray-100;
         }
 
         a {
@@ -75,12 +91,12 @@ a:hover {
         }
 
         h2 {
-            @apply text-3xl font-bold;
+            @apply text-base font-semibold;
             @apply mt-16;
         }
 
         h3, h4, h5, h6 {
-            @apply text-2xl font-bold;
+            @apply text-base font-semibold;
             @apply mt-16;
         }
 
@@ -97,13 +113,14 @@ a:hover {
         }
 
         img {
-            @apply border-4 border-gray-100 rounded-md;
+
         }
     }
 }
 
 .phiki-wrapper {
-    @apply border border-gray-300 rounded-md overflow-hidden bg-transparent!  p-1;
+
+    @apply border border-gray-300 rounded-md overflow-hidden bg-transparent! p-1 mt-8 mb-8;
 
     pre {
         @apply border border-gray-600 rounded-sm p-4 text-sm;

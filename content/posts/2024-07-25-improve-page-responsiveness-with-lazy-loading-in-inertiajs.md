@@ -2,6 +2,7 @@
 id: 56ce2
 title: 'Improve page responsiveness with lazy loading in InertiaJS'
 date: '2023-08-16 09:56:56'
+tags: ['laravel', 'inertiajs']
 slug: improve-page-responsiveness-with-lazy-loading-in-inertiajs
 excerpt: 'Lazy loading is one of the biggest and best features of InertiaJS.'
 ---

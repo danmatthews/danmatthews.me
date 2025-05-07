@@ -2,6 +2,7 @@
 id: a4452
 title: 'Over Engineered Podcast: Running small teams'
 date: '2025-03-31 10:23:45'
+tags: ['podcast']
 slug: over-engineered-podcast-running-small-teams
 excerpt: 'I was asked to join the Over Engineered podcast to chat about the challenges of running small software teams.'
 ---

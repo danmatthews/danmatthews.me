@@ -1,22 +1,16 @@
 <header
-    class="relative z-40 py-4 border-b mb-8 flex justify-between items-center">
+    class="relative z-40 py-12 mb-8 flex justify-between items-center">
     <a href="{{ url('/') }}" class="flex items-center gap-4">
-        <img alt="{{ config('app.name') }}" src="{{asset('images/wc-avatar-small.png')}}"
-             class="size-10 rounded-full"/>
-             <div>
-        <h1 class="font-bold text-black text-xl ">Dan Matthews</h1>
-        <p class="text-xs text-gray-700">Web Developer</p>
-             </div>
+        <h1 class="font-semibold text-black text-base ">Dan Matthews</h1>
     </a>
 
     <nav class="pointer-events-auto relative gap-6 items-center hidden md:flex">
 
         @foreach (config('site.navigation') as $item)
-
-            <x-parts.nav-item :url="$item->url" :title="$item->title"/>
+            @php $active = is_callable($item->isActive) ? ($item->isActive)(request()) : null; @endphp
+            <x-parts.nav-item :url="$item->url" :title="$item->title" :active="$active"/>
 
         @endforeach
-
 
     </nav>
 
@@ -30,3 +24,5 @@
 
 
 </header>
+
+

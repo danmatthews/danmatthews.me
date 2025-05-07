@@ -3,6 +3,7 @@ id: ca9e0
 title: 'My three favourite pizza dough recipes for quick and tasty pizza at home'
 date: '2024-08-06 03:44:03'
 slug: my-three-fave-pizza-dough-recipes
+tags: [cooking]
 excerpt: "I make pizza at home at least once a week, and sometimes i can't be bothered getting the pizza oven out, so i've included a few recipes here that will fit in your home oven."
 ---
 I make pizza a lot at home - probably more than i should, but it's so good! Here's my favourite dough recipes to help you get started - and you don't need a specialist oven for ANY of these, you can bake them in your home oven.

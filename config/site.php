@@ -5,7 +5,7 @@ return [
         'headline' => "Dan Matthews",
         'subheader' => "I'm a full stack developer, working with Laravel and JS. I'm based in the UK, and currently i'm building charity software at [Social Sync](https://socialsync.io)."
     ],
-    'about' => file_get_contents(resource_path('views/content/about.md')),
+    'about' => file_get_contents(base_path('content/about.md')),
     'posts' => [
         'headline' => 'Posting about web development, with a little bit of personal stuff thrown in here and there.',
         'subheading' => 'Talking about Laravel, Svelte, and more.'
@@ -54,21 +54,23 @@ return [
             "Social Sync",
             'Head Of Engineering',
             '2022',
-            'Present'
+            'Present',
+            'https://socialsync.io/'
         ),
         new \App\Data\ResumeEntryData(
             'images/black-lab-software.png',
             "Black Lab Software",
             'Owner',
             '2016',
-            '2022'
+            '2022',
+            'https://blacklabsoftware.co.uk/'
         ),
         new \App\Data\ResumeEntryData(
             'images/fika-apps.png',
             "Fika Apps",
             'Mobile Developer',
             '2018',
-            '2019'
+            '2019',
         ),
         new \App\Data\ResumeEntryData(
             'images/hydrant.png',
@@ -83,8 +85,14 @@ return [
     ],
     'navigation' => [
         new \App\Data\NavigationItem(
-            'Posts',
-            '/'
+            title: 'Posts',
+            url: '/',
+            isActive: function (\Illuminate\Http\Request $request) {
+
+                return in_array($request->route()->getName(), [
+                        'posts.index', 'posts.show', 'tags.show'
+                    ]) || $request->path() == '/';
+            }
         ),
         new \App\Data\NavigationItem(
             'About',

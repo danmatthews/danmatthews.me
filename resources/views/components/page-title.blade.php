@@ -1,3 +1,3 @@
-<div {{ $attributes->merge(['class' => 'mb-16']) }}>
-    <h1 class="text-8xl font-extrabold">{{ $slot }}</h1>
+<div {{ $attributes->merge(['class' => 'mb-4']) }}>
+    <h1 class="text-xl font-semibold">{{ $slot }}</h1>
 </div>

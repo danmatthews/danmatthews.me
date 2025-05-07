@@ -3,6 +3,7 @@ id: d20d3
 title: 'Svelte 5 - Snippets.'
 date: '2024-08-02 10:13:25'
 slug: svelte-5-snippets
+tags: ['svelte']
 excerpt: 'Snippets are a new feature of Svelte 5 that allow you to define re-usable chunks of markup that can be passed around as state and props, and rendered when needed.'
 ---
 

@@ -3,6 +3,7 @@ id: 114d5
 title: 'Laravel Frontend Enums Package'
 date: '2023-10-24 09:48:43'
 slug: laravel-frontend-enums-package
+tags: ['laravel']
 excerpt: "I've just published the first release of a little package to help you publish your PHP Enums to the frontend for use in your InertiaJS applications or with other libraries like Alpine.js."
 ---
 

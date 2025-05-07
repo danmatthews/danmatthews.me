@@ -1,25 +1,41 @@
 <?php
 
 namespace App\Actions;
-use App\Service\MarkdownRenderer;
+
+use App\Data\BlogPostData;
+use App\Models\BlogPost;
+use App\Models\PostTag;
+use App\Service\PostContentParser;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
-class BuildAndCachePosts {
+use Tests\Fixtures\Models\Post;
 
-    public function handle(): array
+class BuildAndCachePosts
+{
+    public function handle(): Collection
     {
-        return Cache::rememberForever('posts.index', fn() => collect(File::allFiles(resource_path('views/posts')))
-        ->map(function ($file) {
-            return (new MarkdownRenderer())->render(file_get_contents($file->getRealPath()));
-        })
-        ->sortByDesc(fn($s) => $s->date->timestamp)
-        ->map(fn($s) => array_merge($s->toArray(), [
-            'published' => $s->published ?? true,
-            'date' => $s->date->format('F jS, Y'),
-            'months_ago' => $s->date->diffInMonths(now()),
-        ]))
-        ->filter(fn($p) => app()->environment('production') ? $p['published'] : true)
-        ->all()
-        );
+        $this->truncatePosts();
+        return $this->shouldCache() ? Cache::rememberForever('posts.index', fn() => $this->getPosts()) : $this->getPosts();
+    }
+
+    public function getPosts(): Collection
+    {
+        $parser = new PostContentParser();
+        return collect(File::allFiles(base_path('content/posts')))
+            ->map(function ($file) use ($parser) {
+                return $parser->parse(file_get_contents($file->getRealPath()));
+            });
+    }
+
+    private function shouldCache(): bool
+    {
+        return config('graphein.enable_cache');
+    }
+
+    private function truncatePosts()
+    {
+        PostTag::truncate();
+        BlogPost::truncate();
     }
 }

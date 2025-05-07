@@ -1,5 +1,6 @@
 ---
 id: c5d7c
+tags: ['adhd','personal']
 title: 'ADHD Medication Shortage - UK Resources'
 date: '2024-07-29 01:19:13'
 slug: adhd-medication-shortage-uk-resources

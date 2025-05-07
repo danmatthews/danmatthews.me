@@ -1,15 +1,15 @@
 <x-layouts.app title="Work">
-    <x-page-title>Work</x-page-title>
-   
+    <x-page-title class="mb-16">Work</x-page-title>
 
-    <ul role="list" class="divide-y">
+
+    <ul role="list" class="space-y-16">
         @foreach (config('site.projects') as $project)
-            <li class="group relative grid grid-cols-1 md:grid-cols-3 gap-8 items-center py-6">
+            <li class="group relative grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                 <div class="col-span-2">
-                    <h2 class="text-base font-bold">
+                    <h2 class="text-base font-semibold">
                         <a href="{{ $project->url }}">{{ $project->title }}</a>
                     </h2>
-                    <p class="relative z-10 mt-2 text-sm ">
+                    <p class="relative z-10 mt-2 text-sm leading-6 text-gray-600 ">
                         {{ $project->description }}</p>
                 </div>
                 <div class="flex items-center sm:justify-end md:justify-start">

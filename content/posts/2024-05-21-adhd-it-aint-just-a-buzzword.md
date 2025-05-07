@@ -3,6 +3,7 @@ id: 481f1
 title: "ADHD: it ain't just a buzzword."
 date: '2023-12-21 16:48:00'
 slug: adhd-it-aint-just-a-buzzword
+tags: ['personal']
 excerpt: "I was diagnosed with ADHD after 2 years of fighting for a diagnosis on the NHS, here's a few things I learned and my experience with medication so far."
 ---
 

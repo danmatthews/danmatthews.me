@@ -1,31 +1,47 @@
+@props([
+    'title' => null,
+    'posts' => null,
+])
 @php
-    $posts = App\Models\BlogPost::paginate(10);
-@endphp
-<div class="gap-8 max-w-3xl divide-y">
-    @foreach ($posts as $post)
-        <article class="py-8 first:pt-0 group relative flex flex-col items-start">
 
-            <h2 class="text-3xl font-extrabold leading-10">
-                <a href="{{ route('posts.show', ['blog_post' => $post]) }}"
-                   class="">{{ $post->title }}</a>
-            </h2>
+    @endphp
+@if ($title)
 
+    <x-page-title class="mb-12">{{$title}}</x-page-title>
+@endif
+<div class="max-w-3xl space-y-16">
+    @forelse ($posts as $post)
+        <article class="first:pt-0 group relative flex flex-col items-start space-y-6">
 
-            <p class="relative z-10 mt-4 text-base ">
+            <div class="space-y-2">
+                <h2 class="text-base text-base font-semibold">
+                    <a href="{{ route('posts.show', ['blog_post' => $post]) }}"
+                       class="">{{ $post->title }}</a>
+                </h2>
+                <time class="text-sm text-gray-500 leading-none block"
+                      datetime="{{ $post->date }}">
+                    {{ $post->date->format('jS F Y') }}
+                </time>
+            </div>
+
+            <p class="text-base text-gray-700 ">
                 {{ $post->excerpt }}
             </p>
-
-
-            <time class="text-sm text-gray-500 mt-4"
-                  datetime="{{ $post->date }}">
-                {{ $post->date }}
-            </time>
+            
 
 
         </article>
-    @endforeach
+        @if (!$loop->last)
+            {{-- <hr class="w-1/2" /> --}}
+        @endif
+    @empty
+        Nothing here.
+    @endforelse
+
+    <div class="">
+        {{ $posts->links() }}
+    </div>
+
 </div>
 
-<div class="flex items-center justify-between w-full">
-    {{ $posts->links() }}
-</div>
+

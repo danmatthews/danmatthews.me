@@ -3,8 +3,11 @@
 namespace App\Models;
 
 
+use App\Data\FrontMatter;
+use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Cache;
 use App\Actions\BuildAndCachePosts;
@@ -12,18 +15,25 @@ use Sushi\Sushi;
 
 class BlogPost extends Model
 {
-    use HasFactory, Sushi;
-
+    use HasFactory;
 
     public $incrementing = false;
 
-    public function getRows()
-    {
-       
+    protected $guarded = [];
 
-        return Cache::has('posts.index') ?
-        Cache::get('posts.index')
-        : (new BuildAndCachePosts)->handle();
+    protected function casts(): array
+    {
+        return [
+            'frontMatter' => FrontMatter::class,
+            'tags' => AsCollection::class,
+            'published' => 'bool',
+            'date' => 'datetime',
+        ];
+    }
+
+    public function tags(): HasMany
+    {
+        return $this->hasMany(PostTag::class);
     }
 
     public function getRouteKey()

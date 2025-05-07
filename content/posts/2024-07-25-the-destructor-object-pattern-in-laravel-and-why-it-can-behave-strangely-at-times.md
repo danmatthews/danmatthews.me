@@ -3,6 +3,7 @@ id: 1dbfd
 title: 'The destructor object pattern in Laravel and why it can behave strangely at times.'
 date: '2023-09-16 09:51:08'
 slug: destructor-object-pattern-in-laravel
+tags: ['laravel']
 excerpt: 'Have you noticed that some of the more fluent method chains in Laravel never actually call a "run()" function - let me walk you through why.'
 ---
 

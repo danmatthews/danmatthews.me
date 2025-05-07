@@ -2,6 +2,7 @@
 id: 0b93f
 title: 'Why we won’t be using Laravel Cloud (just yet)'
 date: '2025-03-19 01:54:06'
+tags: ['laravel']
 slug: why-we-wont-be-using-laravel-cloud-just-yet
 excerpt: "I work through a few shortcomings of Laravel Cloud that don't make it a great fit for us just yet."
 ---
