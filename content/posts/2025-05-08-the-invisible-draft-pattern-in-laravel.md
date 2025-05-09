@@ -7,33 +7,39 @@ slug: the-invisible-draft-pattern-in-laravel
 excerpt: "Simplify your UI and UX by leveraging a pattern of skipping having a gigantic 'creation' form and instead jump straight to the 'edit' form for models."
 ---
 
+The "invisible draft" pattern is something i've used in a few production apps in my time, sometimes for different reasons, but mostly to _control complexity_ and reduce the need for long complex creation forms that can lose data if the user refreshes or doesn't finish completely filling it out before hitting "Create" or "Save".
+
+The concept here is simple - we create a database row with minimal data first, allowing us to "anchor" any further creation work to a persisted row in the database, while still taking into account why someone might "abandon" the creation of a model.
+
+We leverage Laravel's global scopes and model pruning capabilities to clean up incomplete drafts, while also not cluttering the UI with entities that the user either abandoned or didn't fill out the required fields for.
+
 ## The Problem
 
-When you’re creating complex creation + editing UIs, you’ll usually need:
+When you’re creating complex creation and editing UIs for your models, you’ll usually need:
 
 - A creation form, where you request all the required values to CREATE your models.
-- An edit form where you have to load + display all the data you have already, then use a separate set of logic to UPDATE your models.
-- For your CREATION form, there is no database or model ID to associate data with, so doing asyncronous work like adding relations, or uploading images, has to be done in a temporary way - either using another model, database table, or storing things in browser memory - which means it could be lost by someone refreshing the page when filling out a gigantic form.
+- An edit form where you have to load + display all the data you have already, then use a separate set of logic and validation rules to UPDATE your models.
+- For your **creation** form, there is no database row or model ID to associate data with, so doing asyncronous work like adding relations, or uploading images, has to be done in a temporary way - either using another model, database table, or storing things in browser memory - which means it could be lost by someone refreshing the page when filling out a gigantic form.
 
-## An Example
+## An example - creating an event.
 
-You’re using an event management system, and you’re about to go in and create a new event.
+Image you’re using an event management system, and you’re about to go in and create a new event.
 
-The event creation form has ~dozens~ of fields - name, location, start date, end date, opening times, ticket costs, the ability to add multiple types of tickets etc. And then you can upload images and documents using file upload fields.
+The event creation form has _dozens_ of fields - name, location, start date, end date, opening times, ticket costs, the ability to add multiple types of tickets etc. And then you can upload images and documents using file upload fields.
 
-You fill out the form, upload your images, add your tickets, and click “submit” - there are now 4 validation errors.
+You fill out the form, upload your images, add your tickets, and click “submit” - but there are now 4 validation errors.
 
-In the worst built forms - you might even lose your uploads!
+And on some of the more badly built forms you might even lose your uploads when you submitted, though that's less common now front-end frameworks are used more widely.
 
-## Ask for as little as possible at first.
+## Ask for as little as possible at first
 
-When creating your model, you should **ask for as little information as possible upfront** and provide nullable values or sensible defaults for the rest.
+When creating your model, you should **ask for as little information as possible upfront** and provide `nullable` values or sensible derived defaults for the rest.
 
 For an event, this might just be as simple as the title. Then from that, you create your `Event` model.
 
-“What about the dozens of other fields?!” you might ask - simple, either make them `nullable` or fill them with sensible defaults. The user will more than likely have to change them anyway.
+“What about the dozens of other fields?!” you might ask - simple, either make them `nullable` or fill them with defaults that you can derive from the information you **have** asked for -  the user will more than likely have to change them anyway.
 
-For example, now, you can allow this person to edit their event any time, at the URL:
+Now you've created a skeleton model, you can allow this person to edit their event any time, at the URL:
 
 ```
 http://my-event-app.com/events/93983984839819
@@ -47,17 +53,17 @@ http://my-event-app.com/events/82a24e54-7bb8-45ef-b03b-1bb950d1bc7f
 
 ## So why is this better?
 
-Well, now **you only have to build ONE form**: the edit form. OR you can build a wizard, with steps!
+The biggest benefit here is simple: now **you only have to build ONE form**: the edit form, including one set of validation rules, and one set of persistence logic. You could even build a multi-step wizard, where each step incrementally saves the provided data to the model as you go.
 
-And now you have a database record and model to anchor everything to:
+And now you have a database record and model to anchor related elements:
 
-- If you’re creating ticket prices as separate entities, you can create them and use relations to tie them directly to your already created model.
-- You can upload images and associate them with your model directly, either using columns, or something like Spatie’s media library package.
+- If you’re creating multiple ticket prices as separate entities, you can create them and use relations to tie them directly to your already created model.
+- You can upload images and associate them with your model directly, either using columns, or something like [Spatie’s media library](https://spatie.be/docs/laravel-medialibrary/v11/introduction) package.
 - The entire form is designed to show content if it exists in the fields, or show blank inputs if the information is still required.
 
 ## Separating “real” entries from those created accidentally, or on a whim.
 
-Here’s the key to this - when someone creates an event, and **doesn’t** fill out any other fields, or proceeds to NOT edit the entity further, the event is NOT shown in the events listing page.
+Here’s the key to this pattern - when someone creates an event, and **doesn’t** fill out any other fields, or proceeds to NOT edit the entity further, the event is NOT shown in the events listing page.
 
 So if you click “Create” and enter an event name, then immediately hit back, the event won’t be listed there, like it was never created at all, though it does still exist in the database.
 
@@ -87,8 +93,6 @@ Here you can see two distinct “draft” states - one being `draft_invisible`.
 Invisible drafts are excluded from all queries globally, using a [global scope](https://laravel.com/docs/12.x/eloquent#global-scopes):
 
 ```php
-<?php
-
 namespace App\Models\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -112,7 +116,6 @@ class ExcludeInvisibleDraftScope implements Scope
 Then add this global state to your `Event` model - notice how i’m casting `status` to the enum as well.
 
 ```php
-<?php
 namespace App\Models;
 
 use App\Models\Scopes\ExcludeInvisibleDraftScope;
@@ -131,7 +134,7 @@ class Event extends Model
 }
 ```
 
-Now when you query for `Event` models, invisible drafts won’t be included.
+Now when you query for your `Event` models, "invisible drafts" won’t be included.
 
 In our UI, we’re now just asking for a title when creating an event:
 
@@ -278,3 +281,6 @@ It also might frustrate users if they “create” an entity, and it’s not in 
 
 ![](https://i.imgur.com/XEhj7dA.png)
 
+## Thanks for reading
+
+If you've enjoyed this article, have any questions, or would like to chat about it - please let me know over on [Bluesky](https://bsky.app/profile/danmatthews.me).
