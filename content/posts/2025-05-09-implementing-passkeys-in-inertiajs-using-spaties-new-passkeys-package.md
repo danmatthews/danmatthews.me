@@ -53,7 +53,7 @@ public function generatePasskeyOptions();
 
 In your `Settings` component, add a section for passkeys which list out the existing ones, and also have a button for adding a new one.
 
-```
+```svelte
 <script>
     import {router} from '@inertiajs/svelte';
 
