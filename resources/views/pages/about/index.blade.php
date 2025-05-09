@@ -4,6 +4,7 @@
 <x-layouts.app title="About">
     <x-page-title class="mb-16">About</x-page-title>
 
+    <x-three-images />
 
     <div class="max-w-2xl">
         <div class="">

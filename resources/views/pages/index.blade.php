@@ -5,6 +5,8 @@
 @endphp
 <x-layouts.app title="Posts">
     @if ($page == 1)
+
+
     <div class="use-heading-font font-medium max-w-3xl mb-12 underline-links-subtle leading-7">
         <p>Welcome to my little corner of the internet. I'm Dan Matthews, a full stack web developer
             living
