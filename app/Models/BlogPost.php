@@ -11,9 +11,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Cache;
 use App\Actions\BuildAndCachePosts;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Sushi\Sushi;
 
-class BlogPost extends Model
+class BlogPost extends Model implements Feedable
 {
     use HasFactory;
 
@@ -39,6 +41,23 @@ class BlogPost extends Model
     public function getRouteKey()
     {
         return ($this->slug) . '-' . $this->id;
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->title)
+            ->summary($this->excerpt)
+            ->updated($this->date)
+            ->link(route('posts.show', ['blog_post' => $this]))
+            ->authorName("Dan Matthews")
+            ->authorEmail("dan@danmatthews.me");
+    }
+
+    public function getFeedItems()
+    {
+        return self::orderBy('date', 'desc')->get();
     }
 
     public function resolveRouteBinding($value, $field = null)

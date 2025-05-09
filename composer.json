@@ -17,6 +17,7 @@
         "phiki/phiki": "^1.1",
         "simonhamp/the-og": "^0.5.6",
         "spatie/laravel-data": "^4.6",
+        "spatie/laravel-feed": "^4.4",
         "spatie/laravel-ray": "^1.37",
         "statamic/stringy": "^3.1",
         "symfony/yaml": "^7.0"
