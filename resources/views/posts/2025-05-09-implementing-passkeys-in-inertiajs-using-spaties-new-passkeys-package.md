@@ -3,6 +3,7 @@ id: eb480
 title: 'Implementing passkeys in InertiaJS using Spatie’s new passkeys package'
 date: '2025-05-09 12:09:09'
 tags: ['laravel']
+published: true
 slug: implementing-passkeys-in-inertiajs-using-spaties-new-passkeys-package
 excerpt: "Spatie has just dropped a new passkeys package for Laravel that makes adding passkey authentication easy - but it currently doesn't include components for InertiaJS, so here's how we implemented it in less than 30 minutes."
 ---
