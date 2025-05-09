@@ -20,7 +20,7 @@ Install the package [as instructed](https://spatie.be/docs/laravel-passkeys/v1/i
 
 In your user’s settings area, or on a page of your choosing, return the user’s current passkeys to your inertia component.
 
-**But** there’s a catch here, make sure you aren’t returning the `passkey` column - it can play havoc with JSON encoding:
+**But** there’s a catch here, make sure you aren’t returning the `data` or `credential_id` columns - they can play havoc with JSON encoding:
 
 ```php
 $user = auth()->user();
