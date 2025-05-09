@@ -64,11 +64,11 @@ class MakePostCommand extends Command
         MARKDOWN;
 
         File::ensureDirectoryExists(
-            resource_path('views/posts/')
+            base_path('content/posts/')
         );
 
         $path = collect([
-            resource_path('views/posts'),
+            base_path('content/posts'),
             date('Y-m-d') . '-' . $data['slug'] . '.md',
         ])->implode(DIRECTORY_SEPARATOR);
 

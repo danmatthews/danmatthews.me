@@ -127,7 +127,7 @@ router.post(
 );
 ```
 
-It might looks slightly strange that we’re calling `JSON.stringify` here, but on the server side, there are a few methods that expect these values as JSON strings, rather than objects.
+It might look slightly strange that we’re calling `JSON.stringify` here, but on the server side, there are a few methods that expect these values as JSON strings, rather than objects.
 
 Now you can store the passkey:
 
