@@ -16,7 +16,7 @@ return [
             /*
              * The feed will be available on this url.
              */
-            'url' => '/rss',
+            'url' => '/feed',
 
             'title' => 'Dan Matthews',
             'description' => 'Welcome to my little corner of the internet. I\'m Dan Matthews, a full stack web developer living in Carlisle, Cumbria. I mostly blog about Laravel, Svelte, and VueJS, but you can also find some more personal topics close to my heart here like cooking and more.',
