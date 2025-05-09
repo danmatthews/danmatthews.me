@@ -55,7 +55,7 @@
         <meta name="twitter:image" content="{{ $og_image }}">
     @endisset
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff"/>
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18181B"/>
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#151515"/>
     
     <x-feed-links />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +66,7 @@
 
 </head>
 
-<body class="h-full" x-data="site">
+<body class="h-full bg-white dark:bg-zinc-900 text-black dark:text-zinc-100" x-data="site">
 
 <div class="w-full">
 

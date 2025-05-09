@@ -23,7 +23,7 @@ name('posts.show');
             <h2 class="mb-3 text-xl font-semibold">{{ $blogPost->title }}</h2>
             <div>
                 <time datetime="{{ $blogPost->date->format('c') }}"
-                      class="text-sm mb-16 text-base items-center text-gray-500 mb-4 w-full block">
+                      class="text-sm mb-16 text-base items-center text-gray-500 dark:text-zinc-400 mb-4 w-full block">
                     {{ $blogPost->date->format('jS F Y') }}</time>
 
             </div>
