@@ -6,20 +6,21 @@ use Carbon\CarbonInterface;
 use Spatie\LaravelData\Attributes\Validation\Required;
 use Spatie\LaravelData\Data;
 
-class FrontMatter extends Data
+class LinkFrontMatter extends Data
 {
     public function __construct(
         #[Required]
         public string          $id,
         #[Required]
         public string          $title,
-        public string          $content,
         #[Required]
         public CarbonInterface $date,
         #[Required]
         public string          $slug,
         #[Required]
-        public null|string     $excerpt,
+        public string          $url,
+        #[Required]
+        public null|string     $description,
         public bool            $published = true,
         public ?array          $tags = []
     )

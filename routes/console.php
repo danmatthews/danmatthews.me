@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Schedule;
-use App\Actions\BuildAndCachePosts;
+use App\Actions\BuildContent;
 
 Schedule::call(function () {
-    (new BuildAndCachePosts)->handle();
+    (new BuildContent)->handle();
 })->daily();

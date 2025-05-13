@@ -7,10 +7,12 @@ use App\Data\FrontMatter;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Cache;
-use App\Actions\BuildAndCachePosts;
+use App\Actions\BuildContent;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Sushi\Sushi;
@@ -33,9 +35,9 @@ class BlogPost extends Model implements Feedable
         ];
     }
 
-    public function tags(): HasMany
+    public function tags(): BelongsToMany
     {
-        return $this->hasMany(PostTag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     public function getRouteKey()

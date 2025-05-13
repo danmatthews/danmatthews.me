@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Actions\BuildAndCachePosts;
+use App\Actions\BuildContent;
 use Illuminate\Console\Command;
 
 class BuildPosts extends Command
@@ -26,6 +26,6 @@ class BuildPosts extends Command
      */
     public function handle()
     {
-        (new BuildAndCachePosts)->handle();
+        (new BuildContent)->handle();
     }
 }

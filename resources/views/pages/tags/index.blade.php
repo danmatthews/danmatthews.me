@@ -7,7 +7,7 @@ name('tags.index');
 
 ?>
 @php
-    $tags = App\Models\PostTag::get()->groupBy('tag');
+    $tags = App\Models\Tag::get()->groupBy('tag');
 @endphp
 <x-layouts.app title="Post Tags">
     <x-page-title class="mb-12">Post Tags</x-page-title>

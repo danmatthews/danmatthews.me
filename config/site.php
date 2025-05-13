@@ -95,6 +95,10 @@ return [
             }
         ),
         new \App\Data\NavigationItem(
+            'Links',
+            'links'
+        ),
+        new \App\Data\NavigationItem(
             'About',
             'about'
         ),
