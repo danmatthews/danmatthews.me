@@ -66,6 +66,8 @@ If you need to work on a feature and really get your teeth into something you ca
 
 When we release, we pull a release branch from `main` and call it `release/v{major}.{minor}.{patch}` - this is then set as the release branch in [Envoyer](https://envoyer.dev) and deployed to live.
 
+[![](https://mermaid.ink/img/pako:eNqNj8tOhDAUhl-lOWvAaSkUuh0T987OdFPhCGRoSzqtcSS8u53xstBE3f23fMm_Qud6BAl5nisbpjCjJPc4oz4hOQQfuxA9Knuthynceb2MyhJCOmfMFL7LR69tNxL_Trh5pgUryh_7Ebuji4EYPdlfYH9w-X-5kIFBn8I-HV0vhYIwokEFMsle-6MCZbe00zG4w9l2INN3zMC7OIwgn_R8Si4uvQ54O-nBa_OVDv4C_tij7dHvXbQBJNvxDBZtH5wzn4NkQa7wklpeFUy0jSi5aBmruMjgDLJsaLGjVc1oyWsmOC-3DF6vhF0haM3atmkpF7RJ7fYGrtiOZA?type=png)](https://mermaid.live/edit#pako:eNqNj8tOhDAUhl-lOWvAaSkUuh0T987OdFPhCGRoSzqtcSS8u53xstBE3f23fMm_Qud6BAl5nisbpjCjJPc4oz4hOQQfuxA9Knuthynceb2MyhJCOmfMFL7LR69tNxL_Trh5pgUryh_7Ebuji4EYPdlfYH9w-X-5kIFBn8I-HV0vhYIwokEFMsle-6MCZbe00zG4w9l2INN3zMC7OIwgn_R8Si4uvQ54O-nBa_OVDv4C_tij7dHvXbQBJNvxDBZtH5wzn4NkQa7wklpeFUy0jSi5aBmruMjgDLJsaLGjVc1oyWsmOC-3DF6vhF0haM3atmkpF7RJ7fYGrtiOZA)
+
 This allows us to keep working on `main` without fear of _accidentally_ wrecking the deployed production branch.
 
 ## Bug fixes are performed on main, and cherry-picked to the current release branch.
