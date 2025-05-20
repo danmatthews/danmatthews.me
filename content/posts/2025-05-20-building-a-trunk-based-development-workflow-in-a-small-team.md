@@ -18,7 +18,7 @@ First, let’s talk about `git flow` and the system we used, roughly:
 
 A release would usually involve merging `dev` into `main`, and then deploying, sounds simple right? But…
 
-**Huge Merges are a pain.**
+### Huge Merges are a pain.
 
 This is an understatement, if you’re trying to merge 3 months worth of work into an effectively stale branch (`main`), that has been receiving bugfixes, then you’re going to hit some huge conflicts.
 
@@ -26,11 +26,11 @@ This became even more painful and problematic as we became a larger team - it wa
 
 This includes conflicts in updated tests, too.
 
-**Our staging site is often diverged too far from the currently deployed `main` branch.**
+### Our staging site is often diverged too far from the currently deployed `main` branch.
 
 Our staging site contained the code from the `dev` branch, so testing anything on staging before it went live meant that the codebase might look very different once that feature went live. We weren’t testing as close to production as possible.
 
-**Sometimes hotfixes and fixes are not merged to the development branch, or missed.**
+### Sometimes hotfixes and fixes are not merged to the development branch, or missed.
 
 When we wanted to fix a bug in production, we’d usually check out the `main` branch, fix the bug, and push that to production.
 
