@@ -7,7 +7,7 @@ excerpt: 'One thing became evident as our team grew: the existing git-flow-like 
 ---
 We’ve spent about four years working on Social Sync now - in that time, the development team has grown from just me, to 5 full time developers, and we’re constantly collaborating with trusted contractors.
 
-One thing became evident as we grew: the existing `git-flow` like workflow of putting all our work in progress on our `dev` branch, then merging to `main` when it came time to do a release, just wasn’t working. Why? 
+One thing became evident as we grew: the [existing](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) `git-flow` like workflow of putting all our work in progress on our `dev` branch, then merging to `main` when it came time to do a release, just wasn’t working. Why? 
 
 First, let’s talk about `git flow` and the system we used, roughly:
 
