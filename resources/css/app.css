@@ -91,12 +91,12 @@ a:hover {
         }
 
         h2 {
-            @apply text-lg font-semibold;
+            @apply text-2xl font-semibold;
             @apply mt-16;
         }
 
         h3, h4, h5, h6 {
-            @apply text-lg font-semibold;
+            @apply text-xl font-semibold;
             @apply mt-16;
         }
 

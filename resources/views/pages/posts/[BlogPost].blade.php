@@ -20,7 +20,7 @@ name('posts.show');
                         article as it may be out of date.</p>
                 </div>
             @endif
-            <h2 class="mb-3 text-xl font-semibold">{{ $blogPost->title }}</h2>
+            <h2 class="mb-3 text-5xl font-semibold">{{ $blogPost->title }}</h2>
             <div>
                 <time datetime="{{ $blogPost->date->format('c') }}"
                       class="text-sm mb-16 text-base items-center text-gray-500 dark:text-zinc-400 mb-4 w-full block">
