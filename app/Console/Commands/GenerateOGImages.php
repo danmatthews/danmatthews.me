@@ -2,18 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\OG\DMSans;
 use App\Models\BlogPost;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Colors\Rgb\Color;
-use SimonHamp\TheOg\Background;
-use SimonHamp\TheOg\Image;
-use SimonHamp\TheOg\Layout\Layouts\GitHubBasic;
-use SimonHamp\TheOg\Layout\Layouts\TwoUp;
-use SimonHamp\TheOg\Theme\Fonts\Inter;
-use SimonHamp\TheOg\Theme\Theme;
+use Illuminate\Support\Facades\View;
+use Spatie\Browsershot\Browsershot;
 
 class GenerateOGImages extends Command
 {
@@ -29,43 +23,35 @@ class GenerateOGImages extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Generate OG images for blog posts using Browsershot';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-
         File::ensureDirectoryExists(storage_path('app/public/opengraph'));
-        BlogPost::all()->each(function ($post) {
 
+        BlogPost::all()->each(function ($post) {
             $this->info("Generating OG image for {$post->id}");
+
             try {
-                (new Image())
-                    ->accentColor('#151515')
-                    ->theme(
-                        new Theme(
-                            accentColor: '#151515',
-                            baseFont: Inter::bold(),
-                            baseColor: '#151515',
-                            backgroundColor: '#ffffff',
-                            // background: new \SimonHamp\TheOg\Theme\Background(public_path('images/og-background.png')),
-                            callToActionBackgroundColor: '#ffffff',
-                            callToActionColor: '#151515',
-                            descriptionColor: '#666',
-                            descriptionFont: Inter::light(),
-                            titleFont: new DMSans,
-                        )
-                    )
-                    ->border(color: Color::create('#272727'), width: 0)
-                    ->url(route('posts.show', ['blogPost' => $post]))
-                    ->title($post->title)
-                    ->description($post->excerpt)
-                    ->save(storage_path('app/public/opengraph') . "/{$post->id}.png");
+                $html = View::make('og-image', [
+                    'title' => $post->title,
+                    'excerpt' => $post->excerpt,
+                ])->render();
+
+                $outputPath = storage_path('app/public/opengraph') . "/{$post->id}.png";
+
+                Browsershot::html($html)
+                    ->windowSize(1200, 630)
+                    ->waitUntilNetworkIdle()
+                    ->save($outputPath);
+
                 $this->info("Generated at " . Storage::disk('public')->url('opengraph/' . $post->id . '.png'));
             } catch (\Throwable $e) {
                 $this->error($e->getMessage());
+                $this->error($e->getTraceAsString());
             }
         });
     }

@@ -10,6 +10,38 @@ name('posts.show');
     :og_description="$blogPost->excerpt"
     :og_title="$blogPost->title"
     og_image="{{ asset('storage/opengraph/' . $blogPost->id . '.png') }}">
+
+    @push('head')
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ $blogPost->title }}",
+        "description": "{{ $blogPost->excerpt }}",
+        "image": "{{ asset('storage/opengraph/' . $blogPost->id . '.png') }}",
+        "datePublished": "{{ $blogPost->date->toIso8601String() }}",
+        "dateModified": "{{ $blogPost->date->toIso8601String() }}",
+        "author": {
+            "@type": "Person",
+            "name": "Dan Matthews",
+            "url": "{{ url('/about') }}"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Dan Matthews",
+            "url": "{{ url('/') }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ url('/icons/favicon.svg') }}"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ url()->current() }}"
+        }
+    }
+    </script>
+    @endpush
     <article class="article-styling max-w-3xl">
         <header class="">
 
