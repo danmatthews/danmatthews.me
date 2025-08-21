@@ -13,7 +13,7 @@ So much so - that when something goes wrong now - i’m conditioned to blame mys
 
 But sometimes, every now and then, it ~is~ your tools - and your flat out belief that it can’t possibly be this tool that everyone else uses - it must be something you’re doing wrong.
 
-Around 8 months ago, I bought an airbrush - i sprung for a decent one too, not one of these £20 things from amazon. It was to paint tiny little plastic spacemen.
+Around 8 months ago, I bought an airbrush - i sprung for a decent one too, not one of these £20 things from amazon. It was to paint [tiny little plastic spacemen](https://www.warhammer.com/en-GB/plp?search=custodes).
 
 Months go by, i knew there’d be a learning curve, but i’d been getting consistently terrible results with this airbrush the whole time - spitting, clogs, uneven paint. It looked nothing like the results people on youtube would get when they used theirs.
 
