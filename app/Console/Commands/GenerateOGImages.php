@@ -45,6 +45,7 @@ class GenerateOGImages extends Command
 
                 Browsershot::html($html)
                     ->windowSize(1200, 630)
+                    ->noSandbox()
                     ->waitUntilNetworkIdle()
                     ->save($outputPath);
 
