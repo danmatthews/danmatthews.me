@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->boolean('published');
             $table->longText('content');
             $table->longText('excerpt')->nullable();
-            $table->json('tags')->default('[]');
+            $table->json('tags')->nullable();
             $table->json('front_matter')->nullable();
             $table->timestamp('date');
             $table->timestamps();
