@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@marcreichel/alpine-typewriter": "^1.2.0",
+        "@nuxt/ui": "^4.0.1",
         "@tailwindcss/vite": "^4.0.6",
         "alpinejs": "^3.13.10",
         "puppeteer": "^24.9.0",

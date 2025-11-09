@@ -9,13 +9,13 @@
                     <h2 class="text-base font-semibold">
                         <a href="{{ $project->url }}">{{ $project->title }}</a>
                     </h2>
-                    <p class="relative z-10 mt-2 text-sm leading-6 text-gray-600 dark:text-zinc-400 ">
+                    <p class="relative z-10 mt-2 text-sm leading-6 text-gray-600  ">
                         {{ $project->description }}</p>
                 </div>
                 <div class="flex items-center sm:justify-end md:justify-start">
                     <a
                         href="{{$project->url}}"
-                        class="bg-gray-100 dark:bg-zinc-800 text-sm px-3 py-2 rounded-full hover:bg-black hover:text-white"
+                        class="bg-gray-100  text-sm px-3 py-2 rounded-full hover:bg-black hover:text-white!"
                         target="_blank"
                     >
 

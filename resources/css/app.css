@@ -83,7 +83,7 @@ a:hover {
         }
 
         p code {
-            @apply bg-gray-100 dark:bg-zinc-700;
+            @apply bg-gray-100 ;
         }
 
         a {

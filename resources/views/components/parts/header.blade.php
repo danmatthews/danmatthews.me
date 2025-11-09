@@ -1,7 +1,7 @@
 <header
     class="relative z-40 py-12 mb-8 flex justify-between items-center">
     <a href="{{ url('/') }}" class="flex items-center gap-4">
-        <h1 class="font-semibold text-black dark:text-white text-xl ">Dan Matthews</h1>
+        <h1 class="font-semibold text-xl ">Dan Matthews</h1>
     </a>
 
     <nav class="pointer-events-auto relative gap-6 items-center hidden md:flex">
