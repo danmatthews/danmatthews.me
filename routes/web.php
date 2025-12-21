@@ -31,12 +31,12 @@ Route::get('/', function () {
         'pageTitle' => "Welcome",
         'intro' => config('site.posts'),
     ]);
-    
+
 })->name('home');
 
 Route::get('posts', function () {
     $posts = fn() => BlogPost::orderBy('date', 'DESC')
-        ->paginate(20)
+        ->paginate(50)
         ->through(fn(BlogPost $post) => [
             'id' => $post->id,
             'title' => $post->title,

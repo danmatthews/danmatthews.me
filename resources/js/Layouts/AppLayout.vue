@@ -3,9 +3,12 @@ import {computed, ref} from 'vue';
 import {Head, usePage} from '@inertiajs/vue3';
 import SiteHeader from '../Components/SiteHeader.vue';
 import NavItem from '../Components/NavItem.vue';
+import {DrawerContent, DrawerOverlay, DrawerPortal, DrawerRoot, DrawerTrigger} from 'vaul-vue'
+
 
 const mobileMenuOpen = ref(false);
 const page = usePage();
+
 
 const canonical = computed(() => page.props.canonical);
 const appName = computed(() => page.props.appName ?? 'Dan Matthews');

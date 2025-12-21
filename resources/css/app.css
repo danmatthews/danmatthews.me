@@ -129,10 +129,10 @@ a:hover {
 
 .phiki-wrapper {
 
-    @apply border border-gray-300 rounded-md overflow-hidden bg-transparent! p-1 mt-8 mb-8 dark:border-zinc-600;
+    @apply rounded-md overflow-hidden bg-transparent! mt-8 mb-8 shadow-xl;
 
     pre {
-        @apply border border-gray-600 rounded-sm p-4 text-sm overflow-x-auto dark:border-zinc-600;
+        @apply rounded-sm p-4 text-sm overflow-x-auto dark:border-zinc-600;
 
         code {
             font-family: 'Geist Mono', monospace;
