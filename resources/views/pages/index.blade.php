@@ -6,7 +6,7 @@
 <x-layouts.app title="Posts">
     @if ($page == 1)
 
-        <div class="use-heading-font  max-w-2xl text-2xl mb-12 underline-links-subtle leading-10">
+        <div class="max-w-2xl text-2xl mb-12 underline-links-subtle leading-10">
             <p>Welcome to my little corner of the internet. I'm <strong>Dan Matthews</strong>, a full stack web
                 developer
                 living

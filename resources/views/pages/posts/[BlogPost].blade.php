@@ -12,11 +12,11 @@ name('posts.show');
     og_image="{{ asset('storage/opengraph/' . $blogPost->id . '.png') }}">
 
     @push('head')
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "{{ $blogPost->title }}",
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": "{{ $blogPost->title }}",
         "description": "{{ $blogPost->excerpt }}",
         "image": "{{ asset('storage/opengraph/' . $blogPost->id . '.png') }}",
         "datePublished": "{{ $blogPost->date->toIso8601String() }}",
@@ -40,7 +40,7 @@ name('posts.show');
             "@id": "{{ url()->current() }}"
         }
     }
-    </script>
+        </script>
     @endpush
     <article class="article-styling max-w-3xl">
         <header class="">

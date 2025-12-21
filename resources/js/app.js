@@ -1,68 +1,26 @@
 import './bootstrap';
-import Alpine from 'alpinejs'
+import '../css/app.css';
 
-window.Alpine = Alpine
+import {createApp, h} from 'vue';
+import {createInertiaApp} from '@inertiajs/vue3';
+import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers';
 
-import Typewriter from '@marcreichel/alpine-typewriter';
+const appName = document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
-Alpine.plugin(Typewriter);
-
-Alpine.data('site', () => ({
-    mobileMenuOpen: false
-}));
-
-Alpine.data('pixels', () => ({
-        blocksize: 2,
-        rows: 0,
-        cols: 0,
-        interval: undefined,
-        height: 0,
-        width: 0,
-        visibility: [],
-        decay: 3,
-        decayLimit: 20,
-        decayDirection: 'up',
-        pixelate() {
-            this.getMetrics()
-            this.visibility = this.randomVisibility();
-            const c = this.pixelate;
-            if (this.interval === undefined) {
-                setInterval(() => {
-
-                            this.getMetrics()
-
-                            if (this.decay > this.decayLimit) {
-                                this.decayDirection = 'down'
-                            }
-                            if (this.decay < 3) {
-                                this.decayDirection = 'up';
-                            }
-                                if (this.decayDirection == 'up') {
-                                    this.decay++;
-                                } else {
-                                    this.decay--;
-                                }
-
-
-                }, 1000);
-                this.interval = setInterval(c.bind(this), 600)
-            }
+createInertiaApp({
+    title: (title) => title ? `${title} | ${appName}` : appName,
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    setup({el, App, props, plugin}) {
+        createApp({render: () => h(App, props)})
+            .use(plugin)
+            .mount(el);
+    },
+    defaults: {
+        visitOptions: (href, options) => {
+            return {viewTransition: true}
         },
-        getMetrics() {
-            this.height = this.height || this.$el.getBoundingClientRect().height;
-            this.width = this.$el.getBoundingClientRect().width;
-            this.rows = Array(Math.ceil(this.height / this.blocksize)).fill({})
-            this.cols = Array(Math.ceil(this.width / this.blocksize)).fill({})
-        },
-        randomVisibility() {
-            let vis = [];
-            for (let i in this.rows) {
-                let row = [];
-                this.cols.forEach(r => row.push(Math.floor(Math.random() * this.decay)));
-                vis.push(row);
-            }
-            return vis;
-        }
-}))
-
-Alpine.start()
+    },
+    progress: {
+        color: '#0f172a',
+    },
+});

@@ -2,8 +2,6 @@
 
     @endphp
 <div class="sm:px-8 mt-9">
-
-
     <div class="mx-auto w-full max-w-7xl lg:px-8  bg-green-100">
         <div class="relative px-4 sm:px-8 lg:px-12 bg-red-100">
             <div class="mx-auto bg-yellow-200 max-w-2xl lg:max-w-5xl flex gap-6">

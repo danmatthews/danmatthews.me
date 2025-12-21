@@ -85,13 +85,21 @@ return [
     ],
     'navigation' => [
         new \App\Data\NavigationItem(
-            title: 'Posts',
+            title: 'Home',
             url: '/',
             isActive: function (\Illuminate\Http\Request $request) {
 
+                return $request->path() == '/';
+            }
+        ),
+        new \App\Data\NavigationItem(
+            title: 'Posts',
+            url: '/posts',
+            isActive: function (\Illuminate\Http\Request $request) {
+
                 return in_array($request->route()->getName(), [
-                        'posts.index', 'posts.show', 'tags.show'
-                    ]) || $request->path() == '/';
+                    'posts.index', 'posts.show', 'tags.show'
+                ]);
             }
         ),
         new \App\Data\NavigationItem(

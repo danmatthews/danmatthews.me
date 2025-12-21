@@ -1,3 +1,4 @@
+Wait
 <header
     class="relative z-40 py-12 mb-8 flex justify-between items-center">
     <a href="{{ url('/') }}" class="flex items-center gap-4">
@@ -5,11 +6,9 @@
     </a>
 
     <nav class="pointer-events-auto relative gap-6 items-center hidden md:flex">
-
         @foreach (config('site.navigation') as $item)
             @php $active = is_callable($item->isActive) ? ($item->isActive)(request()) : null; @endphp
             <x-parts.nav-item :url="$item->url" :title="$item->title" :active="$active"/>
-
         @endforeach
 
     </nav>
