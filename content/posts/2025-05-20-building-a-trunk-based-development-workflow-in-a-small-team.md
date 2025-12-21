@@ -1,8 +1,8 @@
 ---
 id: 13b26
-title: 'Building a trunk based development workflow in a small team'
+title: 'A trunk based development flow for smaller teams.'
 date: '2025-05-20 10:40:40'
-slug: trunk-based-development
+slug: trunk-based-development-small-teams
 excerpt: 'One thing became evident as our team grew: the existing git-flow-like workflow of putting all our work in progress on our dev branch, then merging to main when it came time to do a release, just wasn’t working.'
 ---
 We’ve spent about four years working on Social Sync now - in that time, the development team has grown from just me, to 5 full time developers, and we’re constantly collaborating with trusted contractors.

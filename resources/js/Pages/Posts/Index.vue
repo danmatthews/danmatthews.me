@@ -36,12 +36,11 @@ const showIntro = true;
 
         <PageTitle class="mb-12" title="Posts"/>
 
-        <div class="space-y-16">
+        <div class="space-y-16 ">
             <template v-if="posts.data?.length">
-
                 <Link
                     :href="post.url"
-                    class=""
+                    class="block"
                     v-for="post in posts.data"
                     :key="post.id"
                 >
@@ -58,7 +57,7 @@ const showIntro = true;
                             </time>
                         </div>
 
-                        <p class="text-xl text-subtle">
+                        <p class="text-xl text-subtle hidden">
                             {{ post.excerpt }}
                         </p>
                     </article>
