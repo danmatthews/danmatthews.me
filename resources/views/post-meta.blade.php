@@ -8,4 +8,4 @@
   <meta name="twitter:description" content="{{ $postMeta['excerpt'] }}">
   <meta name="twitter:image" content="{{ $postMeta['og_image'] }}">
   <link rel="canonical" href="{{ $postMeta['url'] }}">
-  <component is="script" type="application/ld+json">{{ $postMeta['structured_data'] }}</component>
+  <script type="application/ld+json">{{ $postMeta['structured_data'] }}</script>
