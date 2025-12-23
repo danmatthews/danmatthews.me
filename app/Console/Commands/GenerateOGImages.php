@@ -16,32 +16,34 @@ class GenerateOGImages extends Command
      *
      * @var string
      */
-    protected $signature = 'app:og';
+    protected $signature = "app:og";
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generate OG images for blog posts using Browsershot';
+    protected $description = "Generate OG images for blog posts using Browsershot";
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        File::ensureDirectoryExists(storage_path('app/public/opengraph'));
+        File::ensureDirectoryExists(storage_path("app/public/opengraph"));
 
         BlogPost::all()->each(function ($post) {
             $this->info("Generating OG image for {$post->id}");
 
             try {
-                $html = View::make('og-image', [
-                    'title' => $post->title,
-                    'excerpt' => $post->excerpt,
+                $html = View::make("og-image", [
+                    "title" => $post->title,
+                    "excerpt" => $post->excerpt,
+                    "url" => route("posts.show", ["blog-post" => $post]),
                 ])->render();
 
-                $outputPath = storage_path('app/public/opengraph') . "/{$post->id}.png";
+                $outputPath =
+                    storage_path("app/public/opengraph") . "/{$post->id}.png";
 
                 Browsershot::html($html)
                     ->windowSize(1200, 630)
@@ -49,7 +51,12 @@ class GenerateOGImages extends Command
                     ->waitUntilNetworkIdle()
                     ->save($outputPath);
 
-                $this->info("Generated at " . Storage::disk('public')->url('opengraph/' . $post->id . '.png'));
+                $this->info(
+                    "Generated at " .
+                        Storage::disk("public")->url(
+                            "opengraph/" . $post->id . ".png",
+                        ),
+                );
             } catch (\Throwable $e) {
                 $this->error($e->getMessage());
                 $this->error($e->getTraceAsString());
