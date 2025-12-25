@@ -21,3 +21,5 @@ yarn-error.log
 .DS_Store
 *.DS_Store
 public/.DS_Store
+auto-imports.d.ts
+components.d.ts

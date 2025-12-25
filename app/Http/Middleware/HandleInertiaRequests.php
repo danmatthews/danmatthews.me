@@ -29,6 +29,7 @@ class HandleInertiaRequests extends Middleware
                     "active" => is_callable($item->isActive)
                         ? ($item->isActive)($request)
                         : $request->is(trim($item->url, "/")),
+                    "external" => $item->external,
                 ],
             )
             ->values();

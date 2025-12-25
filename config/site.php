@@ -88,7 +88,6 @@ return [
             title: 'Home',
             url: '/',
             isActive: function (\Illuminate\Http\Request $request) {
-
                 return $request->path() == '/';
             }
         ),
@@ -109,6 +108,11 @@ return [
         new \App\Data\NavigationItem(
             'Work',
             'work',
+        ),
+        new \App\Data\NavigationItem(
+            title: '🎁',
+            url: 'https://mywishlist.online/w/3gneq6/dans-wishlist',
+            external: true
         ),
     ],
     'social-links' => [

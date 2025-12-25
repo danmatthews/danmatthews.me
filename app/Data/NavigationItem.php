@@ -10,6 +10,7 @@ class NavigationItem
         public string   $title,
         public string   $url,
         public ?Closure $isActive = null,
+        public bool     $external = false,
     )
     {
     }

@@ -14,7 +14,7 @@ const props = defineProps({
 
 const emit = defineEmits(['navigate']);
 
-const baseClasses = 'inline-block transition-colors';
+const baseClasses = 'block transition-colors text-xl text-right py-2';
 </script>
 
 <template>
@@ -24,7 +24,7 @@ const baseClasses = 'inline-block transition-colors';
         :href="item.url"
         :class="[
             baseClasses,
-            mobile ? 'block py-2' : 'font-sans text-sm antialiased font-medium',
+            mobile ? 'block py-2' : 'antialiased',
             item.active ? 'text-black underline decoration-gray-300 underline-offset-4' : 'text-gray-600 hover:text-black',
         ]"
     >{{ item.title }}</a>
@@ -33,10 +33,9 @@ const baseClasses = 'inline-block transition-colors';
         :href="item.url"
         :class="[
             baseClasses,
-            mobile ? 'block py-2' : 'font-sans text-sm antialiased font-medium',
+            mobile ? 'block py-2' : 'antialiased',
             item.active ? 'text-black underline decoration-gray-300 underline-offset-4' : 'text-gray-600 hover:text-black',
         ]"
-        @click="emit('navigate')"
     >
         {{ item.title }}
     </Link>
