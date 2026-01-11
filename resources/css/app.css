@@ -98,6 +98,10 @@ a:hover {
             @apply leading-7;
         }
 
+        img {
+            @apply shadow rounded-sm my-2;
+        }
+
         p code,
         li code,
         li code {

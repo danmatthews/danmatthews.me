@@ -13,7 +13,7 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
-use Phiki\CommonMark\PhikiExtension;
+use Phiki\Adapters\CommonMark\PhikiExtension;
 use Phiki\Theme\Theme;
 
 // use Spatie\CommonMarkShikiHighlighter\HighlightCodeExtension;
@@ -30,7 +30,7 @@ class PostContentParser
         $environment->addExtension(new CommonMarkCoreExtension());
 
         // Add the extension
-        $environment->addExtension(new FrontMatterExtension())->addExtension(new PhikiExtension(Theme::NightOwl, withWrapper: true));
+        $environment->addExtension(new FrontMatterExtension())->addExtension(new PhikiExtension(Theme::NightOwl));
 
         // Instantiate the converter engine and start converting some Markdown!
         $this->converter = new MarkdownConverter($environment);

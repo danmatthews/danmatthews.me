@@ -31,7 +31,7 @@ class BuildAndCachePosts
         return config('graphein.enable_cache');
     }
 
-    private function truncatePosts()
+    private function truncatePosts(): void
     {
         PostTag::truncate();
         BlogPost::truncate();
