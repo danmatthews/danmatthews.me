@@ -39,7 +39,7 @@ class GenerateOGImages extends Command
                 $html = View::make("og-image", [
                     "title" => $post->title,
                     "excerpt" => $post->excerpt,
-                    "url" => route("posts.show", ["blog-post" => $post]),
+                    "url" => route("posts.show", ["blog_post" => $post]),
                 ])->render();
 
                 $outputPath =
@@ -53,9 +53,9 @@ class GenerateOGImages extends Command
 
                 $this->info(
                     "Generated at " .
-                        Storage::disk("public")->url(
-                            "opengraph/" . $post->id . ".png",
-                        ),
+                    Storage::disk("public")->url(
+                        "opengraph/" . $post->id . ".png",
+                    ),
                 );
             } catch (\Throwable $e) {
                 $this->error($e->getMessage());
