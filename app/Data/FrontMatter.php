@@ -20,7 +20,8 @@ class FrontMatter extends Data
         #[Required]
         public null|string     $excerpt,
         public bool            $published = true,
-        public ?array          $tags = []
+        public ?array          $tags = [],
+        public ?bool           $updated = false,
     )
     {
     }

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'git_repo_url' => 'https://github.com/danmatthews/danmatthews.me/tree/main/content',
     'home' => [
         'headline' => "Dan Matthews",
         'subheader' => "I'm a full stack developer, working with Laravel and JS. I'm based in the UK, and currently i'm building charity software at [Social Sync](https://socialsync.io)."

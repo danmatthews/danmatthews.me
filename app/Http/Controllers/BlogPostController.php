@@ -52,6 +52,7 @@ class BlogPostController extends Controller
         );
 
         return Inertia::render("Posts/Show", [
+            'git_repo_url' => config('site.git_repo_url'),
             "post" => [
                 "id" => $blogPost->id,
                 "title" => $blogPost->title,
