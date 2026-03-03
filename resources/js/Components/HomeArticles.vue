@@ -1,23 +1,29 @@
 <script setup>
-import {Link} from '@inertiajs/vue3';
-import PageTitle from './PageTitle.vue';
-import Pagination from './Pagination.vue';
+import { Link } from "@inertiajs/vue3";
+import PageTitle from "./PageTitle.vue";
+import Pagination from "./Pagination.vue";
+import { WebHaptics } from "web-haptics";
 
 const props = defineProps({
     title: {
         type: String,
-        default: '',
+        default: "",
     },
     posts: {
         type: Object,
         required: true,
     },
 });
+
+function buzz() {
+    const haptics = new WebHaptics();
+    haptics.trigger("success");
+}
 </script>
 
 <template>
     <div>
-        <PageTitle v-if="title" class="mb-12" :title="title"/>
+        <PageTitle v-if="title" class="mb-12" :title="title" />
 
         <div class="max-w-2xl space-y-8 grid">
             <template v-if="posts?.length">
@@ -28,9 +34,14 @@ const props = defineProps({
                 >
                     <div class="space-y-2">
                         <h2 class="text-xl">
-                            <Link :href="post.url" class="">{{ post.title }}</Link>
+                            <Link @click="buzz" :href="post.url" class="">{{
+                                post.title
+                            }}</Link>
                         </h2>
-                        <time class="text-xl text-slate-500 leading-none block" :datetime="post.date.iso">
+                        <time
+                            class="text-xl text-slate-500 leading-none block"
+                            :datetime="post.date.iso"
+                        >
                             {{ post.date.formatted }}
                         </time>
                     </div>
@@ -40,13 +51,11 @@ const props = defineProps({
                     </p>
                 </article>
             </template>
-            <Link href="/posts" class="hover:underline text-xl underline decoration-gray-300 underline-offset-4">More
-                articles
-                &rarr;
+            <Link
+                href="/posts"
+                class="hover:underline text-xl underline decoration-gray-300 underline-offset-4"
+                >More articles &rarr;
             </Link>
-
         </div>
-
-
     </div>
 </template>
