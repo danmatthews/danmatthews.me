@@ -24,7 +24,7 @@ const navigation = computed(() => page.props.navigation ?? []);
 
 onMounted(() => {
     const haptics = new WebHaptics();
-haptics.trigger("error");
+    haptics.trigger("error");
 });
 
 </script>

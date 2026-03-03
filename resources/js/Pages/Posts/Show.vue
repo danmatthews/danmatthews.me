@@ -78,7 +78,6 @@ const structuredData = computed(() =>
                         {{ post.date.formatted }}
                     </time>
                 </div>
-                <pre>{{ JSON.stringify(post, null, 2) }}</pre>
                 <div
                     class="flex items-center gap-3"
                     v-if="post?.updated === true"
