@@ -20,7 +20,6 @@ use Phiki\Theme\Theme;
 
 class PostContentParser
 {
-
     public MarkdownConverter $converter;
 
     public function __construct()
@@ -30,7 +29,9 @@ class PostContentParser
         $environment->addExtension(new CommonMarkCoreExtension());
 
         // Add the extension
-        $environment->addExtension(new FrontMatterExtension())->addExtension(new PhikiExtension(Theme::NightOwl));
+        $environment
+            ->addExtension(new FrontMatterExtension())
+            ->addExtension(new PhikiExtension(Theme::NightOwl));
 
         // Instantiate the converter engine and start converting some Markdown!
         $this->converter = new MarkdownConverter($environment);
@@ -48,27 +49,32 @@ class PostContentParser
             $frontMatter = $result->getFrontMatter();
             $frontMatterObject = FrontMatter::from([
                 ...$frontMatter,
-                'date' => Carbon::createFromFormat('Y-m-d H:i:s', $frontMatter['date']),
+                "date" => Carbon::createFromFormat(
+                    "Y-m-d H:i:s",
+                    $frontMatter["date"],
+                ),
             ]);
 
             $post = BlogPost::create([
                 ...$frontMatter,
-                'date' => $frontMatterObject->date,
-                'title' => $frontMatterObject->title,
-                'slug' => $frontMatterObject->slug,
-                'published' => $frontMatterObject->published,
-                'content' => $result->getContent(),
+                "date" => $frontMatterObject->date,
+                "title" => $frontMatterObject->title,
+                "slug" => $frontMatterObject->slug,
+                "published" => $frontMatterObject->published,
+                "updated" => $frontMatterObject->updated,
+                "content" => $result->getContent(),
             ]);
 
-            collect($frontMatterObject->tags)->each(function (string $tag) use ($post) {
+            collect($frontMatterObject->tags)->each(function (string $tag) use (
+                $post,
+            ) {
                 PostTag::create([
-                    'blog_post_id' => $post->id,
-                    'tag' => $tag,
+                    "blog_post_id" => $post->id,
+                    "tag" => $tag,
                 ]);
             });
 
             return $post;
-
         } else {
             throw new \Exception("Post is missing the required front matter");
         }

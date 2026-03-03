@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { Head, usePage } from "@inertiajs/vue3";
 import SiteHeader from "../Components/SiteHeader.vue";
 import NavItem from "../Components/NavItem.vue";
@@ -11,12 +11,22 @@ import {
     DrawerTrigger,
 } from "vaul-vue";
 
+import { WebHaptics } from "web-haptics";
+
+
+
 const mobileMenuOpen = ref(false);
 const page = usePage();
 
 const canonical = computed(() => page.props.canonical);
 const appName = computed(() => page.props.appName ?? "Dan Matthews");
 const navigation = computed(() => page.props.navigation ?? []);
+
+onMounted(() => {
+    const haptics = new WebHaptics();
+haptics.trigger("error");
+});
+
 </script>
 
 <template>
