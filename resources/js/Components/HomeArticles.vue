@@ -2,7 +2,8 @@
 import { Link } from "@inertiajs/vue3";
 import PageTitle from "./PageTitle.vue";
 import Pagination from "./Pagination.vue";
-import { WebHaptics } from "web-haptics";
+import { useWebHaptics } from "web-haptics/vue";
+const { trigger } = useWebHaptics();
 
 const props = defineProps({
     title: {
@@ -16,8 +17,7 @@ const props = defineProps({
 });
 
 function buzz() {
-    const haptics = new WebHaptics();
-    haptics.trigger("success");
+    trigger();
 }
 </script>
 
