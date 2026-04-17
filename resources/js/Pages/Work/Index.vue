@@ -33,29 +33,7 @@ const canonical = computed(() => page.props.canonical);
         <PageTitle class="mb-16" title="Work"/>
 
         <div class="max-w-2xl">
-            <div class="">
-                <h2
-                    class="text-xs mb-6 font-sans uppercase text-gray-500 tracking-widest"
-                >
-                    Current full-time Position
-                </h2>
-                <div class="">
-                    <p class="text-xl text-subtle">
-                        <span class="text-black">{{ currentPosition.job_title }}</span> at <a
-                        :href="currentPosition.company_url" class="text-black">{{ currentPosition.company }}</a>
-                    </p>
-
-
-                    <p
-                        v-if="currentPosition.description"
-                        class="mt-4 text-xl leading-6 text-slate-500"
-                    >
-                        {{ currentPosition.description }}
-                    </p>
-                </div>
-            </div>
-
-            <hr class="my-16 border-t border-slate-200 dark:border-slate-800"/>
+            
 
             <h2 class="text-xs mb-6 font-sans uppercase tracking-widest">
                 Open Source
@@ -96,7 +74,7 @@ const canonical = computed(() => page.props.canonical);
                 </li>
             </ul>
 
-            <hr class="my-16 border-t border-slate-200 dark:border-slate-800"/>
+            <hr class="my-12 border-t border-slate-200 dark:border-slate-800"/>
 
             <h2 class="text-xs mb-6 font-sans uppercase tracking-widest">
                 Everything Else
