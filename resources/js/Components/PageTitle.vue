@@ -6,8 +6,8 @@ defineProps({
 </script>
 <template>
     <div class="mb-4">
-        <h1 class="text-5xl  text-black text-zinc-800">
-            {{ this.$props.title }}
-        </h1>
+        <h1 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white">
+            {{ this.$props.title }}</h1>
+       
     </div>
 </template>

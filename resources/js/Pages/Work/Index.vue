@@ -33,9 +33,9 @@ const canonical = computed(() => page.props.canonical);
         <PageTitle class="mb-16" title="Work"/>
 
         <div class="max-w-2xl">
-            
 
-            <h2 class="text-xs mb-6 font-sans uppercase tracking-widest">
+
+            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
                 Open Source
             </h2>
             <div
@@ -76,7 +76,7 @@ const canonical = computed(() => page.props.canonical);
 
             <hr class="my-12 border-t border-slate-200 dark:border-slate-800"/>
 
-            <h2 class="text-xs mb-6 font-sans uppercase tracking-widest">
+            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
                 Everything Else
             </h2>
             <ul role="list" class="space-y-8">

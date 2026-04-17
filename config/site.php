@@ -95,7 +95,7 @@ return [
             },
         ),
         new \App\Data\NavigationItem(
-            title: "Posts",
+            title: "Posts & Links",
             url: "/posts",
             isActive: function (\Illuminate\Http\Request $request) {
                 return in_array($request->route()->getName(), [

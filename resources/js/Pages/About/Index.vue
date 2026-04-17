@@ -1,6 +1,6 @@
 <script setup>
-import { Head, usePage } from "@inertiajs/vue3";
-import { computed } from "vue";
+import {Head, usePage} from "@inertiajs/vue3";
+import {computed} from "vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
 import PageTitle from "../../Components/PageTitle.vue";
 import ThreeImages from "../../Components/ThreeImages.vue";
@@ -24,10 +24,10 @@ const socials = computed(() => page.props.socialLinks ?? {});
 <template>
     <AppLayout>
         <Head title="About">
-            <link rel="canonical" :href="canonical" />
+            <link rel="canonical" :href="canonical"/>
         </Head>
 
-        <PageTitle class="mb-16" title="About." />
+        <PageTitle class="mb-16" title="About."/>
 
         <!--        <ThreeImages/>-->
 
@@ -40,7 +40,7 @@ const socials = computed(() => page.props.socialLinks ?? {});
                 />
             </div>
 
-            <h2 class="text-xs mt-16 mb-6 font-sans uppercase tracking-widest">
+            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
                 Work History
             </h2>
             <div class="space-y-6 text-xl">
@@ -55,7 +55,7 @@ const socials = computed(() => page.props.socialLinks ?? {});
                                 v-if="entry.url"
                                 :href="entry.url"
                                 target="_blank"
-                                >{{ entry.companyName }}</a
+                            >{{ entry.companyName }}</a
                             >
                             <span v-else>{{ entry.companyName }}</span>
                         </p>
@@ -69,7 +69,7 @@ const socials = computed(() => page.props.socialLinks ?? {});
                 </div>
             </div>
 
-            <h2 class="text-xs mt-16 mb-6 font-sans uppercase tracking-widest">
+            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
                 Socials
             </h2>
             <ul role="list" class="space-y-3 text-xl">

@@ -118,16 +118,22 @@ a:hover {
         }
 
         h2 {
-            @apply text-2xl underline decoration-gray-300 underline-offset-4;
-            @apply mt-16;
+            @apply text-2xl font-semibold tracking-tight text-pretty;
+            @apply mt-12;
         }
 
         h3,
         h4,
         h5,
         h6 {
-            @apply text-xl underline decoration-gray-300 underline-offset-4;
-            @apply mt-16;
+            @apply text-xl font-semibold tracking-tight text-pretty;
+            @apply mt-12;
+        }
+
+        h2, h3, h4, h5, h6 {
+            strong {
+                font-weight: inherit;
+            }
         }
 
         ul,
@@ -144,21 +150,20 @@ a:hover {
         }
 
         img {
+            @apply border-y-8;
         }
     }
 }
 
-.phiki-wrapper {
-    @apply rounded-md overflow-hidden bg-transparent! mt-8 mb-8 shadow-xl;
 
-    pre {
-        @apply rounded-sm p-4 text-sm overflow-x-auto dark:border-zinc-600;
+pre.phiki {
+    @apply rounded-sm p-4 text-sm overflow-x-auto dark:border-zinc-600;
 
-        code {
-            font-family: "Geist Mono", monospace;
-        }
+    code {
+        font-family: "Geist Mono", monospace;
     }
 }
+
 
 @keyframes fade-in {
     from {

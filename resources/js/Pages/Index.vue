@@ -52,7 +52,6 @@ const showIntro = true;
                 but you can also find some more personal topics close to my heart here like cooking and more.
             </p>
         </div>
-        <h2 class="text-xs mt-16 mb-6 font-sans uppercase tracking-widest">Recent Posts</h2>
         <HomeArticles :posts="posts"/>
         <template #fallback>
             Loading Posts...

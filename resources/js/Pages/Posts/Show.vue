@@ -1,6 +1,6 @@
 <script setup>
-import { computed } from "vue";
-import { Head } from "@inertiajs/vue3";
+import {computed} from "vue";
+import {Head} from "@inertiajs/vue3";
 import AppLayout from "../../Layouts/AppLayout.vue";
 
 const props = defineProps({
@@ -68,15 +68,16 @@ const structuredData = computed(() =>
                         code you find in this article as it may be out of date.
                     </p>
                 </div>
-
-                <h2 class="mb-3 text-5xl post-title">{{ post.title }}</h2>
+                <time
+                    :datetime="post.date.iso"
+                    class="text-xl  text-base items-center text-slate-500 mb-4 w-full block"
+                >
+                    {{ post.date.formatted }}
+                </time>
+                <h2 class="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white mb-16 ">
+                    {{ post.title }}</h2>
                 <div>
-                    <time
-                        :datetime="post.date.iso"
-                        class="text-xl mb-16 text-base items-center text-slate-500 mb-4 w-full block"
-                    >
-                        {{ post.date.formatted }}
-                    </time>
+
                 </div>
                 <div
                     class="flex items-center gap-3"
@@ -104,7 +105,7 @@ const structuredData = computed(() =>
                             class="underline"
                             v-bind:href="git_repo_url"
                             target="_blank"
-                            >git repo</a
+                        >git repo</a
                         >.
                     </p>
                 </div>
