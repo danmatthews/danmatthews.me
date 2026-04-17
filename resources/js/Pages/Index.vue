@@ -33,7 +33,7 @@ const showIntro = true;
             <link rel="canonical" :href="canonical">
         </Head>
 
-        <PageTitle class="mb-12" title="Welcome"/>
+        <PageTitle class="mb-12" title="Hello there..."/>
 
         <div v-if="showIntro"
              class="max-w-2xl text-2xl mb-12 underline-links-subtle  text-slate-700">

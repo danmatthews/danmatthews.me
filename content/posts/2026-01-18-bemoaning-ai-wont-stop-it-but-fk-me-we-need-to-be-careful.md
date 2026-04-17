@@ -1,9 +1,9 @@
 ---
 id: 829fb
-title: 'Moaning about AI won’t stop it, but f**k me, we need to be careful.'
+title: 'Moaning about AI won’t stop it, but we need to be very careful.'
 updated: true
 date: '2026-01-18 01:12:03'
-slug: bemoaning-ai-wont-stop-it-but-fk-me-we-need-to-be-careful
+slug: bemoaning-ai-wont-stop-it-but-we-need-to-be-careful
 excerpt: 'AI and LLMs are likely here to stay, at least until the bubble bursts and we have to figure out what parts will survive, but a recent uptick in influencers and industry thought leaders pushing AI content has me worried.'
 ---
 

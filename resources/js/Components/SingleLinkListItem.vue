@@ -9,6 +9,13 @@ const props = defineProps({
 
         class="py-8 group relative flex flex-col items-start space-y-3"
     >
+        <p class="text-base text-slate-500 leading-none block">
+            <time
+                :datetime="post.date.iso"
+            >
+                {{ post.date.formatted }}
+            </time> &middot; External Link
+        </p>
         <h2 class="text-xl font-semibold tracking-tight text-pretty">
             <a
                 :href="post.url"

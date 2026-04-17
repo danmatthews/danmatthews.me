@@ -70,7 +70,7 @@ const structuredData = computed(() =>
                 </div>
                 <time
                     :datetime="post.date.iso"
-                    class="text-xl  text-base items-center text-slate-500 mb-4 w-full block"
+                    class="text-base  text-base items-center text-slate-500 mb-4 w-full block"
                 >
                     {{ post.date.formatted }}
                 </time>
