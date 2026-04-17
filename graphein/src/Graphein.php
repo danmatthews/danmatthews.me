@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Graphein;
+namespace Intrfce\Graphein;
 
-use App\Data\GrapheinEntry;
-use App\Data\GrapheinPost;
-use App\Data\GrapheinPostWithContent;
-use App\Graphein\Contracts\PostProcessor;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Storage;
+use Intrfce\Graphein\Contracts\PostProcessor;
+use Intrfce\Graphein\Data\GrapheinEntry;
+use Intrfce\Graphein\Data\GrapheinPost;
+use Intrfce\Graphein\Data\GrapheinPostWithContent;
 
 class Graphein
 {

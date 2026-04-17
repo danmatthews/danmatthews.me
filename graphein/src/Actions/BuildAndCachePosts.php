@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Actions;
+namespace Intrfce\Graphein\Actions;
 
-use App\Data\GrapheinPost;
-use App\Enums\ContentType;
-use App\Graphein\Graphein;
-use App\Service\PostContentParser;
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Intrfce\Graphein\Data\GrapheinPost;
+use Intrfce\Graphein\Enums\ContentType;
+use Intrfce\Graphein\Graphein;
+use Intrfce\Graphein\Service\PostContentParser;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 
 class BuildAndCachePosts

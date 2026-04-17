@@ -1,0 +1,28 @@
+{
+    "name": "intrfce/graphein",
+    "description": "A file-driven post and link pipeline for Laravel, with a pluggable post-processor hook system.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^12.0",
+        "league/commonmark": "^2.0",
+        "phiki/phiki": "^2.0",
+        "spatie/laravel-data": "^4.0",
+        "symfony/yaml": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Intrfce\\Graphein\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Intrfce\\Graphein\\GrapheinServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

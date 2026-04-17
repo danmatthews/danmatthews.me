@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data;
+namespace Intrfce\Graphein\Data;
 
 use Spatie\LaravelData\Data;
 

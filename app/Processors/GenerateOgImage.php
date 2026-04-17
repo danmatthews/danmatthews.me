@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Graphein\Processors;
+namespace App\Processors;
 
-use App\Data\GrapheinPost;
-use App\Graphein\Contracts\PostProcessor;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
+use Intrfce\Graphein\Contracts\PostProcessor;
+use Intrfce\Graphein\Data\GrapheinPost;
 use Spatie\Browsershot\Browsershot;
 
 class GenerateOgImage implements PostProcessor

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\GrapheinEntry;
-use App\Data\GrapheinLink;
-use App\Data\GrapheinPost;
-use App\Enums\ContentType;
-use App\Facades\Graphein;
 use Inertia\Inertia;
 use Inertia\Response;
+use Intrfce\Graphein\Data\GrapheinEntry;
+use Intrfce\Graphein\Data\GrapheinLink;
+use Intrfce\Graphein\Data\GrapheinPost;
+use Intrfce\Graphein\Enums\ContentType;
+use Intrfce\Graphein\Facades\Graphein;
 
 class HomeController extends Controller
 {

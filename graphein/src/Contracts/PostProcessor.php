@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Graphein\Contracts;
+namespace Intrfce\Graphein\Contracts;
 
-use App\Data\GrapheinPost;
+use Intrfce\Graphein\Data\GrapheinPost;
 
 interface PostProcessor
 {

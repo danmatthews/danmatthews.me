@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "558d99797a4939c28c581a6a859b1857",
+    "content-hash": "25da174ad59f9ebdd69de5db36a39210",
     "packages": [
         {
             "name": "brick/math",
@@ -1420,6 +1420,44 @@
                 }
             ],
             "time": "2024-02-02T15:08:10+00:00"
+        },
+        {
+            "name": "intrfce/graphein",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./graphein",
+                "reference": "94d0aace2aa6baf966321f03edd0027ac108c569"
+            },
+            "require": {
+                "laravel/framework": "^12.0",
+                "league/commonmark": "^2.0",
+                "phiki/phiki": "^2.0",
+                "php": "^8.2",
+                "spatie/laravel-data": "^4.0",
+                "symfony/yaml": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Intrfce\\Graphein\\GrapheinServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intrfce\\Graphein\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A file-driven post and link pipeline for Laravel, with a pluggable post-processor hook system.",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "laravel/folio",
@@ -11145,7 +11183,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "intrfce/graphein": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

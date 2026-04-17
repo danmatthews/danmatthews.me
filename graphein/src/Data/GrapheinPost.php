@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data;
+namespace Intrfce\Graphein\Data;
 
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\MapInputName;

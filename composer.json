@@ -12,6 +12,7 @@
         "calebporzio/sushi": "^2.5",
         "hidehalo/nanoid-php": "^1.1",
         "inertiajs/inertia-laravel": "^2.0",
+        "intrfce/graphein": "@dev",
         "laravel/folio": "^1.1",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.9",
@@ -50,7 +51,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "/Users/danmatthews/Code",
+            "url": "./graphein",
             "options": {
                 "symlink": true
             }

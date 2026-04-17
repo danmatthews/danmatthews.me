@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Cache;
-use App\Actions\BuildAndCachePosts;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Sushi\Sushi;

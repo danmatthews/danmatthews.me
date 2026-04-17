@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums;
+namespace Intrfce\Graphein\Enums;
 
 enum ContentType: string
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Intrfce\Graphein\Console\Commands;
 
-use App\Actions\BuildAndCachePosts;
 use Illuminate\Console\Command;
+use Intrfce\Graphein\Actions\BuildAndCachePosts;
 
 class GrapheinBuildPosts extends Command
 {

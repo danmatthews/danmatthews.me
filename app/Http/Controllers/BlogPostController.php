@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Data\GrapheinEntry;
-use App\Data\GrapheinLink;
-use App\Data\GrapheinPost;
-use App\Enums\ContentType;
-use App\Facades\Graphein;
 use App\Http\Controllers\Concerns\SharesPostMeta;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Inertia\Inertia;
 use Inertia\Response;
+use Intrfce\Graphein\Data\GrapheinEntry;
+use Intrfce\Graphein\Data\GrapheinLink;
+use Intrfce\Graphein\Data\GrapheinPost;
+use Intrfce\Graphein\Data\GrapheinPostWithContent;
+use Intrfce\Graphein\Enums\ContentType;
+use Intrfce\Graphein\Facades\Graphein;
 
 class BlogPostController extends Controller
 {
@@ -114,7 +115,7 @@ class BlogPostController extends Controller
         ];
     }
 
-    private function resolvePost(string $routeKey): \App\Data\GrapheinPostWithContent
+    private function resolvePost(string $routeKey): GrapheinPostWithContent
     {
         $id = last(explode("-", $routeKey));
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Data;
+namespace Intrfce\Graphein\Data;
 
-use App\Enums\ContentType;
+use Intrfce\Graphein\Enums\ContentType;
 use Spatie\LaravelData\Data;
 
 class GrapheinEntry extends Data

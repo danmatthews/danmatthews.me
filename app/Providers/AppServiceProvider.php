@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Facades\Graphein;
-use App\Graphein\Processors\GenerateOgImage;
+use App\Processors\GenerateOgImage;
 use Illuminate\Support\ServiceProvider;
+use Intrfce\Graphein\Facades\Graphein;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(\App\Graphein\Graphein::class);
+        //
     }
 
     /**
