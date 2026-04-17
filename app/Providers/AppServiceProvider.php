@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Facades\Graphein;
+use App\Graphein\Processors\GenerateOgImage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Graphein::postProcessors([
+            GenerateOgImage::class,
+        ]);
     }
 }

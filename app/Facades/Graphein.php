@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static LengthAwarePaginator getPaginatedPosts()
  * @method static GrapheinPostWithContent loadPostById(string $id)
+ * @method static \App\Graphein\Graphein postProcessors(array $processors)
+ * @method static array getPostProcessors()
  *
  * @see \App\Graphein\Graphein
  */

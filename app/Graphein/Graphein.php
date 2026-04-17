@@ -4,6 +4,7 @@ namespace App\Graphein;
 
 use App\Data\GrapheinPost;
 use App\Data\GrapheinPostWithContent;
+use App\Graphein\Contracts\PostProcessor;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -14,6 +15,35 @@ class Graphein
     private const MANIFEST_PATH = 'graphein/graphein-manifest.json';
     private const PAGES_DIR = 'graphein/pages';
     private const POSTS_DIR = 'graphein/posts';
+
+    /** @var array<class-string<PostProcessor>> */
+    private array $postProcessors = [];
+
+    /**
+     * Set the list of post processors to run, in order, after each post is built.
+     *
+     * @param  array<class-string<PostProcessor>>  $processors
+     */
+    public function postProcessors(array $processors): self
+    {
+        foreach ($processors as $processor) {
+            if (! is_subclass_of($processor, PostProcessor::class)) {
+                throw new \InvalidArgumentException(
+                    "Graphein post processor [{$processor}] must implement " . PostProcessor::class
+                );
+            }
+        }
+
+        $this->postProcessors = array_values($processors);
+
+        return $this;
+    }
+
+    /** @return array<class-string<PostProcessor>> */
+    public function getPostProcessors(): array
+    {
+        return $this->postProcessors;
+    }
 
     public function getPaginatedPosts(): LengthAwarePaginator
     {

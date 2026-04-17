@@ -2,11 +2,14 @@
 
 namespace App\Actions;
 
+use App\Data\GrapheinPost;
+use App\Graphein\Graphein;
 use App\Service\PostContentParser;
 use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 
@@ -17,8 +20,23 @@ class BuildAndCachePosts
     private const PAGES_DIR = 'graphein/pages';
     private const MANIFEST_PATH = 'graphein/graphein-manifest.json';
 
+    /** @var array<int, array{processor: string, post_id: string, post_title: string, message: string}> */
+    private array $failures = [];
+
+    /**
+     * Processor failures collected during the last build, in the order they occurred.
+     *
+     * @return array<int, array{processor: string, post_id: string, post_title: string, message: string}>
+     */
+    public function failures(): array
+    {
+        return $this->failures;
+    }
+
     public function handle(): Collection
     {
+        $this->failures = [];
+
         $disk = Storage::disk('public');
 
         $this->resetOutput($disk);
@@ -44,9 +62,10 @@ class BuildAndCachePosts
     private function writePostContents(Filesystem $disk): Collection
     {
         $converter = (new PostContentParser())->converter;
+        $processors = app(Graphein::class)->getPostProcessors();
 
         return collect(File::allFiles(base_path('content/posts')))
-            ->map(function ($file) use ($converter, $disk) {
+            ->map(function ($file) use ($converter, $disk, $processors) {
                 $result = $converter->convert(file_get_contents($file->getRealPath()));
 
                 if (! $result instanceof RenderedContentWithFrontMatter) {
@@ -55,10 +74,11 @@ class BuildAndCachePosts
 
                 $frontMatter = $result->getFrontMatter();
                 $id = $frontMatter['id'];
+                $html = $result->getContent();
                 $contentPath = self::POSTS_DIR."/{$id}-content.html";
                 $metaPath = self::POSTS_DIR."/{$id}-meta.json";
 
-                $disk->put($contentPath, $result->getContent());
+                $disk->put($contentPath, $html);
 
                 $meta = [
                     'frontMatter' => $frontMatter,
@@ -67,6 +87,8 @@ class BuildAndCachePosts
 
                 $disk->put($metaPath, json_encode($meta, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
+                $this->runProcessors($processors, $frontMatter, $disk->url($contentPath), $html);
+
                 return [
                     ...$meta,
                     'content_path' => $contentPath,
@@ -74,6 +96,32 @@ class BuildAndCachePosts
                     'meta_path' => $metaPath,
                 ];
             });
+    }
+
+    private function runProcessors(array $processors, array $frontMatter, string $contentUrl, string $html): void
+    {
+        if ($processors === []) {
+            return;
+        }
+
+        $post = GrapheinPost::from([...$frontMatter, 'content_url' => $contentUrl]);
+
+        foreach ($processors as $processor) {
+            try {
+                app($processor)($post, $html);
+            } catch (\Throwable $e) {
+                $this->failures[] = [
+                    'processor' => $processor,
+                    'post_id' => $post->id,
+                    'post_title' => $post->title,
+                    'message' => $e->getMessage(),
+                ];
+
+                Log::error("Graphein processor [{$processor}] failed for post [{$post->id}]: {$e->getMessage()}", [
+                    'exception' => $e,
+                ]);
+            }
+        }
     }
 
     private function writePages(Filesystem $disk, Collection $posts): array
