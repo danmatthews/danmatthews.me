@@ -7,7 +7,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static LengthAwarePaginator getPaginatedPosts()
+ * @method static LengthAwarePaginator<int, \App\Data\GrapheinEntry> getPaginatedPosts()
  * @method static GrapheinPostWithContent loadPostById(string $id)
  * @method static \App\Graphein\Graphein postProcessors(array $processors)
  * @method static array getPostProcessors()

@@ -16,10 +16,10 @@ return [
     ],
     "work" => [
         "current_position" => [
-            "job_title" => "Head Of Engineering",
+            "job_title" => "CTO",
             "company" => "Social Sync",
             "company_url" => "https://socialsync.io/",
-            "description" => "Heading up the development team building charity software that helps organisations do more good.",
+            "description" => "Currently i'm heading up the development team building charity software that helps organisations do more good.",
         ],
         "open_source" => [
             "description" => "All my open source packages live under the [Intrfce](https://github.com/intrfce) organisation on Github. Most are Laravel packages solving small, specific problems I've run into.",

@@ -3,6 +3,7 @@
 namespace App\Actions;
 
 use App\Data\GrapheinPost;
+use App\Enums\ContentType;
 use App\Graphein\Graphein;
 use App\Service\PostContentParser;
 use Carbon\Carbon;
@@ -19,6 +20,7 @@ class BuildAndCachePosts
     private const POSTS_DIR = 'graphein/posts';
     private const PAGES_DIR = 'graphein/pages';
     private const MANIFEST_PATH = 'graphein/graphein-manifest.json';
+    private const LINKS_PATH = 'content/links.json';
 
     /** @var array<int, array{processor: string, post_id: string, post_title: string, message: string}> */
     private array $failures = [];
@@ -41,15 +43,16 @@ class BuildAndCachePosts
 
         $this->resetOutput($disk);
 
-        $posts = $this->writePostContents($disk)
-            ->sortByDesc(fn (array $post) => $post['frontMatter']['date'])
-            ->values();
+        $posts = $this->writePostContents($disk);
+        $links = $this->loadLinks();
 
-        $pagination = $this->writePages($disk, $posts);
+        $entries = $this->buildEntries($posts, $links);
+
+        $pagination = $this->writePages($disk, $entries);
 
         $this->writeManifest($disk, $posts, $pagination);
 
-        return $posts;
+        return $entries;
     }
 
     private function resetOutput(Filesystem $disk): void
@@ -77,20 +80,18 @@ class BuildAndCachePosts
                 $html = $result->getContent();
                 $contentPath = self::POSTS_DIR."/{$id}-content.html";
                 $metaPath = self::POSTS_DIR."/{$id}-meta.json";
+                $contentUrl = $disk->url($contentPath);
 
                 $disk->put($contentPath, $html);
 
-                $meta = [
-                    'frontMatter' => $frontMatter,
-                    'content_url' => $disk->url($contentPath),
-                ];
+                $postData = [...$frontMatter, 'content_url' => $contentUrl];
 
-                $disk->put($metaPath, json_encode($meta, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+                $disk->put($metaPath, json_encode($postData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
-                $this->runProcessors($processors, $frontMatter, $disk->url($contentPath), $html);
+                $this->runProcessors($processors, $postData, $html);
 
                 return [
-                    ...$meta,
+                    'data' => $postData,
                     'content_path' => $contentPath,
                     'meta_url' => $disk->url($metaPath),
                     'meta_path' => $metaPath,
@@ -98,13 +99,41 @@ class BuildAndCachePosts
             });
     }
 
-    private function runProcessors(array $processors, array $frontMatter, string $contentUrl, string $html): void
+    private function loadLinks(): Collection
+    {
+        $path = base_path(self::LINKS_PATH);
+
+        if (! File::exists($path)) {
+            return collect();
+        }
+
+        return collect(json_decode(File::get($path), true) ?? []);
+    }
+
+    private function buildEntries(Collection $posts, Collection $links): Collection
+    {
+        return $posts
+            ->map(fn (array $post) => [
+                'type' => ContentType::POST->value,
+                'data' => $post['data'],
+                'sort_date' => $post['data']['date'],
+            ])
+            ->concat($links->map(fn (array $link) => [
+                'type' => ContentType::LINK->value,
+                'data' => $link,
+                'sort_date' => $link['date'],
+            ]))
+            ->sortByDesc('sort_date')
+            ->values();
+    }
+
+    private function runProcessors(array $processors, array $postData, string $html): void
     {
         if ($processors === []) {
             return;
         }
 
-        $post = GrapheinPost::from([...$frontMatter, 'content_url' => $contentUrl]);
+        $post = GrapheinPost::from($postData);
 
         foreach ($processors as $processor) {
             try {
@@ -124,15 +153,18 @@ class BuildAndCachePosts
         }
     }
 
-    private function writePages(Filesystem $disk, Collection $posts): array
+    private function writePages(Filesystem $disk, Collection $entries): array
     {
         $perPage = (int) config('graphein.per_page');
-        $total = $posts->count();
+        $total = $entries->count();
         $lastPage = max(1, (int) ceil($total / $perPage));
         $pagination = [];
 
         for ($page = 1; $page <= $lastPage; $page++) {
-            $items = $posts->slice(($page - 1) * $perPage, $perPage)->values();
+            $items = $entries
+                ->slice(($page - 1) * $perPage, $perPage)
+                ->map(fn (array $entry) => ['type' => $entry['type'], 'data' => $entry['data']])
+                ->values();
             $pagePath = self::PAGES_DIR."/page-{$page}.json";
 
             $disk->put($pagePath, json_encode($items, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
@@ -166,8 +198,8 @@ class BuildAndCachePosts
         foreach ($posts as $post) {
             $files[] = [
                 'type' => 'post_content',
-                'id' => $post['frontMatter']['id'],
-                'url' => $post['content_url'],
+                'id' => $post['data']['id'],
+                'url' => $post['data']['content_url'],
                 'meta_url' => $post['meta_url'],
             ];
         }

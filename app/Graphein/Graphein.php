@@ -2,6 +2,7 @@
 
 namespace App\Graphein;
 
+use App\Data\GrapheinEntry;
 use App\Data\GrapheinPost;
 use App\Data\GrapheinPostWithContent;
 use App\Graphein\Contracts\PostProcessor;
@@ -56,10 +57,7 @@ class Graphein
         ];
 
         $items = isset($manifest['pagination'][(string) $currentPage])
-            ? collect($this->loadPage($currentPage))->map(fn (array $item) => GrapheinPost::from([
-                ...$item['frontMatter'],
-                'content_url' => $item['content_url'],
-            ]))
+            ? collect($this->loadPage($currentPage))->map(fn (array $item) => GrapheinEntry::fromPageEntry($item))
             : collect();
 
         return new LengthAwarePaginator(
@@ -83,13 +81,8 @@ class Graphein
             throw new \RuntimeException("Graphein post [{$id}] not found");
         }
 
-        $meta = json_decode($disk->get($metaPath), true);
-
         return new GrapheinPostWithContent(
-            meta: GrapheinPost::from([
-                ...$meta['frontMatter'],
-                'content_url' => $meta['content_url'],
-            ]),
+            meta: GrapheinPost::from(json_decode($disk->get($metaPath), true)),
             content: $disk->get(self::POSTS_DIR."/{$id}-content.html"),
         );
     }
