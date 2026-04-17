@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Data\GrapheinPost;
+use App\Facades\Graphein;
 use App\Http\Controllers\Concerns\SharesPostMeta;
-use App\Models\BlogPost;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -14,21 +16,18 @@ class BlogPostController extends Controller
 
     public function index(): Response
     {
-        $posts = fn() => BlogPost::orderBy("date", "DESC")
-            ->paginate(50)
-            ->through(
-                fn(BlogPost $post) => [
-                    "id" => $post->id,
-                    "title" => $post->title,
-                    "slug" => $post->slug,
-                    "excerpt" => $post->excerpt,
-                    "date" => [
-                        "iso" => $post->date->format("c"),
-                        "formatted" => $post->date->format("jS F Y"),
-                    ],
-                    "url" => route("posts.show", ["blog_post" => $post]),
+        $posts = fn () => Graphein::getPaginatedPosts()
+            ->through(fn (GrapheinPost $post) => [
+                "id" => $post->id,
+                "title" => $post->title,
+                "slug" => $post->slug,
+                "excerpt" => $post->excerpt,
+                "date" => [
+                    "iso" => $post->date->format("c"),
+                    "formatted" => $post->date->format("jS F Y"),
                 ],
-            )
+                "url" => route("posts.show", ["blog_post" => "{$post->slug}-{$post->id}"]),
+            ])
             ->withQueryString();
 
         $page = request("page", 1);
@@ -40,44 +39,67 @@ class BlogPostController extends Controller
         ]);
     }
 
-    public function show(BlogPost $blogPost): Response
+    public function show(string $blog_post): Response
     {
-        $blogPost->load("tags");
+        $post = $this->resolvePost($blog_post);
+        $meta = $post->meta;
 
         $this->sharePostMeta(
-            title: $blogPost->title,
-            excerpt: $blogPost->excerpt,
+            title: $meta->title,
+            excerpt: $meta->excerpt,
             url: url()->current(),
-            ogImage: asset("storage/opengraph/" . $blogPost->id . ".png"),
+            ogImage: asset("storage/opengraph/{$meta->id}.png"),
         );
 
         return Inertia::render("Posts/Show", [
-            'git_repo_url' => config('site.git_repo_url'),
+            "git_repo_url" => config("site.git_repo_url"),
             "post" => [
-                "id" => $blogPost->id,
-                "title" => $blogPost->title,
-                "excerpt" => $blogPost->excerpt,
-                "content" => $blogPost->content,
+                "id" => $meta->id,
+                "title" => $meta->title,
+                "excerpt" => $meta->excerpt,
+                "content" => $post->content,
                 "url" => url()->current(),
-                "og_image" => asset(
-                    "storage/opengraph/" . $blogPost->id . ".png",
-                ),
+                "og_image" => asset("storage/opengraph/{$meta->id}.png"),
                 "date" => [
-                    "iso" => $blogPost->date->format("c"),
-                    "formatted" => $blogPost->date->format("jS F Y"),
+                    "iso" => $meta->date->format("c"),
+                    "formatted" => $meta->date->format("jS F Y"),
                 ],
-                "monthsAgo" => now()->diffInMonths($blogPost->date),
-                "tags" => $blogPost->tags?->pluck("tag") ?? [],
+                "monthsAgo" => now()->diffInMonths($meta->date),
+                "tags" => $meta->tags,
+                "updated" => $meta->updated,
             ],
         ]);
     }
 
-    public function ogImage(BlogPost $blogPost): View
+    public function ogImage(string $blog_post): View
     {
+        $meta = $this->resolvePost($blog_post)->meta;
+
         return view("og-image", [
-            "title" => $blogPost->title,
-            "excerpt" => $blogPost->excerpt,
-            "url" => route("posts.show", $blogPost),
+            "title" => $meta->title,
+            "excerpt" => $meta->excerpt,
+            "url" => route("posts.show", ["blog_post" => "{$meta->slug}-{$meta->id}"]),
         ]);
+    }
+
+    private function resolvePost(string $routeKey): \App\Data\GrapheinPostWithContent
+    {
+        $id = last(explode("-", $routeKey));
+
+        try {
+            $post = Graphein::loadPostById($id);
+        } catch (\RuntimeException) {
+            abort(404);
+        }
+
+        $canonical = "{$post->meta->slug}-{$post->meta->id}";
+
+        if ($canonical !== $routeKey) {
+            throw new HttpResponseException(
+                redirect()->route("posts.show", ["blog_post" => $canonical])
+            );
+        }
+
+        return $post;
     }
 }

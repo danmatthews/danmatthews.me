@@ -28,12 +28,20 @@ class PageController extends Controller
 
     public function work(): Response
     {
-        $projects = collect(config("site.projects"))->map(
-            fn($project) => $project->toArray(),
-        );
+        $openSource = config("site.work.open_source");
+        $everythingElse = collect(
+            config("site.work.everything_else"),
+        )->map(fn($project) => $project->toArray());
 
         return Inertia::render("Work/Index", [
-            "projects" => $projects,
+            "currentPosition" => config("site.work.current_position"),
+            "openSource" => [
+                "description" => markdown($openSource["description"]),
+                "packages" => collect($openSource["packages"])->map(
+                    fn($project) => $project->toArray(),
+                ),
+            ],
+            "everythingElse" => $everythingElse,
         ]);
     }
 

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'enable_cache' => env("GRAPHEIN_ENABLE_CACHE", true),
+    'per_page' => (int) env('GRAPHEIN_PER_PAGE', 10),
 ];

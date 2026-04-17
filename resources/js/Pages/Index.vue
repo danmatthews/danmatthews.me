@@ -46,11 +46,9 @@ const showIntro = true;
                 >
                     Carlisle, Cumbria.
                 </a>
-                I mostly blog about
-                <a href="/tags/laravel">Laravel</a>,
+                I mostly blog about Laravel,
                 <a href="https://vuejs.org/" target="_blank">VueJS</a>,
-                and
-                <a href="/tags/svelte">Svelte</a>,
+                and Svelte,
                 but you can also find some more personal topics close to my heart here like cooking and more.
             </p>
         </div>

@@ -15,7 +15,7 @@ export default defineConfig({
         tailwindcss(),
         watch({
             pattern: "content/**/*.md",
-            command: "php artisan build:posts",
+            command: "php artisan graphein:build-posts",
         }),
         ui({
             router: 'inertia',

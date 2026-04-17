@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Actions\BuildAndCachePosts;
 use Illuminate\Console\Command;
 
-class BuildPosts extends Command
+class GrapheinBuildPosts extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'build:posts';
+    protected $signature = 'graphein:build-posts';
 
     /**
      * The console command description.
