@@ -1,5 +1,5 @@
 <script setup>
-import {Head, Link, usePage} from '@inertiajs/vue3';
+import {Head, InfiniteScroll, Link, usePage} from '@inertiajs/vue3';
 import AppLayout from '../../Layouts/AppLayout.vue';
 import HomeArticles from '../../Components/HomeArticles.vue';
 import {computed} from 'vue';
@@ -39,12 +39,16 @@ const showIntro = true;
 
         <PageTitle class="mb-12" title="Posts & Links"/>
 
-        <PostList v-if="posts.data?.length">
-            <template v-for="post in posts.data" :key="post.id">
-                <SingleBlogPostListItem :post="post" v-if="post.type ==='post'"/>
-                <SingleLinkListItem :post="post" v-if="post.type === 'link'"/>
-            </template>
-        </PostList>
+        <InfiniteScroll data="posts">
+            <PostList v-if="posts.data?.length">
+
+                <template v-for="post in posts.data" :key="post.id">
+                    <SingleBlogPostListItem :post="post" v-if="post.type ==='post'"/>
+                    <SingleLinkListItem :post="post" v-if="post.type === 'link'"/>
+                </template>
+            </PostList>
+        </InfiniteScroll>
+            
 
     </AppLayout>
 </template>

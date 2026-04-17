@@ -57,9 +57,17 @@ return [
         new \App\Data\ResumeEntryData(
             "images/social-sync.png",
             "Social Sync",
+            "CTO",
+            "2026",
+            "Present",
+            "https://socialsync.io/",
+        ),
+        new \App\Data\ResumeEntryData(
+            "images/social-sync.png",
+            "Social Sync",
             "Head Of Engineering",
             "2022",
-            "Present",
+            "2026",
             "https://socialsync.io/",
         ),
         new \App\Data\ResumeEntryData(

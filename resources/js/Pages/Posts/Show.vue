@@ -117,5 +117,6 @@ const structuredData = computed(() =>
                 v-html="post.content"
             />
         </article>
+        
     </AppLayout>
 </template>

@@ -20,9 +20,10 @@ class BlogPostController extends Controller
 
     public function index(): Response
     {
-        $posts = fn () => Graphein::getPaginatedPosts()
-            ->through(fn (GrapheinEntry $entry) => $this->transformEntry($entry))
-            ->withQueryString();
+        $posts = Inertia::scroll(fn() => Graphein::getPaginatedPosts()
+            ->through(fn(GrapheinEntry $entry) => $this->transformEntry($entry))
+            ->withQueryString()
+        );
 
         $page = request("page", 1);
 

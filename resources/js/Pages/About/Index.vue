@@ -40,10 +40,11 @@ const socials = computed(() => page.props.socialLinks ?? {});
                 />
             </div>
 
-            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
+            <h2 class="text-3xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
                 Work History
             </h2>
-            <div class="space-y-6 text-xl">
+
+            <div class="space-y-6 text-lg">
                 <div
                     v-for="entry in resume"
                     :key="entry.companyName"
@@ -69,7 +70,7 @@ const socials = computed(() => page.props.socialLinks ?? {});
                 </div>
             </div>
 
-            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
+            <h2 class="text-3xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
                 Socials
             </h2>
             <ul role="list" class="space-y-3 text-xl">

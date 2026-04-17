@@ -73,8 +73,7 @@ const canonical = computed(() => page.props.canonical);
                     </a>
                 </li>
             </ul>
-
-            <hr class="my-12 border-t border-slate-200 dark:border-slate-800"/>
+            
 
             <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
                 Everything Else

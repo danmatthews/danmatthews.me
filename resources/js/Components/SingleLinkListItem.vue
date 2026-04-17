@@ -14,7 +14,7 @@ const props = defineProps({
                 :datetime="post.date.iso"
             >
                 {{ post.date.formatted }}
-            </time> &middot; External Link
+            </time> &middot; Link
         </p>
         <h2 class="text-xl font-semibold tracking-tight text-pretty">
             <a

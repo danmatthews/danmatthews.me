@@ -68,7 +68,7 @@ h6 {
 }
 
 a:hover {
-    color: #e65354;
+    color: #FE654F;
 }
 
 .has-links {
@@ -99,7 +99,7 @@ a:hover {
         }
 
         img {
-            @apply shadow rounded-sm my-2;
+            @apply border rounded-sm my-2  shadow-xl;
         }
 
         p code,
@@ -109,7 +109,7 @@ a:hover {
         }
 
         blockquote {
-            @apply bg-gray-100 p-4 border-l-2 border-gray-500 text-gray-700 shadow;
+            @apply bg-gray-100 p-4 border-l-2 border-[#FE654F] text-gray-700 shadow;
         }
 
         a {
@@ -149,9 +149,6 @@ a:hover {
             @apply list-[lower-roman] marker:text-gray-500;
         }
 
-        img {
-            @apply border-y-8;
-        }
     }
 }
 

@@ -1,5 +1,5 @@
 <script setup>
-import {Head, usePage} from '@inertiajs/vue3';
+import {Head, Link, usePage} from '@inertiajs/vue3';
 import AppLayout from '../Layouts/AppLayout.vue';
 import HomeArticles from '../Components/HomeArticles.vue';
 import {computed} from 'vue';
@@ -53,6 +53,9 @@ const showIntro = true;
             </p>
         </div>
         <HomeArticles :posts="posts"/>
+        <div class="border-t-8 py-4 flex justify-end max-w-2xl">
+            <Link href="/posts">More &rarr;</Link>
+        </div>
         <template #fallback>
             Loading Posts...
         </template>
