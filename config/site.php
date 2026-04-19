@@ -81,7 +81,7 @@ return [
         new \App\Data\ResumeEntryData(
             "images/fika-apps.png",
             "Fika Apps",
-            "Mobile Developer",
+            "Mobile & API Developer",
             "2018",
             "2019",
         ),
@@ -114,6 +114,7 @@ return [
         ),
         new \App\Data\NavigationItem("About", "about"),
         new \App\Data\NavigationItem("Work", "work"),
+        new \App\Data\NavigationItem("Github", "https://github.com/intrfce", external: true),
     ],
     "social-links" => [
         "bluesky" => "https://bsky.app/profile/danmatthews.me",
