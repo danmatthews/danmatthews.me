@@ -15,7 +15,7 @@ class FrontMatter extends Data
         #[Required] public string $slug,
         #[Required] public null|string $excerpt,
         public bool $published = true,
-        public ?array $tags = [],
+        public ?array $topics = [],
         public ?bool $updated = false,
     ) {}
 }

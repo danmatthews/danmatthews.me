@@ -15,5 +15,6 @@ class GrapheinLink extends Data
         public ?string $description,
         #[WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d H:i:s')]
         public CarbonImmutable $date,
+        public array $topics = [],
     ) {}
 }
