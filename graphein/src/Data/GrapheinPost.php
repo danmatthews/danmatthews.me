@@ -21,6 +21,6 @@ class GrapheinPost extends Data
         public string $contentUrl,
         public bool $published = true,
         public bool $updated = false,
-        public array $tags = [],
+        public array $topics = [],
     ) {}
 }

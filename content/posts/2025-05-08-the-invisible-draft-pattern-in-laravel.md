@@ -1,7 +1,7 @@
 ---
 id: 2ce23
 title: 'The invisible draft pattern in Laravel'
-tags: ['laravel']
+topics: ['laravel']
 date: '2025-05-08 11:58:35'
 slug: the-invisible-draft-pattern-in-laravel
 excerpt: "Simplify your UI and UX by leveraging a pattern of skipping having a gigantic 'creation' form and instead jump straight to the 'edit' form for models."

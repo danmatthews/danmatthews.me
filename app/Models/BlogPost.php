@@ -4,15 +4,11 @@ namespace App\Models;
 
 
 use App\Data\FrontMatter;
-use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Support\Facades\Cache;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use Sushi\Sushi;
 
 class BlogPost extends Model implements Feedable
 {
@@ -26,15 +22,9 @@ class BlogPost extends Model implements Feedable
     {
         return [
             'frontMatter' => FrontMatter::class,
-            'tags' => AsCollection::class,
             'published' => 'bool',
             'date' => 'datetime',
         ];
-    }
-
-    public function tags(): HasMany
-    {
-        return $this->hasMany(PostTag::class);
     }
 
     public function getRouteKey()
