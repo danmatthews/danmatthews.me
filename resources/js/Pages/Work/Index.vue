@@ -1,6 +1,6 @@
 <script setup>
-import {Head, usePage} from "@inertiajs/vue3";
-import {computed} from "vue";
+import { Head, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
 import PageTitle from "../../Components/PageTitle.vue";
 
@@ -27,15 +27,25 @@ const canonical = computed(() => page.props.canonical);
     <AppLayout>
         <Head>
             <title>Work</title>
-            <link rel="canonical" :href="canonical"/>
+            <link rel="canonical" :href="canonical" />
         </Head>
 
-        <PageTitle class="mb-16" title="Work"/>
+        <PageTitle class="mb-16" title="Work" />
 
         <div class="max-w-2xl">
+            <h2
+                class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty"
+            >
+                Currentl Position
+            </h2>
+            <p class="text-xl underline-links-subtle text-slate-500">
+                Currently i'm the CTO over at
+                <a href="https://socialsync.io" target="_blank">Social Sync</a>.
+            </p>
 
-
-            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
+            <h2
+                class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty"
+            >
                 Open Source
             </h2>
             <div
@@ -73,9 +83,10 @@ const canonical = computed(() => page.props.canonical);
                     </a>
                 </li>
             </ul>
-            
 
-            <h2 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
+            <h2
+                class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty"
+            >
                 Everything Else
             </h2>
             <ul role="list" class="space-y-8">

@@ -1,6 +1,6 @@
 <script setup>
-import {Link} from "@inertiajs/vue3";
-import {computed} from "vue";
+import { Link } from "@inertiajs/vue3";
+import { computed } from "vue";
 
 const props = defineProps({
     topics: {
@@ -24,14 +24,19 @@ const visible = computed(() =>
 </script>
 
 <template>
-    <span v-if="visible.length" class="inline-flex flex-wrap items-center gap-x-1">
+    <span
+        v-if="visible.length"
+        class="inline-flex flex-wrap items-center gap-x-1"
+    >
         <template v-if="variant === 'summary'">
-            <span>Topics:</span>
             <template v-for="(topic, index) in visible" :key="topic.slug">
                 <Link
                     :href="topic.url"
                     class="hover:text-slate-700 hover:underline"
-                >{{ topic.name }}</Link><span v-if="index < visible.length - 1" aria-hidden="true">,</span>
+                    >#{{ topic.name }}</Link
+                ><span v-if="index < visible.length - 1" aria-hidden="true"
+                    >,</span
+                >
             </template>
         </template>
         <template v-else>
@@ -39,8 +44,11 @@ const visible = computed(() =>
                 <Link
                     :href="topic.url"
                     class="hover:text-slate-700 hover:underline"
-                >#{{ topic.name }}</Link>
-                <span v-if="index < visible.length - 1" aria-hidden="true">·</span>
+                    >#{{ topic.name }}</Link
+                >
+                <span v-if="index < visible.length - 1" aria-hidden="true"
+                    >·</span
+                >
             </template>
         </template>
     </span>

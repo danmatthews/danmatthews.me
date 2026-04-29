@@ -10,7 +10,10 @@ use Inertia\Inertia;
 use Inertia\Response;
 use Intrfce\Graphein\Data\GrapheinEntry;
 use Intrfce\Graphein\Data\GrapheinPostWithContent;
+use Intrfce\Graphein\Enums\ContentType;
 use Intrfce\Graphein\Facades\Graphein;
+use Intrfce\Graphein\Data\GrapheinLink;
+use Intrfce\Graphein\Data\GrapheinPost;
 
 class BlogPostController extends Controller
 {
@@ -101,6 +104,7 @@ class BlogPostController extends Controller
                 "iso" => $post->date->format("c"),
                 "formatted" => $post->date->format("jS F Y"),
             ],
+            "topics" => $this->transformTopics($post->topics),
             "url" => route("posts.show", [
                 "blog_post" => "{$post->slug}-{$post->id}",
             ]),

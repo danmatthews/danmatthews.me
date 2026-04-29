@@ -1,6 +1,6 @@
 <script setup>
-import {computed} from "vue";
-import {Head} from "@inertiajs/vue3";
+import { computed } from "vue";
+import { Head } from "@inertiajs/vue3";
 import AppLayout from "../../Layouts/AppLayout.vue";
 import TopicList from "../../Components/TopicList.vue";
 
@@ -69,7 +69,9 @@ const structuredData = computed(() =>
                         code you find in this article as it may be out of date.
                     </p>
                 </div>
-                <p class="text-base text-slate-500 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1">
+                <p
+                    class="text-base text-slate-500 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1"
+                >
                     <time :datetime="post.date.iso">
                         {{ post.date.formatted }}
                     </time>
@@ -78,11 +80,12 @@ const structuredData = computed(() =>
                         <TopicList :topics="post.topics" :limit="5" />
                     </template>
                 </p>
-                <h2 class="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white mb-16 ">
-                    {{ post.title }}</h2>
-                <div>
-
-                </div>
+                <h2
+                    class="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white mb-16"
+                >
+                    {{ post.title }}
+                </h2>
+                <div></div>
                 <div
                     class="flex items-center gap-3"
                     v-if="post?.updated === true"
@@ -109,7 +112,7 @@ const structuredData = computed(() =>
                             class="underline"
                             v-bind:href="git_repo_url"
                             target="_blank"
-                        >git repo</a
+                            >git repo</a
                         >.
                     </p>
                 </div>
@@ -121,6 +124,5 @@ const structuredData = computed(() =>
                 v-html="post.content"
             />
         </article>
-        
     </AppLayout>
 </template>
