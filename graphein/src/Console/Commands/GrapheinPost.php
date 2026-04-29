@@ -13,9 +13,9 @@ use function Laravel\Prompts\info;
 use function Laravel\Prompts\text;
 use function Laravel\Prompts\textarea;
 
-class MakePostCommand extends Command
+class GrapheinPost extends Command
 {
-    protected $signature = 'make:post';
+    protected $signature = 'graphein:post';
 
     protected $description = 'Creates a blog post markdown file in content/posts with the correct front-matter.';
 

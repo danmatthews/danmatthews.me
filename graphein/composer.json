@@ -16,6 +16,9 @@
             "Intrfce\\Graphein\\": "src/"
         }
     },
+    "bin": [
+        "bin/gp"
+    ],
     "extra": {
         "laravel": {
             "providers": [

@@ -12,9 +12,9 @@ use function Laravel\Prompts\text;
 use function Laravel\Prompts\textarea;
 use function Laravel\Prompts\warning;
 
-class GrapheinAddLink extends Command
+class GrapheinLink extends Command
 {
-    protected $signature = 'graphein:add-link';
+    protected $signature = 'graphein:link';
 
     protected $description = 'Interactively add a link to content/links.json.';
 

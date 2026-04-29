@@ -99,6 +99,21 @@ class BuildAndCachePosts
             });
     }
 
+    private function rootDomain(?string $url): ?string
+    {
+        if (! $url) {
+            return null;
+        }
+
+        $host = parse_url($url, PHP_URL_HOST);
+
+        if (! $host) {
+            return null;
+        }
+
+        return preg_replace('/^www\./', '', $host);
+    }
+
     private function loadLinks(): Collection
     {
         $path = base_path(self::LINKS_PATH);
@@ -120,7 +135,7 @@ class BuildAndCachePosts
             ])
             ->concat($links->map(fn (array $link) => [
                 'type' => ContentType::LINK->value,
-                'data' => $link,
+                'data' => [...$link, 'root_domain' => $this->rootDomain($link['url'] ?? null)],
                 'sort_date' => $link['date'],
             ]))
             ->sortByDesc('sort_date')

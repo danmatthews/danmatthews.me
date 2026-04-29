@@ -3,10 +3,10 @@
 namespace Intrfce\Graphein;
 
 use Illuminate\Support\ServiceProvider;
-use Intrfce\Graphein\Console\Commands\GrapheinAddLink;
 use Intrfce\Graphein\Console\Commands\GrapheinBuildPosts;
 use Intrfce\Graphein\Console\Commands\GrapheinInit;
-use Intrfce\Graphein\Console\Commands\MakePostCommand;
+use Intrfce\Graphein\Console\Commands\GrapheinLink;
+use Intrfce\Graphein\Console\Commands\GrapheinPost;
 
 class GrapheinServiceProvider extends ServiceProvider
 {
@@ -22,8 +22,8 @@ class GrapheinServiceProvider extends ServiceProvider
             $this->commands([
                 GrapheinBuildPosts::class,
                 GrapheinInit::class,
-                GrapheinAddLink::class,
-                MakePostCommand::class,
+                GrapheinLink::class,
+                GrapheinPost::class,
             ]);
 
             $this->publishes([

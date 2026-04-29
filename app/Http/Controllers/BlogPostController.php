@@ -20,9 +20,12 @@ class BlogPostController extends Controller
 
     public function index(): Response
     {
-        $posts = Inertia::scroll(fn() => Graphein::getPaginatedPosts()
-            ->through(fn(GrapheinEntry $entry) => $this->transformEntry($entry))
-            ->withQueryString()
+        $posts = Inertia::scroll(
+            fn() => Graphein::getPaginatedPosts()
+                ->through(
+                    fn(GrapheinEntry $entry) => $this->transformEntry($entry),
+                )
+                ->withQueryString(),
         );
 
         $page = request("page", 1);
@@ -73,7 +76,9 @@ class BlogPostController extends Controller
         return view("og-image", [
             "title" => $meta->title,
             "excerpt" => $meta->excerpt,
-            "url" => route("posts.show", ["blog_post" => "{$meta->slug}-{$meta->id}"]),
+            "url" => route("posts.show", [
+                "blog_post" => "{$meta->slug}-{$meta->id}",
+            ]),
         ]);
     }
 
@@ -97,7 +102,9 @@ class BlogPostController extends Controller
                 "iso" => $post->date->format("c"),
                 "formatted" => $post->date->format("jS F Y"),
             ],
-            "url" => route("posts.show", ["blog_post" => "{$post->slug}-{$post->id}"]),
+            "url" => route("posts.show", [
+                "blog_post" => "{$post->slug}-{$post->id}",
+            ]),
         ];
     }
 
@@ -113,6 +120,7 @@ class BlogPostController extends Controller
                 "formatted" => $link->date->format("jS F Y"),
             ],
             "url" => $link->url,
+            "root_domain" => $link->root_domain,
         ];
     }
 
@@ -130,7 +138,7 @@ class BlogPostController extends Controller
 
         if ($canonical !== $routeKey) {
             throw new HttpResponseException(
-                redirect()->route("posts.show", ["blog_post" => $canonical])
+                redirect()->route("posts.show", ["blog_post" => $canonical]),
             );
         }
 

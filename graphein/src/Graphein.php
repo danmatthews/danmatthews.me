@@ -89,7 +89,7 @@ class Graphein
 
     private function loadManifest(): array
     {
-        return json_decode($this->disk()->get(self::MANIFEST_PATH), true);
+        return json_decode($this->disk()->get(self::MANIFEST_PATH) ?? '[]', true) ?? [];
     }
 
     private function loadPage(int $page): array

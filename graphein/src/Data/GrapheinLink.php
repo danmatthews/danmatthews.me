@@ -13,7 +13,10 @@ class GrapheinLink extends Data
         public string $url,
         public string $title,
         public ?string $description,
-        #[WithCast(DateTimeInterfaceCast::class, format: 'Y-m-d H:i:s')]
+        #[
+            WithCast(DateTimeInterfaceCast::class, format: "Y-m-d H:i:s"),
+        ]
         public CarbonImmutable $date,
+        public string $root_domain,
     ) {}
 }

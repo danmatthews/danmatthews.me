@@ -14,10 +14,10 @@ class HomeController extends Controller
 {
     public function __invoke(): Response
     {
-        $posts = fn () => Graphein::getPaginatedPosts()
+        $posts = fn() => Graphein::getPaginatedPosts()
             ->getCollection()
             ->take(3)
-            ->map(fn (GrapheinEntry $entry) => $this->transformEntry($entry))
+            ->map(fn(GrapheinEntry $entry) => $this->transformEntry($entry))
             ->values();
 
         return Inertia::render("Index", [
@@ -47,7 +47,9 @@ class HomeController extends Controller
                 "iso" => $post->date->format("c"),
                 "formatted" => $post->date->format("jS F Y"),
             ],
-            "url" => route("posts.show", ["blog_post" => "{$post->slug}-{$post->id}"]),
+            "url" => route("posts.show", [
+                "blog_post" => "{$post->slug}-{$post->id}",
+            ]),
         ];
     }
 
@@ -63,6 +65,7 @@ class HomeController extends Controller
                 "formatted" => $link->date->format("jS F Y"),
             ],
             "url" => $link->url,
+            "root_domain" => $link->root_domain,
         ];
     }
 }
