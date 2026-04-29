@@ -2,6 +2,7 @@
 import {computed} from "vue";
 import {Head} from "@inertiajs/vue3";
 import AppLayout from "../../Layouts/AppLayout.vue";
+import TopicList from "../../Components/TopicList.vue";
 
 const props = defineProps({
     git_repo_url: {
@@ -68,12 +69,15 @@ const structuredData = computed(() =>
                         code you find in this article as it may be out of date.
                     </p>
                 </div>
-                <time
-                    :datetime="post.date.iso"
-                    class="text-base  text-base items-center text-slate-500 mb-4 w-full block"
-                >
-                    {{ post.date.formatted }}
-                </time>
+                <p class="text-base text-slate-500 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <time :datetime="post.date.iso">
+                        {{ post.date.formatted }}
+                    </time>
+                    <template v-if="post.topics?.length">
+                        <span aria-hidden="true">&middot;</span>
+                        <TopicList :topics="post.topics" :limit="5" />
+                    </template>
+                </p>
                 <h2 class="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white mb-16 ">
                     {{ post.title }}</h2>
                 <div>

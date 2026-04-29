@@ -9,6 +9,9 @@ use Intrfce\Graphein\Data\GrapheinPostWithContent;
 
 /**
  * @method static LengthAwarePaginator<int, GrapheinEntry> getPaginatedPosts()
+ * @method static LengthAwarePaginator<int, GrapheinEntry> getPaginatedPostsByTopic(string $slug)
+ * @method static array|null getTopic(string $slug)
+ * @method static array getAllTopics()
  * @method static GrapheinPostWithContent loadPostById(string $id)
  * @method static \Intrfce\Graphein\Graphein postProcessors(array $processors)
  * @method static array getPostProcessors()

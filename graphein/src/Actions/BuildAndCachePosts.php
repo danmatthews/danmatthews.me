@@ -3,11 +3,13 @@
 namespace Intrfce\Graphein\Actions;
 
 use Carbon\Carbon;
+use Closure;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intrfce\Graphein\Data\GrapheinPost;
 use Intrfce\Graphein\Enums\ContentType;
 use Intrfce\Graphein\Graphein;
@@ -19,11 +21,17 @@ class BuildAndCachePosts
     private const BASE_DIR = 'graphein';
     private const POSTS_DIR = 'graphein/posts';
     private const PAGES_DIR = 'graphein/pages';
+    private const TOPICS_DIR = 'graphein/topics';
     private const MANIFEST_PATH = 'graphein/graphein-manifest.json';
+    private const TOPICS_INDEX_PATH = 'graphein/topics/index.json';
     private const LINKS_PATH = 'content/links.json';
 
     /** @var array<int, array{processor: string, post_id: string, post_title: string, message: string}> */
     private array $failures = [];
+
+    private int $postsBuilt = 0;
+
+    private ?Closure $onProgress = null;
 
     /**
      * Processor failures collected during the last build, in the order they occurred.
@@ -35,24 +43,55 @@ class BuildAndCachePosts
         return $this->failures;
     }
 
-    public function handle(): Collection
+    public function postsBuilt(): int
+    {
+        return $this->postsBuilt;
+    }
+
+    /**
+     * @param  Closure(string $type, string $message): void|null  $onProgress
+     */
+    public function handle(?Closure $onProgress = null): Collection
     {
         $this->failures = [];
+        $this->postsBuilt = 0;
+        $this->onProgress = $onProgress;
 
         $disk = Storage::disk('public');
 
+        $this->report('label', 'Resetting output directory');
         $this->resetOutput($disk);
 
+        $this->report('label', 'Parsing and writing posts');
         $posts = $this->writePostContents($disk);
+        $this->postsBuilt = $posts->count();
+
+        $this->report('label', 'Loading links');
         $links = $this->loadLinks();
 
         $entries = $this->buildEntries($posts, $links);
 
-        $pagination = $this->writePages($disk, $entries);
+        $this->report('label', 'Writing paginated pages');
+        $pagination = $this->writePaginatedEntries($disk, $entries, self::PAGES_DIR);
 
-        $this->writeManifest($disk, $posts, $pagination);
+        $this->report('label', 'Writing topic pages');
+        $topics = $this->writeTopicPages($disk, $entries);
+
+        $this->report('label', 'Writing manifest');
+        $this->writeManifest($disk, $posts, $pagination, $topics);
+
+        $this->report('success', "Built {$posts->count()} post(s)");
 
         return $entries;
+    }
+
+    private function report(string $type, string $message): void
+    {
+        if ($this->onProgress === null) {
+            return;
+        }
+
+        ($this->onProgress)($type, $message);
     }
 
     private function resetOutput(Filesystem $disk): void
@@ -60,6 +99,7 @@ class BuildAndCachePosts
         $disk->deleteDirectory(self::BASE_DIR);
         $disk->makeDirectory(self::POSTS_DIR);
         $disk->makeDirectory(self::PAGES_DIR);
+        $disk->makeDirectory(self::TOPICS_DIR);
     }
 
     private function writePostContents(Filesystem $disk): Collection
@@ -87,6 +127,8 @@ class BuildAndCachePosts
                 $postData = [...$frontMatter, 'content_url' => $contentUrl];
 
                 $disk->put($metaPath, json_encode($postData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+                $this->report('line', "  · {$postData['title']}");
 
                 $this->runProcessors($processors, $postData, $html);
 
@@ -164,11 +206,13 @@ class BuildAndCachePosts
                 Log::error("Graphein processor [{$processor}] failed for post [{$post->id}]: {$e->getMessage()}", [
                     'exception' => $e,
                 ]);
+
+                $this->report('warning', class_basename($processor)." failed on {$post->title}");
             }
         }
     }
 
-    private function writePages(Filesystem $disk, Collection $entries): array
+    private function writePaginatedEntries(Filesystem $disk, Collection $entries, string $dir): array
     {
         $perPage = (int) config('graphein.per_page');
         $total = $entries->count();
@@ -180,23 +224,23 @@ class BuildAndCachePosts
                 ->slice(($page - 1) * $perPage, $perPage)
                 ->map(fn (array $entry) => ['type' => $entry['type'], 'data' => $entry['data']])
                 ->values();
-            $pagePath = self::PAGES_DIR."/page-{$page}.json";
+            $pagePath = $dir."/page-{$page}.json";
 
             $disk->put($pagePath, json_encode($items, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
             $pagination[(string) $page] = [
                 'current_page' => $page,
-                'first_page_url' => $disk->url(self::PAGES_DIR.'/page-1.json'),
+                'first_page_url' => $disk->url($dir.'/page-1.json'),
                 'from' => ($page - 1) * $perPage + 1,
                 'last_page' => $lastPage,
-                'last_page_url' => $disk->url(self::PAGES_DIR."/page-{$lastPage}.json"),
+                'last_page_url' => $disk->url($dir."/page-{$lastPage}.json"),
                 'next_page_url' => $page < $lastPage
-                    ? $disk->url(self::PAGES_DIR.'/page-'.($page + 1).'.json')
+                    ? $disk->url($dir.'/page-'.($page + 1).'.json')
                     : null,
                 'path' => $disk->url($pagePath),
                 'per_page' => $perPage,
                 'prev_page_url' => $page > 1
-                    ? $disk->url(self::PAGES_DIR.'/page-'.($page - 1).'.json')
+                    ? $disk->url($dir.'/page-'.($page - 1).'.json')
                     : null,
                 'to' => min($page * $perPage, $total),
                 'total' => $total,
@@ -206,7 +250,73 @@ class BuildAndCachePosts
         return $pagination;
     }
 
-    private function writeManifest(Filesystem $disk, Collection $posts, array $pagination): void
+    /**
+     * Group entries by topic slug, write per-topic paginated pages, return per-topic metadata.
+     *
+     * @return array<string, array{name: string, slug: string, count: int, pagination: array}>
+     */
+    private function writeTopicPages(Filesystem $disk, Collection $entries): array
+    {
+        $bySlug = [];
+
+        foreach ($entries as $entry) {
+            $topics = $entry['data']['topics'] ?? [];
+
+            foreach ($topics as $topic) {
+                $name = trim((string) $topic);
+
+                if ($name === '') {
+                    continue;
+                }
+
+                $slug = Str::slug($name);
+
+                if (! isset($bySlug[$slug])) {
+                    $bySlug[$slug] = ['name' => $name, 'entries' => []];
+                }
+
+                $bySlug[$slug]['entries'][] = $entry;
+            }
+        }
+
+        $topics = [];
+        $indexEntries = [];
+
+        foreach ($bySlug as $slug => $bucket) {
+            $topicEntries = collect($bucket['entries']);
+            $dir = self::TOPICS_DIR."/{$slug}";
+
+            $disk->makeDirectory($dir);
+
+            $pagination = $this->writePaginatedEntries($disk, $topicEntries, $dir);
+
+            $this->report('line', "  · #{$bucket['name']} ({$topicEntries->count()})");
+
+            $topics[$slug] = [
+                'name' => $bucket['name'],
+                'slug' => $slug,
+                'count' => $topicEntries->count(),
+                'pagination' => $pagination,
+            ];
+
+            $indexEntries[] = [
+                'name' => $bucket['name'],
+                'slug' => $slug,
+                'count' => $topicEntries->count(),
+            ];
+        }
+
+        usort($indexEntries, fn ($a, $b) => $b['count'] <=> $a['count'] ?: strcmp($a['name'], $b['name']));
+
+        $disk->put(
+            self::TOPICS_INDEX_PATH,
+            json_encode($indexEntries, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
+        );
+
+        return $topics;
+    }
+
+    private function writeManifest(Filesystem $disk, Collection $posts, array $pagination, array $topics): void
     {
         $files = [];
 
@@ -227,9 +337,21 @@ class BuildAndCachePosts
             ];
         }
 
+        foreach ($topics as $slug => $topic) {
+            foreach ($topic['pagination'] as $page => $meta) {
+                $files[] = [
+                    'type' => 'topic_page',
+                    'topic' => $slug,
+                    'page' => (int) $page,
+                    'url' => $meta['path'],
+                ];
+            }
+        }
+
         $manifest = [
             'generated_at' => Carbon::now()->toIso8601String(),
             'pagination' => $pagination,
+            'topics' => $topics,
             'files' => $files,
         ];
 

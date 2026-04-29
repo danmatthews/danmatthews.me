@@ -4,6 +4,10 @@ namespace Intrfce\Graphein\Console\Commands;
 
 use Illuminate\Console\Command;
 use Intrfce\Graphein\Actions\BuildAndCachePosts;
+use Laravel\Prompts\Support\Logger;
+
+use function Laravel\Prompts\info;
+use function Laravel\Prompts\task;
 
 class GrapheinBuildPosts extends Command
 {
@@ -14,21 +18,31 @@ class GrapheinBuildPosts extends Command
     public function handle(): int
     {
         $action = new BuildAndCachePosts;
-        $posts = $action->handle();
-        $failures = $action->failures();
 
         if ($this->option('json')) {
+            $action->handle();
+
             $this->line(json_encode([
-                'posts_built' => $posts->count(),
-                'failures' => $failures,
+                'posts_built' => $action->postsBuilt(),
+                'failures' => $action->failures(),
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
-            return $failures === [] ? self::SUCCESS : self::FAILURE;
+            return $action->failures() === [] ? self::SUCCESS : self::FAILURE;
         }
 
-        $this->info("Built {$posts->count()} post(s).");
+        task(
+            label: 'Building Graphein',
+            callback: fn (Logger $logger) => $action->handle(
+                fn (string $type, string $message) => $this->dispatchProgress($logger, $type, $message),
+            ),
+            keepSummary: true,
+        );
+
+        $failures = $action->failures();
 
         if ($failures === []) {
+            info("Graphein build complete — {$action->postsBuilt()} post(s) ready to serve.");
+
             return self::SUCCESS;
         }
 
@@ -48,6 +62,17 @@ class GrapheinBuildPosts extends Command
         $this->line('Full traces written to storage/logs/laravel.log.');
 
         return self::FAILURE;
+    }
+
+    private function dispatchProgress(Logger $logger, string $type, string $message): void
+    {
+        match ($type) {
+            'label' => $logger->label($message),
+            'success' => $logger->success($message),
+            'warning' => $logger->warning($message),
+            'error' => $logger->error($message),
+            default => $logger->line($message),
+        };
     }
 
     private function summariseMessage(string $message): string

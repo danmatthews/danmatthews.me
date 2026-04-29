@@ -16,6 +16,8 @@ class Graphein
     private const MANIFEST_PATH = 'graphein/graphein-manifest.json';
     private const PAGES_DIR = 'graphein/pages';
     private const POSTS_DIR = 'graphein/posts';
+    private const TOPICS_DIR = 'graphein/topics';
+    private const TOPICS_INDEX_PATH = 'graphein/topics/index.json';
 
     /** @var array<class-string<PostProcessor>> */
     private array $postProcessors = [];
@@ -49,27 +51,54 @@ class Graphein
     public function getPaginatedPosts(): LengthAwarePaginator
     {
         $manifest = $this->loadManifest();
-        $currentPage = max(1, (int) Paginator::resolveCurrentPage());
 
-        $meta = $manifest['pagination']['1'] ?? [
-            'total' => 0,
-            'per_page' => (int) config('graphein.per_page'),
-        ];
-
-        $items = isset($manifest['pagination'][(string) $currentPage])
-            ? collect($this->loadPage($currentPage))->map(fn (array $item) => GrapheinEntry::fromPageEntry($item))
-            : collect();
-
-        return new LengthAwarePaginator(
-            items: $items,
-            total: (int) $meta['total'],
-            perPage: (int) $meta['per_page'],
-            currentPage: $currentPage,
-            options: [
-                'path' => Paginator::resolveCurrentPath(),
-                'pageName' => 'page',
-            ],
+        return $this->paginatorFromMeta(
+            $manifest['pagination'] ?? [],
+            self::PAGES_DIR,
         );
+    }
+
+    public function getPaginatedPostsByTopic(string $slug): LengthAwarePaginator
+    {
+        $manifest = $this->loadManifest();
+        $topic = $manifest['topics'][$slug] ?? null;
+
+        if ($topic === null) {
+            throw new \RuntimeException("Graphein topic [{$slug}] not found");
+        }
+
+        return $this->paginatorFromMeta(
+            $topic['pagination'] ?? [],
+            self::TOPICS_DIR."/{$slug}",
+        );
+    }
+
+    public function getTopic(string $slug): ?array
+    {
+        $manifest = $this->loadManifest();
+        $topic = $manifest['topics'][$slug] ?? null;
+
+        if ($topic === null) {
+            return null;
+        }
+
+        return [
+            'name' => $topic['name'],
+            'slug' => $topic['slug'],
+            'count' => $topic['count'],
+        ];
+    }
+
+    /** @return array<int, array{name: string, slug: string, count: int}> */
+    public function getAllTopics(): array
+    {
+        $disk = $this->disk();
+
+        if (! $disk->exists(self::TOPICS_INDEX_PATH)) {
+            return [];
+        }
+
+        return json_decode($disk->get(self::TOPICS_INDEX_PATH), true) ?? [];
     }
 
     public function loadPostById(string $id): GrapheinPostWithContent
@@ -87,14 +116,39 @@ class Graphein
         );
     }
 
+    private function paginatorFromMeta(array $pagination, string $dir): LengthAwarePaginator
+    {
+        $currentPage = max(1, (int) Paginator::resolveCurrentPage());
+
+        $meta = $pagination['1'] ?? [
+            'total' => 0,
+            'per_page' => (int) config('graphein.per_page'),
+        ];
+
+        $items = isset($pagination[(string) $currentPage])
+            ? collect($this->loadPage($dir, $currentPage))->map(fn (array $item) => GrapheinEntry::fromPageEntry($item))
+            : collect();
+
+        return new LengthAwarePaginator(
+            items: $items,
+            total: (int) $meta['total'],
+            perPage: (int) $meta['per_page'],
+            currentPage: $currentPage,
+            options: [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => 'page',
+            ],
+        );
+    }
+
     private function loadManifest(): array
     {
         return json_decode($this->disk()->get(self::MANIFEST_PATH) ?? '[]', true) ?? [];
     }
 
-    private function loadPage(int $page): array
+    private function loadPage(string $dir, int $page): array
     {
-        return json_decode($this->disk()->get(self::PAGES_DIR."/page-{$page}.json"), true);
+        return json_decode($this->disk()->get($dir."/page-{$page}.json"), true);
     }
 
     private function disk(): Filesystem

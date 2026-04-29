@@ -1,4 +1,6 @@
 <script setup>
+import TopicList from "./TopicList.vue";
+
 const props = defineProps({
     post: { type: Object },
 });

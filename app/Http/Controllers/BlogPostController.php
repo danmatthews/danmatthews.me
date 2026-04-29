@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Concerns\SharesPostMeta;
+use App\Http\Controllers\Concerns\TransformsGrapheinEntries;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Inertia\Inertia;
 use Inertia\Response;
 use Intrfce\Graphein\Data\GrapheinEntry;
-use Intrfce\Graphein\Data\GrapheinLink;
-use Intrfce\Graphein\Data\GrapheinPost;
 use Intrfce\Graphein\Data\GrapheinPostWithContent;
-use Intrfce\Graphein\Enums\ContentType;
 use Intrfce\Graphein\Facades\Graphein;
 
 class BlogPostController extends Controller
 {
     use SharesPostMeta;
+    use TransformsGrapheinEntries;
 
     public function index(): Response
     {
@@ -63,7 +62,7 @@ class BlogPostController extends Controller
                     "formatted" => $meta->date->format("jS F Y"),
                 ],
                 "monthsAgo" => now()->diffInMonths($meta->date),
-                "tags" => $meta->tags,
+                "topics" => $this->transformTopics($meta->topics),
                 "updated" => $meta->updated,
             ],
         ]);

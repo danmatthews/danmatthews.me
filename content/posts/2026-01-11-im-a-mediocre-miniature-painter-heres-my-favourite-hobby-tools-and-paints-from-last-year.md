@@ -2,6 +2,7 @@
 id: b98d1
 title: "Some of my favourite miniature painting tools and paints from last year."
 date: '2026-01-11 07:37:10'
+topics: ['miniature-painting']
 slug: favourite-hobby-tools-2025
 excerpt: "I'm not great by any stretch, but i know what products have made a huge difference to my hobbying in the last year or so. "
 ---

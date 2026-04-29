@@ -18,5 +18,6 @@ class GrapheinLink extends Data
         ]
         public CarbonImmutable $date,
         public string $root_domain,
+        public array $topics = [],
     ) {}
 }
