@@ -36,7 +36,7 @@ const canonical = computed(() => page.props.canonical);
             <h2
                 class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty"
             >
-                Currentl Position
+                Current Position
             </h2>
             <p class="text-xl underline-links-subtle text-slate-500">
                 Currently i'm the CTO over at
