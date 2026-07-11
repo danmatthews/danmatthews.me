@@ -16,5 +16,11 @@
         "title": "You'll miss the soul when it's gone",
         "description": "Andy Bell talks about some disheartening things happenning thanks to AI taking over the industry.",
         "date": "2026-07-03 13:38:15"
+    },
+    {
+        "url": "https://freek.dev/3054-a-tour-of-my-dotfiles",
+        "title": "Freek's Dotfiles",
+        "description": "A BUNCH of super-helpful functions, shell aliases and more from Freek at Spatie",
+        "date": "2026-07-11 10:20:10"
     }
 ]
