@@ -2,6 +2,22 @@
 <html lang="en" class="h-full antialiased">
 <head>
 
+    <script>
+        // Apply the user's system colour-scheme preference before paint to avoid a flash.
+        // Nuxt UI and our `dark:` utilities key off the `.dark`/`.light` class on <html>.
+        (function () {
+            var mq = window.matchMedia('(prefers-color-scheme: dark)');
+            function apply(isDark) {
+                var el = document.documentElement;
+                el.classList.toggle('dark', isDark);
+                el.classList.toggle('light', !isDark);
+                el.style.colorScheme = isDark ? 'dark' : 'light';
+            }
+            apply(mq.matches);
+            mq.addEventListener('change', function (e) { apply(e.matches); });
+        })();
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="application-name" content="{{ config('app.name') }}">
@@ -36,7 +52,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @inertiaHead
 </head>
-<body class="h-full bg-slate-50 text-slate-900">
+<body class="h-full bg-slate-50 text-slate-900 dark:bg-[#151515] dark:text-slate-200">
 @inertia
 </body>
 </html>

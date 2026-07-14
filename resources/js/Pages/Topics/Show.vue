@@ -35,7 +35,7 @@ const canonical = computed(() => page.props.canonical);
         </Head>
 
         <PageTitle class="mb-4" :title="`#${topic.name}`" />
-        <p class="text-slate-500 mb-12">
+        <p class="text-slate-500 dark:text-slate-400 mb-12">
             {{ topic.count }} {{ topic.count === 1 ? 'entry' : 'entries' }} under this topic.
         </p>
 

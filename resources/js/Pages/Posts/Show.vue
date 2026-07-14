@@ -59,7 +59,7 @@ const structuredData = computed(() =>
             <header>
                 <div
                     v-if="post.monthsAgo >= 6"
-                    class="bg-gray-100 px-6 py-4 rounded mb-8"
+                    class="bg-gray-100 dark:bg-zinc-800 px-6 py-4 rounded mb-8"
                 >
                     <h2 class="font-bold text-base">
                         This article is more than 6 months old.
@@ -70,7 +70,7 @@ const structuredData = computed(() =>
                     </p>
                 </div>
                 <p
-                    class="text-base text-slate-500 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1"
+                    class="text-base text-slate-500 dark:text-slate-400 mb-4 flex flex-wrap items-center gap-x-2 gap-y-1"
                 >
                     <time :datetime="post.date.iso">
                         {{ post.date.formatted }}

@@ -38,7 +38,7 @@ const canonical = computed(() => page.props.canonical);
             >
                 Current Position
             </h2>
-            <p class="text-xl underline-links-subtle text-slate-500">
+            <p class="text-xl underline-links-subtle text-slate-500 dark:text-slate-400">
                 Currently i'm the CTO over at
                 <a href="https://socialsync.io" target="_blank">Social Sync</a>.
             </p>
@@ -49,7 +49,7 @@ const canonical = computed(() => page.props.canonical);
                 Open Source
             </h2>
             <div
-                class="text-xl underline-links-subtle text-slate-500"
+                class="text-xl underline-links-subtle text-slate-500 dark:text-slate-400"
                 v-html="openSource.description"
             />
             <ul role="list" class="mt-8 space-y-8">
@@ -76,7 +76,7 @@ const canonical = computed(() => page.props.canonical);
                             </svg>
                         </h3>
                         <p
-                            class="relative z-10 mt-2 text-base leading-6 text-slate-500"
+                            class="relative z-10 mt-2 text-base leading-6 text-slate-500 dark:text-slate-400"
                         >
                             {{ pkg.description }}
                         </p>
@@ -113,7 +113,7 @@ const canonical = computed(() => page.props.canonical);
                             </svg>
                         </h3>
                         <p
-                            class="relative z-10 mt-2 text-base leading-6 text-slate-500"
+                            class="relative z-10 mt-2 text-base leading-6 text-slate-500 dark:text-slate-400"
                         >
                             {{ project.description }}
                         </p>
