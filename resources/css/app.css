@@ -25,6 +25,16 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    @variant dark {
+        *,
+        ::after,
+        ::before,
+        ::backdrop,
+        ::file-selector-button {
+            border-color: var(--color-zinc-700);
+        }
+    }
 }
 
 @theme {
@@ -80,12 +90,12 @@ a:hover {
 .underline-links-subtle {
     a {
         text-decoration: underline;
-        @apply decoration-gray-300 underline-offset-4;
+        @apply decoration-gray-300 underline-offset-4 dark:decoration-zinc-600;
     }
 }
 
 .text-subtle {
-    @apply text-slate-500;
+    @apply text-slate-500 dark:text-slate-400;
 }
 
 .article-styling {
@@ -105,16 +115,16 @@ a:hover {
         p code,
         li code,
         li code {
-            @apply bg-gray-100 px-1 text-sm font-mono;
+            @apply bg-gray-100 px-1 text-sm font-mono dark:bg-zinc-800 dark:text-zinc-200;
         }
 
         blockquote {
-            @apply bg-gray-100 p-4 border-l-2 border-[#FE654F] text-gray-700 shadow;
+            @apply bg-gray-100 p-4 border-l-2 border-[#FE654F] text-gray-700 shadow dark:bg-zinc-800 dark:text-zinc-300;
         }
 
         a {
             text-decoration: underline;
-            @apply decoration-gray-300 underline-offset-4;
+            @apply decoration-gray-300 underline-offset-4 dark:decoration-zinc-600;
         }
 
         h2 {

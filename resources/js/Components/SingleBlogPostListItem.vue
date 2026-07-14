@@ -11,7 +11,7 @@ const props = defineProps({
     <article class="py-8 group relative flex flex-col items-start space-y-6">
         <div class="space-y-2">
             <p
-                class="text-base text-slate-500 leading-none flex flex-wrap items-center gap-x-2 gap-y-1"
+                class="text-base text-slate-500 dark:text-slate-400 leading-none flex flex-wrap items-center gap-x-2 gap-y-1"
             >
                 <time :datetime="post.date.iso">
                     {{ post.date.formatted }}

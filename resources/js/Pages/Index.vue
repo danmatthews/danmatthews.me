@@ -36,7 +36,7 @@ const showIntro = true;
         <PageTitle class="mb-12" title="Hello there..."/>
 
         <div v-if="showIntro"
-             class="max-w-2xl text-2xl mb-12 underline-links-subtle  text-slate-700">
+             class="max-w-2xl text-2xl mb-12 underline-links-subtle  text-slate-700 dark:text-slate-300">
             <p>
                 I'm <strong>Dan Matthews</strong>, a full stack web
                 developer living in

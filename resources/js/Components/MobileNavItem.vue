@@ -25,7 +25,7 @@ const baseClasses = 'block transition-colors text-xl text-right py-2';
         :class="[
             baseClasses,
             mobile ? 'block py-2' : 'antialiased',
-            item.active ? 'text-black underline decoration-gray-300 underline-offset-4' : 'text-gray-600 hover:text-black',
+            item.active ? 'text-black underline decoration-gray-300 underline-offset-4 dark:text-white dark:decoration-zinc-600' : 'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
         ]"
     >{{ item.title }}</a>
     <Link
@@ -34,7 +34,7 @@ const baseClasses = 'block transition-colors text-xl text-right py-2';
         :class="[
             baseClasses,
             mobile ? 'block py-2' : 'antialiased',
-            item.active ? 'text-black underline decoration-gray-300 underline-offset-4' : 'text-gray-600 hover:text-black',
+            item.active ? 'text-black underline decoration-gray-300 underline-offset-4 dark:text-white dark:decoration-zinc-600' : 'text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white',
         ]"
     >
         {{ item.title }}
