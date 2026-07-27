@@ -35,7 +35,7 @@ onMounted(() => {
         <link rel="canonical" :href="canonical" />
     </Head>
 
-    <div class="min-h-screen bg-slate-50 text-slate-900">
+    <div class="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#151515] dark:text-slate-200">
         <div
             v-if="mobileMenuOpen"
             class="fixed inset-0 z-40 bg-zinc-800/40 backdrop-blur-xs duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
@@ -44,7 +44,7 @@ onMounted(() => {
 
         <div
             v-if="mobileMenuOpen"
-            class="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:ring-zinc-800"
+            class="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 duration-150 data-closed:scale-95 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in dark:bg-zinc-900 dark:ring-zinc-800"
         >
             <div class="flex flex-row-reverse items-center justify-between">
                 <button

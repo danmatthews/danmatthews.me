@@ -8,7 +8,7 @@ const props = defineProps({
 
 <template>
     <article class="py-8 group relative flex flex-col items-start space-y-3">
-        <p class="text-base text-slate-500 leading-none block">
+        <p class="text-base text-slate-500 dark:text-slate-400 leading-none block">
             <time :datetime="post.date.iso">
                 {{ post.date.formatted }}
             </time>
@@ -39,7 +39,7 @@ const props = defineProps({
                 </svg>
             </a>
         </h2>
-        <p v-if="post.excerpt" class="text-base text-slate-500">
+        <p v-if="post.excerpt" class="text-base text-slate-500 dark:text-slate-400">
             {{ post.excerpt }}
         </p>
     </article>

@@ -32,7 +32,7 @@ const visible = computed(() =>
             <template v-for="(topic, index) in visible" :key="topic.slug">
                 <Link
                     :href="topic.url"
-                    class="hover:text-slate-700 hover:underline"
+                    class="hover:text-slate-700 dark:hover:text-slate-200 hover:underline"
                     >#{{ topic.name }}</Link
                 ><span v-if="index < visible.length - 1" aria-hidden="true"
                     >,</span
@@ -43,7 +43,7 @@ const visible = computed(() =>
             <template v-for="(topic, index) in visible" :key="topic.slug">
                 <Link
                     :href="topic.url"
-                    class="hover:text-slate-700 hover:underline"
+                    class="hover:text-slate-700 dark:hover:text-slate-200 hover:underline"
                     >#{{ topic.name }}</Link
                 >
                 <span v-if="index < visible.length - 1" aria-hidden="true"
