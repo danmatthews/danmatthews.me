@@ -22,5 +22,11 @@
         "title": "Freek's Dotfiles",
         "description": "A BUNCH of super-helpful functions, shell aliases and more from Freek at Spatie",
         "date": "2026-07-11 10:20:10"
+    },
+    {
+        "url": "https://gruhn.me/blog/2026-08-03/",
+        "title": "Don't be a \"meat proxy\"",
+        "description": "AI is making us all lazier, we know that - in an age where you can totally just leave things to the agent, don't just puppet what it says to you into your work chat.",
+        "date": "2026-08-03 07:55:45"
     }
 ]
