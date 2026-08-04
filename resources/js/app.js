@@ -23,11 +23,6 @@ createInertiaApp({
             .use(ui)
             .mount(el);
     },
-    defaults: {
-        visitOptions: (href, options) => {
-            return {viewTransition: true};
-        },
-    },
     progress: {
         color: "#0f172a",
     },
