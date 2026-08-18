@@ -19,7 +19,7 @@ const navigation = computed(() => page.props.navigation ?? []);
 <template>
     <header class="relative py-12 mb-8 flex justify-between items-center">
         <Link href="/" class="flex items-center gap-4">
-            <h1 class="text-3xl font-semibold tracking-tight text-pretty text-gray-900_  text-[#FE654F]">Dan
+            <h1 class="text-3xl font-semibold text-pretty text-gray-900_  text-[#FE654F]">Dan
                 Matthews</h1>
             <!--            <h1 class="font-bold text-slate-700 text-3xl">Dan Matthews</h1>-->
         </Link>

@@ -10,7 +10,6 @@ Route::feeds();
 
 Route::get("/", HomeController::class)->name("home");
 
-Route::get("posts", [BlogPostController::class, "index"])->name("posts.index");
 Route::get("posts/{blog_post}", [BlogPostController::class, "show"])->name("posts.show");
 Route::get("posts/{blog_post}/og", [BlogPostController::class, "ogImage"]);
 

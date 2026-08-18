@@ -34,7 +34,7 @@ const canonical = computed(() => page.props.canonical);
 
         <div class="max-w-2xl">
             <h2
-                class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty"
+                class="text-2xl mt-16 mb-6 font-semibold text-pretty"
             >
                 Current Position
             </h2>
@@ -44,7 +44,7 @@ const canonical = computed(() => page.props.canonical);
             </p>
 
             <h2
-                class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty"
+                class="text-2xl mt-16 mb-6 font-semibold text-pretty"
             >
                 Open Source
             </h2>
@@ -85,7 +85,7 @@ const canonical = computed(() => page.props.canonical);
             </ul>
 
             <h2
-                class="text-2xl mt-16 mb-6 font-semibold tracking-tight text-pretty"
+                class="text-2xl mt-16 mb-6 font-semibold text-pretty"
             >
                 Everything Else
             </h2>
