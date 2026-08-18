@@ -99,17 +99,8 @@ return [
             title: "Home",
             url: "/",
             isActive: function (\Illuminate\Http\Request $request) {
-                return $request->path() == "/";
-            },
-        ),
-        new \App\Data\NavigationItem(
-            title: "Posts & Links",
-            url: "/posts",
-            isActive: function (\Illuminate\Http\Request $request) {
-                return in_array($request->route()->getName(), [
-                    "posts.index",
-                    "posts.show",
-                ]);
+                return $request->path() == "/" ||
+                    $request->route()->getName() === "posts.show";
             },
         ),
         new \App\Data\NavigationItem("About", "about"),
