@@ -34,5 +34,11 @@
         "title": "Miniature Masters Episode 1",
         "description": "Imagine if \"Great british bake off\" was a show about painting Miniatures - it's that, and the standard on display here is insane, great show.",
         "date": "2026-08-17 09:48:39"
+    },
+    {
+        "url": "https://timmarinin.net/2026/bluesky-screenshots/",
+        "title": "How Bluesky draws its logo on screenshots",
+        "description": "Neat little trick to draw an element when the phone takes a screenshot.",
+        "date": "2026-08-18 07:33:19"
     }
 ]
