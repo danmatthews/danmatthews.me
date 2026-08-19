@@ -7,6 +7,8 @@ return [
         "headline" => "Dan Matthews",
         "subheader" =>
             "I'm a full stack developer, working with Laravel and JS. I'm based in the UK, and currently i'm building charity software at [Social Sync](https://socialsync.io).",
+        "bio" =>
+            "A full stack web developer living in [Carlisle, Cumbria](https://www.google.com/maps/place/Carlisle/@54.9000249,-2.9780525,13z/data=!3m1!4b1!4m6!3m5!1s0x487ce1df3eee6b0f:0x5c0a43b6ba15682d!8m2!3d54.892473!4d-2.932931!16zL20vMGdqOTU?entry=ttu&g_ep=EgoyMDI1MDUwMy4wIKXMDSoASAFQAw%3D%3D). I mostly blog about Laravel, [VueJS](https://vuejs.org/), and Svelte, but you can also find some more personal topics close to my heart here like cooking and more.",
     ],
     "about" => file_get_contents(base_path("content/about.md")),
     "posts" => [
@@ -96,7 +98,7 @@ return [
     "images" => [],
     "navigation" => [
         new \App\Data\NavigationItem(
-            title: "Home",
+            title: "Blog",
             url: "/",
             isActive: function (\Illuminate\Http\Request $request) {
                 return $request->path() == "/" ||

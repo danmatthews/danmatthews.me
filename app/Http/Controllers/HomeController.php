@@ -26,6 +26,7 @@ class HomeController extends Controller
             "posts" => $posts,
             "pageTitle" => "Welcome",
             "intro" => config("site.posts"),
+            "bio" => markdown(config("site.home.bio")),
         ]);
     }
 }

@@ -39,6 +39,39 @@
 
 @theme {
     --color-black: #151515;
+
+    /* "Opaline" palette */
+    --color-opaline-50: #F4F4F6;
+    --color-opaline-100: #E7E7E7;
+    --color-opaline-200: #D2D2D4;
+    --color-opaline-coral: #FF634A;
+
+    /*
+      Accent. The bright coral (#FF634A) only reaches ~2.7:1 on the light
+      background, so it is reserved for decorative, non-text use (e.g.
+      borders). `--color-accent-strong` is a darkened coral that clears
+      WCAG AA (≈4.8:1) for text and hover states.
+    */
+    --color-accent: #FF634A;
+    --color-accent-strong: #C4392A;
+
+    /*
+      Retint the light-mode neutral ramp (used throughout via `slate-*`)
+      to the palette's cool greys, plus a near-black ink for body text.
+      Contrast on the #F4F4F6 background: slate-900 ≈ 15.8:1 (body/headings),
+      slate-500 ≈ 4.6:1 (metadata) — both clear WCAG AA.
+    */
+    --color-slate-50: #F4F4F6;
+    --color-slate-100: #E7E7E7;
+    --color-slate-200: #D2D2D4;
+    --color-slate-300: #BBBBBE;
+    --color-slate-400: #9A9AA0;
+    --color-slate-500: #6E6E75;
+    --color-slate-600: #52525A;
+    --color-slate-700: #3C3C42;
+    --color-slate-800: #2A2A2F;
+    --color-slate-900: #1A1A1E;
+
     --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-display: "Instrument Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
@@ -79,7 +112,7 @@ h6 {
 }
 
 a:hover {
-    color: #FE654F;
+    color: var(--color-accent-strong);
 }
 
 .has-links {
@@ -106,7 +139,7 @@ a:hover {
         @apply space-y-8;
 
         p {
-            @apply leading-7;
+            @apply leading-7 text-pretty;
         }
 
         img {
@@ -120,7 +153,7 @@ a:hover {
         }
 
         blockquote {
-            @apply bg-gray-100 p-4 border-l-2 border-[#FE654F] text-gray-700 shadow dark:bg-zinc-800 dark:text-zinc-300;
+            @apply bg-gray-100 p-4 border-l-2 border-accent text-gray-700 shadow dark:bg-zinc-800 dark:text-zinc-300;
         }
 
         a {
