@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full antialiased">
+<html lang="en" class="h-full antialiased light" style="color-scheme: light">
 <head>
 
     <script>
-        // Apply the user's system colour-scheme preference before paint to avoid a flash.
+        // Force light mode for now (ignores the OS colour-scheme preference).
         // Nuxt UI and our `dark:` utilities key off the `.dark`/`.light` class on <html>.
         (function () {
-            var mq = window.matchMedia('(prefers-color-scheme: dark)');
-            function apply(isDark) {
-                var el = document.documentElement;
-                el.classList.toggle('dark', isDark);
-                el.classList.toggle('light', !isDark);
-                el.style.colorScheme = isDark ? 'dark' : 'light';
-            }
-            apply(mq.matches);
-            mq.addEventListener('change', function (e) { apply(e.matches); });
+            var el = document.documentElement;
+            el.classList.remove('dark');
+            el.classList.add('light');
+            el.style.colorScheme = 'light';
         })();
     </script>
 
