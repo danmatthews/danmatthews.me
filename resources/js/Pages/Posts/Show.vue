@@ -81,7 +81,7 @@ const structuredData = computed(() =>
                     </template>
                 </p>
                 <h2
-                    class="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl dark:text-white mb-16"
+                    class="text-5xl font-semibold text-pretty text-gray-900 sm:text-5xl dark:text-white mb-16"
                 >
                     {{ post.title }}
                 </h2>

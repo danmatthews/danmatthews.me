@@ -8,36 +8,13 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Inertia\Inertia;
 use Inertia\Response;
-use Intrfce\Graphein\Data\GrapheinEntry;
 use Intrfce\Graphein\Data\GrapheinPostWithContent;
-use Intrfce\Graphein\Enums\ContentType;
 use Intrfce\Graphein\Facades\Graphein;
-use Intrfce\Graphein\Data\GrapheinLink;
-use Intrfce\Graphein\Data\GrapheinPost;
 
 class BlogPostController extends Controller
 {
     use SharesPostMeta;
     use TransformsGrapheinEntries;
-
-    public function index(): Response
-    {
-        $posts = Inertia::scroll(
-            fn() => Graphein::getPaginatedPosts()
-                ->through(
-                    fn(GrapheinEntry $entry) => $this->transformEntry($entry),
-                )
-                ->withQueryString(),
-        );
-
-        $page = request("page", 1);
-
-        return Inertia::render("Posts/Index", [
-            "posts" => $posts,
-            "pageTitle" => $page == 1 ? "Posts" : "Posts (Page {$page})",
-            "intro" => config("site.posts"),
-        ]);
-    }
 
     public function show(string $blog_post): Response
     {
@@ -82,49 +59,6 @@ class BlogPostController extends Controller
                 "blog_post" => "{$meta->slug}-{$meta->id}",
             ]),
         ]);
-    }
-
-    private function transformEntry(GrapheinEntry $entry): array
-    {
-        return match ($entry->type) {
-            ContentType::POST => $this->transformPost($entry->data),
-            ContentType::LINK => $this->transformLink($entry->data),
-        };
-    }
-
-    private function transformPost(GrapheinPost $post): array
-    {
-        return [
-            "type" => ContentType::POST->value,
-            "id" => $post->id,
-            "title" => $post->title,
-            "slug" => $post->slug,
-            "excerpt" => $post->excerpt,
-            "date" => [
-                "iso" => $post->date->format("c"),
-                "formatted" => $post->date->format("jS F Y"),
-            ],
-            "topics" => $this->transformTopics($post->topics),
-            "url" => route("posts.show", [
-                "blog_post" => "{$post->slug}-{$post->id}",
-            ]),
-        ];
-    }
-
-    private function transformLink(GrapheinLink $link): array
-    {
-        return [
-            "type" => ContentType::LINK->value,
-            "id" => md5($link->url),
-            "title" => $link->title,
-            "excerpt" => $link->description,
-            "date" => [
-                "iso" => $link->date->format("c"),
-                "formatted" => $link->date->format("jS F Y"),
-            ],
-            "url" => $link->url,
-            "root_domain" => $link->root_domain,
-        ];
     }
 
     private function resolvePost(string $routeKey): GrapheinPostWithContent

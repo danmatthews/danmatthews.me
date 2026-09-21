@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full antialiased">
+<html lang="en" class="h-full antialiased light" style="color-scheme: light">
 <head>
 
     <script>
-        // Apply the user's system colour-scheme preference before paint to avoid a flash.
+        // Force light mode for now (ignores the OS colour-scheme preference).
         // Nuxt UI and our `dark:` utilities key off the `.dark`/`.light` class on <html>.
         (function () {
-            var mq = window.matchMedia('(prefers-color-scheme: dark)');
-            function apply(isDark) {
-                var el = document.documentElement;
-                el.classList.toggle('dark', isDark);
-                el.classList.toggle('light', !isDark);
-                el.style.colorScheme = isDark ? 'dark' : 'light';
-            }
-            apply(mq.matches);
-            mq.addEventListener('change', function (e) { apply(e.matches); });
+            var el = document.documentElement;
+            el.classList.remove('dark');
+            el.classList.add('light');
+            el.style.colorScheme = 'light';
         })();
     </script>
 
@@ -38,7 +33,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geist+Mono:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geist+Mono:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
     @includeWhen(isset($postMeta), 'post-meta')

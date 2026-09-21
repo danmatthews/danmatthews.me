@@ -40,7 +40,7 @@ const socials = computed(() => page.props.socialLinks ?? {});
                 />
             </div>
 
-            <h2 class="text-3xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
+            <h2 class="text-3xl mt-16 mb-6 font-semibold text-pretty">
                 Work History
             </h2>
 
@@ -70,7 +70,7 @@ const socials = computed(() => page.props.socialLinks ?? {});
                 </div>
             </div>
 
-            <h2 class="text-3xl mt-16 mb-6 font-semibold tracking-tight text-pretty">
+            <h2 class="text-3xl mt-16 mb-6 font-semibold text-pretty">
                 Socials
             </h2>
             <ul role="list" class="space-y-3 text-lg">

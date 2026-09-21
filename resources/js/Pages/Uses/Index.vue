@@ -18,7 +18,7 @@ const canonical = computed(() => page.props.canonical);
                 <div class="relative px-4 sm:px-8 lg:px-12">
                     <div class="mx-auto max-w-2xl lg:max-w-5xl">
                         <header class="max-w-2xl">
-                            <h1 class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+                            <h1 class="text-4xl font-bold text-zinc-800 sm:text-5xl dark:text-zinc-100">
                                 Software I use, gadgets I love, and other things I recommend.
                             </h1>
                             <p class="mt-6 text-base text-zinc-600 dark:text-zinc-400">
@@ -37,7 +37,7 @@ const canonical = computed(() => page.props.canonical);
                                         <div class="md:col-span-3">
                                             <ul role="list" class="space-y-16">
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     16” MacBook Pro, M1 Max, 64GB RAM (2021)</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         I was using an Intel-based 16” MacBook Pro prior to this and the
@@ -46,14 +46,14 @@ const canonical = computed(() => page.props.canonical);
                                                         through
                                                         with our various launch simulations.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Apple Pro Display XDR (Standard Glass)</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         The only display on the market if you want something HiDPI and
                                                         bigger than 27”. When you’re working at planetary scale, every
                                                         pixel you can get counts.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     IBM Model M SSK Industrial Keyboard</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         They don’t make keyboards the way they used to. I buy these any
@@ -61,14 +61,14 @@ const canonical = computed(() => page.props.canonical);
                                                         need
                                                         parts or need to retire my main.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Apple Magic Trackpad</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         Something about all the gestures makes me feel like a wizard
                                                         with special powers. I really like feeling like a wizard with
                                                         special powers.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Herman Miller Aeron Chair</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         If I’m going to slouch in the worst ergonomic position imaginable
@@ -85,7 +85,7 @@ const canonical = computed(() => page.props.canonical);
                                         <div class="md:col-span-3">
                                             <ul role="list" class="space-y-16">
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Sublime Text 4</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         I don’t care if it’s missing all of the fancy IDE features
@@ -93,14 +93,14 @@ const canonical = computed(() => page.props.canonical);
                                                         editor
                                                         ever made.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     iTerm2</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         I’m honestly not even sure what features I get with this that
                                                         aren’t just part of the macOS Terminal but it’s what I use.</p>
                                                 </li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     TablePlus</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         Great software for working with databases. Has saved me from
@@ -118,7 +118,7 @@ const canonical = computed(() => page.props.canonical);
                                         <div class="md:col-span-3">
                                             <ul role="list" class="space-y-16">
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Figma</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         We started using Figma as just a design tool but now it’s become
@@ -136,13 +136,13 @@ const canonical = computed(() => page.props.canonical);
                                         <div class="md:col-span-3">
                                             <ul role="list" class="space-y-16">
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Alfred</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         It’s not the newest kid on the block but it’s still the fastest.
                                                         The Sublime Text of the application launcher world.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Reflect</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         Using a daily notes system instead of trying to keep things
@@ -152,7 +152,7 @@ const canonical = computed(() => page.props.canonical);
                                                         the
                                                         daily note.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     SavvyCal</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         Great tool for scheduling meetings while protecting my calendar
@@ -160,7 +160,7 @@ const canonical = computed(() => page.props.canonical);
                                                         the
                                                         week.</p></li>
                                                 <li class="group relative flex flex-col items-start"><h3
-                                                    class="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+                                                    class="text-base font-semibold text-zinc-800 dark:text-zinc-100">
                                                     Focus</h3>
                                                     <p class="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                                                         Simple tool for blocking distracting websites when I need to just

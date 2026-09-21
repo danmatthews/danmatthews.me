@@ -16,7 +16,7 @@ const props = defineProps({
                 &middot; {{ post.root_domain }}</template
             >
         </p>
-        <h2 class="text-xl font-semibold tracking-tight text-pretty">
+        <h2 class="text-xl font-semibold text-pretty">
             <a
                 :href="post.url"
                 target="_blank"

@@ -48,6 +48,7 @@ trait TransformsGrapheinEntries
             ],
             "topics" => $this->transformTopics($link->topics),
             "url" => $link->url,
+            "root_domain" => $link->root_domain,
         ];
     }
 

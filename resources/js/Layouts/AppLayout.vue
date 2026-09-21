@@ -88,7 +88,7 @@ onMounted(() => {
             </nav>
         </div>
 
-        <div class="relative mx-auto max-w-4xl px-4 pb-32">
+        <div class="relative mx-auto max-w-5xl px-4 pb-32">
             <SiteHeader
                 :mobile-open="mobileMenuOpen"
                 @toggle-mobile="mobileMenuOpen = !mobileMenuOpen"

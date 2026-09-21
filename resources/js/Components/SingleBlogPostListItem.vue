@@ -27,7 +27,7 @@ const props = defineProps({
                     />
                 </template>
             </p>
-            <h2 class="text-xl font-semibold tracking-tight text-pretty">
+            <h2 class="text-xl font-semibold text-pretty">
                 <Link @click="buzz" :href="post.url">{{ post.title }}</Link>
             </h2>
         </div>
