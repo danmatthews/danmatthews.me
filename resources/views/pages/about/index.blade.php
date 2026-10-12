@@ -134,7 +134,7 @@
                          height="800" decoding="async" data-nimg="1"
                          class="aspect-square bg-zinc-100 object-cover rounded dark:bg-zinc-800"
                          sizes="(min-width: 1024px) 32rem, 20rem"
-                         src="{{ asset('images/about.jpeg') }}"
+                         src="{{ asset('images/about.webp') }}"
                          style="color: transparent;">
                 </div>
             </div>

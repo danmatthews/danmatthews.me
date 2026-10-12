@@ -10,7 +10,7 @@ defineProps({
 <template>
     <aside class="lg:sticky lg:top-8">
         <img
-            :src="'/images/about.jpeg'"
+            :src="'/images/about.webp'"
             alt="Dan Matthews"
             class="size-16 rounded-full object-cover"
             width="64"
