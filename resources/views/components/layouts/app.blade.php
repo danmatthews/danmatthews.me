@@ -32,11 +32,6 @@
         rel="stylesheet">
 
 
-    @if (app()->environment('production'))
-        <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js" id="pirschextendedjs"
-                data-code="CwNjQ2cCkJFwEIEQbsF3kNQIgo4xb17w"></script>
-    @endif
-
     <meta name="twitter:site" content="@danmatthews">
     <meta name="twitter:creator" content="@">
     <meta name="twitter:card" content="summary_large_image">

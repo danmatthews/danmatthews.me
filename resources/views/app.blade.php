@@ -38,11 +38,6 @@
 
     @includeWhen(isset($postMeta), 'post-meta')
 
-    @production
-        <script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js" id="pirschextendedjs"
-                data-code="CwNjQ2cCkJFwEIEQbsF3kNQIgo4xb17w"></script>
-    @endproduction
-
     <x-feed-links/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @inertiaHead
