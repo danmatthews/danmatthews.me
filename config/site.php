@@ -27,6 +27,12 @@ return [
             "description" => "All my open source packages live under the [Intrfce](https://github.com/intrfce) organisation on Github. Most are Laravel packages solving small, specific problems I've run into.",
             "packages" => [
                 new \App\Data\ProjectData(
+                    title: "Laravel Public IDs",
+                    description: "Add Stripe-style public IDs to your Laravel models, backed by UUIDs for speed.",
+                    url: "https://github.com/intrfce/laravel-public-ids",
+                    button_text: "View on Github",
+                ),
+                new \App\Data\ProjectData(
                     title: "Enum Attribute Descriptors",
                     description: "Add descriptions and titles to your enum cases.",
                     url: "https://github.com/intrfce/enum-attribute-descriptors",
