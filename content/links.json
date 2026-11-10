@@ -46,5 +46,11 @@
         "title": "Don't be nice.",
         "description": "\"Nice?\n\nIt's better to be good.\"",
         "date": "2026-09-21 08:22:31"
+    },
+    {
+        "url": "https://superlogical.com/",
+        "title": "Rex - Terminal Multiplexer",
+        "description": "A new terminal from Mitchell Hashimoto (Ghostty, Hashicorp), that works amazingly with multiple projects, tabs, windows, sessions and agents.",
+        "date": "2026-11-10 09:44:29"
     }
 ]
