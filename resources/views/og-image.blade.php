@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OG Image</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap">
     @vite(['resources/css/app.css'])
 </head>
-<body class="font-serif">
+<body class="font-body">
 <div class="w-[1200px] h-[630px] overflow-hidden og-image">
     <div
         class="relative p-[60px] pr-[365px]  bg-white w-full h-full">
 
         <div class="h-full flex flex-col items-between justify-between">
             <div>
-                <h1 class="text-5xl mb-6 leading font-serif">{{ $title }}</h1>
+                <h1 class="text-5xl mb-6 leading font-body">{{ $title }}</h1>
                 @if(isset($excerpt) && $excerpt)
                     <p class="text-2xl text-gray-500 mb-8">{{ $excerpt }}</p>
                 @endif

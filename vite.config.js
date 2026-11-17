@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue";
 import {watch} from "vite-plugin-watch";
 import ui from '@nuxt/ui/vite'
 
-export default defineConfig({
+export default defineConfig(({command}) => ({
     plugins: [
         laravel({
             input: ["resources/css/app.css", "resources/js/app.js"],
@@ -16,10 +16,11 @@ export default defineConfig({
         watch({
             pattern: "content/**/*.md",
             command: "php artisan graphein:build-posts",
+            onInit: command === 'build',
         }),
         ui({
             router: 'inertia',
             colorMode: false
         })
     ],
-});
+}));

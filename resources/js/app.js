@@ -6,6 +6,10 @@ import {createInertiaApp} from "@inertiajs/vue3";
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
 import ui from '@nuxt/ui/vue-plugin'
 
+if (import.meta.env.DEV) {
+    import('./font-preview.js').then(({mountFontPreview}) => mountFontPreview());
+}
+
 const appName = document.getElementsByTagName("title")[0]?.innerText;
 
 const page = usePage();
