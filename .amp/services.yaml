@@ -1,0 +1,17 @@
+services:
+  # Laravel listens only locally; the vite service proxies page requests to it.
+  web:
+    command: >-
+      php artisan optimize:clear &&
+      php artisan serve --host=127.0.0.1 --port="$PORT"
+    port: 8000
+    env:
+      APP_URL: ${services.vite.publicURL}
+      # .env.example uses database sessions, but no sessions migration exists.
+      SESSION_DRIVER: file
+  vite:
+    command: pnpm run dev --host 127.0.0.1 --port "$PORT" --strictPort
+    env:
+      LARAVEL_DEV_SERVER: http://127.0.0.1:8000
+    portal:
+      title: Site
