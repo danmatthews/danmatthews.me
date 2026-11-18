@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Prepares a fresh Amp orb: PHP 8.4 + Composer, pnpm dependencies, .env, and the SQLite database.
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+step() {
+  local label="$1"
+  shift
+  local start=$SECONDS
+  echo "==> $label"
+  "$@"
+  echo "    $label took $((SECONDS - start))s"
+}
+
+install_system_packages() {
+  local packages=(
+    php8.4-cli php8.4-mbstring php8.4-xml php8.4-curl php8.4-sqlite3
+    php8.4-zip php8.4-intl php8.4-gd php8.4-bcmath php8.4-imagick composer unzip
+  )
+  local missing=()
+  for package in "${packages[@]}"; do
+    dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q 'install ok installed' || missing+=("$package")
+  done
+  if ((${#missing[@]})); then
+    sudo apt-get update -qq
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends "${missing[@]}"
+  else
+    echo "    system packages already installed"
+  fi
+}
+
+prepare_env() {
+  [ -f .env ] || cp -- .env.example .env
+  touch database/database.sqlite
+}
+
+step "System packages (PHP 8.4, Composer)" install_system_packages
+step "Environment file and SQLite database" prepare_env
+step "Composer install" composer install --no-interaction --no-progress --prefer-dist
+if ! grep -q '^APP_KEY=base64:' .env; then
+  step "Generate app key" php artisan key:generate --ansi --no-interaction
+fi
+step "Database migrations" php artisan migrate --force --no-interaction
+step "pnpm install" pnpm install --frozen-lockfile
+# Feature tests render views that need public/build/manifest.json.
+step "Vite build" pnpm run build
