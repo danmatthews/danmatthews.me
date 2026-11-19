@@ -3,7 +3,6 @@ import {Head, usePage} from "@inertiajs/vue3";
 import {computed} from "vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
 import PageTitle from "../../Components/PageTitle.vue";
-import ThreeImages from "../../Components/ThreeImages.vue";
 
 const props = defineProps({
     about: {
@@ -29,10 +28,8 @@ const socials = computed(() => page.props.socialLinks ?? {});
 
         <PageTitle class="mb-16" title="About."/>
 
-        <!--        <ThreeImages/>-->
-
-        <div class="max-w-2xl text-xl">
-            <div class="">
+        <div class="flex flex-col gap-10 text-xl">
+            <div class="max-w-2xl">
                 <p>Hey there, I’m Dan.</p>
                 <div
                     class="mt-6 space-y-7 text-xl underline-links-subtle"
@@ -40,6 +37,42 @@ const socials = computed(() => page.props.socialLinks ?? {});
                 />
             </div>
 
+            <div class="grid min-h-0 grid-cols-4 gap-3 md:order-first md:aspect-[2/1] md:grid-rows-2">
+                <img
+                    :src="'/images/about-portrait.webp'"
+                    alt="Dan Matthews holding his dog by the harbour"
+                    width="768"
+                    height="1024"
+                    class="col-span-4 aspect-square h-full min-h-0 w-full min-w-0 rounded-2xl object-cover object-[45%_28%] md:col-span-2 md:row-span-2 md:aspect-auto"
+                />
+                <img
+                    :src="'/images/about-work-dog.webp'"
+                    alt="Dan Matthews working at a laptop with a dog on his lap"
+                    width="1024"
+                    height="768"
+                    loading="lazy"
+                    class="col-span-4 aspect-[2/1] h-full min-h-0 w-full min-w-0 rounded-2xl object-cover object-top md:col-span-2 md:aspect-auto"
+                />
+                <img
+                    :src="'/images/about-work.webp'"
+                    alt="Dan Matthews sitting at his desk in the office"
+                    width="1088"
+                    height="722"
+                    loading="lazy"
+                    class="col-span-2 aspect-square h-full min-h-0 w-full min-w-0 rounded-2xl object-cover md:col-span-1 md:aspect-auto"
+                />
+                <img
+                    :src="'/images/about-conference.webp'"
+                    alt="Dan Matthews at a conference wearing a lanyard and backpack"
+                    width="724"
+                    height="1086"
+                    loading="lazy"
+                    class="col-span-2 aspect-square h-full min-h-0 w-full min-w-0 rounded-2xl object-cover md:col-span-1 md:aspect-auto"
+                />
+            </div>
+        </div>
+
+        <div class="max-w-2xl text-xl">
             <h2 class="text-3xl mt-16 mb-6 font-semibold text-pretty">
                 Work History
             </h2>
