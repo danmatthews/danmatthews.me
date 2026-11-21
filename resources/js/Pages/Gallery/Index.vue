@@ -66,7 +66,7 @@ function loadMore() {
             <link rel="canonical" :href="canonical"/>
         </Head>
 
-        <PageTitle class="mb-10" title="Painted miniatures."/>
+        <PageTitle class="mb-10" title="Miniature Painting."/>
 
         <div
             class="max-w-2xl space-y-7 text-xl underline-links-subtle"
