@@ -9,6 +9,8 @@ services:
       APP_URL: ${services.vite.publicURL}
       # .env.example uses database sessions, but no sessions migration exists.
       SESSION_DRIVER: file
+      # The vite proxy forwards the portal's https scheme; trust it so redirects stay https.
+      TRUSTED_PROXIES: 127.0.0.1
   vite:
     command: pnpm run dev --host 127.0.0.1 --port "$PORT" --strictPort
     env:

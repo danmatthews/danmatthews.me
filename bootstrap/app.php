@@ -12,6 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Unset in production; the orb's dev proxy sets it so URLs keep https.
+        $middleware->trustProxies(at: env("TRUSTED_PROXIES"));
         $middleware->web(append: [
             HandleInertiaRequests::class,
         ]);

@@ -24,6 +24,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // Unlocks the upload page at /minipainting/manage. Leave empty to keep it locked.
+    'minipainting' => [
+        'password' => env('MINIPAINTING_PASSWORD'),
+        // Where `php artisan minipainting:pull` copies photos from.
+        'source' => env('MINIPAINTING_SOURCE', 'https://danmatthews.me'),
+    ],
+
     'resend' => [
         'key' => env('RESEND_KEY'),
     ],
