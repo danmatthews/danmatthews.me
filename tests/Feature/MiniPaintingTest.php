@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ManageController;
 use App\MiniPaintings;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
@@ -8,36 +9,67 @@ use Illuminate\Support\Facades\Storage;
 beforeEach(function () {
     Storage::fake("local");
     Storage::fake("public");
-    config(["services.minipainting.password" => "secret"]);
+    config(["services.manage.password" => "secret"]);
 });
 
-it("keeps the manage page locked without the password", function () {
-    $this->get("/minipainting/manage")->assertRedirect("/minipainting/login");
-    $this->post("/minipainting/photos", [])->assertRedirect("/minipainting/login");
+it("keeps the management pages locked without the password", function () {
+    $this->get("/manage")->assertRedirect("/manage/login");
+    $this->get("/manage/minipainting")->assertRedirect("/manage/login");
+    $this->post("/manage/minipainting/photos", [])->assertRedirect("/manage/login");
 
-    $this->post("/minipainting/login", ["password" => "wrong"])->assertSessionHasErrors("password");
-    $this->get("/minipainting/manage")->assertRedirect("/minipainting/login");
+    $this->post("/manage/login", ["password" => "wrong"])->assertSessionHasErrors("password");
+    $this->get("/manage/minipainting")->assertRedirect("/manage/login");
 
-    $this->post("/minipainting/login", ["password" => "secret"])->assertRedirect("/minipainting/manage");
-    $this->get("/minipainting/manage")->assertOk();
+    // Unlocking returns to the page that asked for the password.
+    $this->post("/manage/login", ["password" => "secret"])->assertRedirect("/manage/minipainting");
+    $this->get("/manage/minipainting")->assertOk();
+    $this->get("/manage")->assertInertia(fn($page) => $page
+        ->component("Manage/Index")
+        ->where("sections.0.title", "Miniature painting")
+        ->where("sections.0.url", url("/manage/minipainting")));
+
+    $this->post("/manage/logout")->assertRedirect("/manage/login");
+    $this->get("/manage")->assertRedirect("/manage/login");
 });
 
 it("stays locked when no password is configured", function () {
-    config(["services.minipainting.password" => null]);
+    config(["services.manage.password" => null]);
 
-    $this->post("/minipainting/login", ["password" => ""])->assertSessionHasErrors("password");
-    $this->get("/minipainting/manage")->assertRedirect("/minipainting/login");
+    $this->post("/manage/login", ["password" => ""])->assertSessionHasErrors("password");
+    $this->get("/manage")->assertRedirect("/manage/login");
+});
+
+it("remembers an unlocked device until it locks or the password changes", function () {
+    $cookie = $this->post("/manage/login", ["password" => "secret"])
+        ->assertCookie(ManageController::REMEMBER_COOKIE)
+        ->getCookie(ManageController::REMEMBER_COOKIE);
+
+    // A new session, as when the home-screen app is reopened later.
+    $this->flushSession();
+    $this->withCookie($cookie->getName(), $cookie->getValue())->get("/manage")->assertOk();
+
+    $this->flushSession();
+    config(["services.manage.password" => "changed"]);
+    $this->withCookie($cookie->getName(), $cookie->getValue())->get("/manage")->assertRedirect("/manage/login");
+
+    config(["services.manage.password" => "secret"]);
+    $this->post("/manage/logout")->assertCookieExpired(ManageController::REMEMBER_COOKIE);
+});
+
+it("sends the old management addresses to their new ones", function () {
+    $this->get("/minipainting/login")->assertRedirect("/manage/login");
+    $this->get("/minipainting/manage")->assertRedirect("/manage/minipainting");
 });
 
 it("shows uploaded photos newest first on the gallery and in the JSON feed", function () {
-    $this->withSession(["minipainting.unlocked" => true]);
+    $this->withSession(["manage.unlocked" => true]);
 
-    $this->post("/minipainting/photos", [
+    $this->post("/manage/minipainting/photos", [
         "image" => UploadedFile::fake()->image("a.jpg", 300, 400),
         "caption" => "First",
         "date" => "2025-03-09",
     ])->assertRedirect();
-    $this->post("/minipainting/photos", [
+    $this->post("/manage/minipainting/photos", [
         "image" => UploadedFile::fake()->image("b.jpg", 500, 200),
         "caption" => "Second",
     ])->assertRedirect();
@@ -89,17 +121,17 @@ it("files new and redated photos by date, newest first", function () {
 });
 
 it("reorders, recaptions and deletes photos", function () {
-    $this->withSession(["minipainting.unlocked" => true]);
+    $this->withSession(["manage.unlocked" => true]);
     foreach (["A", "B", "C"] as $caption) {
         MiniPaintings::add(UploadedFile::fake()->image("x.jpg"), $caption);
     }
     [$c, $b, $a] = MiniPaintings::all()->pluck("id")->all();
 
-    $this->put("/minipainting/photos/order", ["ids" => [$a, $c, $b]]);
-    $this->patch("/minipainting/photos/{$c}", ["caption" => "C2"]);
-    $this->patch("/minipainting/photos/{$a}", ["caption" => "A", "date" => "25/12/2024"])->assertSessionHasErrors("date");
+    $this->put("/manage/minipainting/photos/order", ["ids" => [$a, $c, $b]]);
+    $this->patch("/manage/minipainting/photos/{$c}", ["caption" => "C2"]);
+    $this->patch("/manage/minipainting/photos/{$a}", ["caption" => "A", "date" => "25/12/2024"])->assertSessionHasErrors("date");
     $deleted = MiniPaintings::find($b)["file"];
-    $this->delete("/minipainting/photos/{$b}");
+    $this->delete("/manage/minipainting/photos/{$b}");
 
     expect(MiniPaintings::all()->pluck("caption")->all())->toBe(["A", "C2"]);
     Storage::disk("public")->assertMissing($deleted);

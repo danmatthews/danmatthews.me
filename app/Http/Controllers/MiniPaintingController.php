@@ -6,7 +6,6 @@ use App\MiniPaintings;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -22,35 +21,9 @@ class MiniPaintingController extends Controller
         ]);
     }
 
-    public function login(): Response
-    {
-        return Inertia::render("Gallery/Login");
-    }
-
-    public function unlock(Request $request): RedirectResponse
-    {
-        $password = (string) config("services.minipainting.password");
-
-        if ($password === "" || ! hash_equals($password, (string) $request->input("password"))) {
-            throw ValidationException::withMessages(["password" => "That password isn't right."]);
-        }
-
-        $request->session()->regenerate();
-        $request->session()->put("minipainting.unlocked", true);
-
-        return redirect()->route("minipainting.manage");
-    }
-
-    public function lock(Request $request): RedirectResponse
-    {
-        $request->session()->forget("minipainting.unlocked");
-
-        return redirect()->route("gallery");
-    }
-
     public function manage(): Response
     {
-        return Inertia::render("Gallery/Manage", [
+        return Inertia::render("Manage/MiniPainting", [
             "photos" => MiniPaintings::all()->map(
                 fn($photo) => [...$photo, "src" => MiniPaintings::url($photo)],
             ),

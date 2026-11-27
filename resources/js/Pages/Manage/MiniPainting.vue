@@ -1,8 +1,7 @@
 <script setup>
-import {Head, Link, router} from "@inertiajs/vue3";
+import {router} from "@inertiajs/vue3";
 import {ref, watch} from "vue";
-import AppLayout from "../../Layouts/AppLayout.vue";
-import PageTitle from "../../Components/PageTitle.vue";
+import ManageLayout from "../../Layouts/ManageLayout.vue";
 
 const props = defineProps({
     photos: {
@@ -134,7 +133,7 @@ async function uploadAll() {
     for (const item of oldestFirst) {
         item.status = "Uploading…";
         try {
-            await post("/minipainting/photos", {image: await shrink(item.file), caption: item.caption, date: item.date});
+            await post("/manage/minipainting/photos", {image: await shrink(item.file), caption: item.caption, date: item.date});
             unqueue(queue.value.indexOf(item));
         } catch (error) {
             item.status = error ?? "Upload failed";
@@ -148,84 +147,76 @@ const visit = {preserveScroll: true, preserveState: true};
 function save(photo) {
     const edit = edits.value[photo.id];
     if (edit.caption !== photo.caption || edit.date !== (photo.date ?? "")) {
-        router.patch(`/minipainting/photos/${photo.id}`, edit, visit);
+        router.patch(`/manage/minipainting/photos/${photo.id}`, edit, visit);
     }
 }
 
 function move(index, by) {
     const ids = props.photos.map((p) => p.id);
     [ids[index], ids[index + by]] = [ids[index + by], ids[index]];
-    router.put("/minipainting/photos/order", {ids}, visit);
+    router.put("/manage/minipainting/photos/order", {ids}, visit);
 }
 
 function remove(photo) {
     if (confirm("Delete this photo? This can't be undone.")) {
-        router.delete(`/minipainting/photos/${photo.id}`, visit);
+        router.delete(`/manage/minipainting/photos/${photo.id}`, visit);
     }
 }
 
-const input = "w-full rounded-lg border border-slate-300 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900";
-const small = "cursor-pointer text-sm text-subtle hover:text-black disabled:cursor-default disabled:opacity-40 dark:hover:text-white";
+// text-base keeps iOS from zooming in when a field is focused.
+const input = "w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base";
+const small = "cursor-pointer rounded-full px-3 py-2 text-sm text-slate-600 ring-1 ring-slate-200 hover:text-black active:bg-slate-100 disabled:cursor-default disabled:opacity-40";
 </script>
 
 <template>
-    <AppLayout>
-        <Head title="Manage miniatures">
-            <meta name="robots" content="noindex"/>
-        </Head>
-
-        <div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-baseline sm:justify-between">
-            <PageTitle class="mb-0" title="Manage miniatures."/>
-            <div class="flex shrink-0 gap-6 text-sm">
-                <Link href="/minipainting" class="text-subtle hover:text-black dark:hover:text-white">View gallery</Link>
-                <Link href="/minipainting/logout" method="post" as="button" class="cursor-pointer text-subtle hover:text-black dark:hover:text-white">Lock</Link>
-            </div>
-        </div>
-
+    <ManageLayout title="Miniature painting" back="/manage">
         <section class="space-y-4">
-            <h2 class="text-2xl font-semibold">Add photos</h2>
-            <label class="inline-flex cursor-pointer rounded-lg border border-dashed border-slate-400 px-4 py-3 hover:border-slate-900 dark:hover:border-white">
+            <div class="flex items-baseline justify-between gap-4">
+                <h2 class="text-xl font-semibold">Add photos</h2>
+                <a href="/minipainting" class="text-sm text-subtle hover:text-black">View gallery</a>
+            </div>
+            <label class="flex cursor-pointer items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-white px-4 py-6 font-medium hover:border-slate-900 active:bg-slate-100">
                 Choose photos…
                 <input type="file" accept="image/*" multiple class="sr-only" @change="pick"/>
             </label>
 
             <ul v-if="queue.length" class="space-y-3">
-                <li v-for="(item, index) in queue" :key="item.preview" class="flex items-start gap-3 sm:gap-4">
-                    <img :src="item.preview" alt="" class="size-16 shrink-0 rounded-2xl object-cover sm:size-24"/>
-                    <div class="flex-1 space-y-1">
-                        <textarea v-model="item.caption" rows="2" placeholder="Caption" :class="input"/>
-                        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                            <input v-model="item.date" type="date" aria-label="Date" :class="[input, 'sm:w-48']"/>
-                            <span class="text-sm text-subtle">{{ item.fromPhoto ? "Taken date from the photo" : "No taken date in the photo, using the file's date" }}</span>
-                        </div>
-                        <p v-if="item.status" class="text-sm text-subtle">{{ item.status }}</p>
+                <li v-for="(item, index) in queue" :key="item.preview" class="space-y-2 rounded-2xl bg-white p-3 ring-1 ring-slate-200">
+                    <div class="flex items-start gap-3">
+                        <img :src="item.preview" alt="" class="size-20 shrink-0 rounded-xl object-cover sm:size-24"/>
+                        <textarea v-model="item.caption" rows="3" placeholder="Caption" :class="input"/>
                     </div>
-                    <button type="button" :class="small" :disabled="uploading" @click="unqueue(index)">Remove</button>
+                    <div class="flex items-center gap-2">
+                        <input v-model="item.date" type="date" aria-label="Date" :class="[input, 'min-w-0 flex-1 sm:max-w-48']"/>
+                        <button type="button" :class="small" :disabled="uploading" @click="unqueue(index)">Remove</button>
+                    </div>
+                    <p class="text-sm text-subtle">{{ item.fromPhoto ? "Taken date from the photo" : "No taken date in the photo, using the file's date" }}</p>
+                    <p v-if="item.status" class="text-sm font-medium">{{ item.status }}</p>
                 </li>
             </ul>
 
-            <UButton v-if="queue.length" color="neutral" :loading="uploading" @click="uploadAll">
+            <UButton v-if="queue.length" color="neutral" size="xl" block :loading="uploading" @click="uploadAll">
                 Upload {{ queue.length }} {{ queue.length === 1 ? "photo" : "photos" }}
             </UButton>
         </section>
 
-        <section class="mt-16 space-y-4">
-            <h2 class="text-2xl font-semibold">In the gallery ({{ photos.length }})</h2>
+        <section class="mt-12 space-y-4">
+            <h2 class="text-xl font-semibold">In the gallery ({{ photos.length }})</h2>
             <p v-if="!photos.length" class="text-subtle">No photos yet.</p>
             <ul class="space-y-3">
-                <li v-for="(photo, index) in photos" :key="photo.id" class="flex items-start gap-3 sm:gap-4">
-                    <img :src="photo.src" alt="" class="size-16 shrink-0 rounded-2xl object-cover sm:size-24" loading="lazy"/>
-                    <div class="flex-1 space-y-1">
+                <li v-for="(photo, index) in photos" :key="photo.id" class="space-y-2 rounded-2xl bg-white p-3 ring-1 ring-slate-200">
+                    <div class="flex items-start gap-3">
+                        <img :src="photo.src" alt="" class="size-20 shrink-0 rounded-xl object-cover sm:size-24" loading="lazy"/>
                         <textarea v-model="edits[photo.id].caption" rows="3" placeholder="Caption" :class="input" @blur="save(photo)"/>
-                        <input v-model="edits[photo.id].date" type="date" aria-label="Date" :class="[input, 'sm:w-48']" @change="save(photo)"/>
                     </div>
-                    <div class="flex shrink-0 flex-col items-start gap-1">
-                        <button type="button" :class="small" :disabled="index === 0" @click="move(index, -1)">Move up</button>
-                        <button type="button" :class="small" :disabled="index === photos.length - 1" @click="move(index, 1)">Move down</button>
+                    <div class="flex items-center gap-2">
+                        <input v-model="edits[photo.id].date" type="date" aria-label="Date" :class="[input, 'min-w-0 flex-1 sm:max-w-48']" @change="save(photo)"/>
+                        <button type="button" :class="small" aria-label="Move up" :disabled="index === 0" @click="move(index, -1)">↑</button>
+                        <button type="button" :class="small" aria-label="Move down" :disabled="index === photos.length - 1" @click="move(index, 1)">↓</button>
                         <button type="button" :class="small" @click="remove(photo)">Delete</button>
                     </div>
                 </li>
             </ul>
         </section>
-    </AppLayout>
+    </ManageLayout>
 </template>

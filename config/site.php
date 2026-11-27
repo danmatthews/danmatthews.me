@@ -12,7 +12,7 @@ return [
     ],
     "about" => file_get_contents(base_path("content/about.md")),
     // /minipainting is deliberately left out of "navigation". Its photos are
-    // uploaded at /minipainting/manage (see App\MiniPaintings), not kept in git.
+    // uploaded at /manage/minipainting (see App\MiniPaintings), not kept in git.
     "gallery" => [
         "intro" => file_get_contents(base_path("content/gallery.md")),
     ],

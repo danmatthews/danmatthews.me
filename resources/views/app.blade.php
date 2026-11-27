@@ -13,13 +13,16 @@
         })();
     </script>
 
+    @php($manage = request()->is('manage', 'manage/*'))
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1{{ $manage ? ', viewport-fit=cover' : '' }}">
     <meta name="application-name" content="{{ config('app.name') }}">
     <meta name="description"
           content="Dan Matthews is a full stack PHP and JS developer based in Carlisle in the UK.">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1">
+    <meta name="robots" content="{{ $manage ? 'noindex, nofollow' : 'index, follow' }}">
+    @unless($manage)
+        <meta name="googlebot" content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1">
+    @endunless
     <meta name="twitter:site" content="@danmatthews">
     <meta name="twitter:creator" content="@danmatthews">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,7 +32,16 @@
     <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
     <link rel="shortcut icon" href="/icons/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/icons/site.webmanifest">
+    @if($manage)
+        {{-- Added to a phone's home screen, /manage opens as its own app. --}}
+        <link rel="manifest" href="/manage.webmanifest">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Manage">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    @else
+        <link rel="manifest" href="/icons/site.webmanifest">
+    @endif
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
