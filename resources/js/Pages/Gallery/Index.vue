@@ -1,6 +1,6 @@
 <script setup>
 import {Head, router, usePage} from "@inertiajs/vue3";
-import {computed, ref} from "vue";
+import {computed, onUnmounted, ref} from "vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
 import PageTitle from "../../Components/PageTitle.vue";
 
@@ -31,6 +31,28 @@ function longDate(date) {
     const [y, m, d] = date.split("-").map(Number);
     return new Date(y, m - 1, d).toLocaleDateString("en-GB", {day: "numeric", month: "long", year: "numeric"});
 }
+
+// One column, then two from Tailwind's sm breakpoint and three from md.
+const breakpoints = [window.matchMedia("(min-width: 40rem)"), window.matchMedia("(min-width: 48rem)")];
+const columnCount = ref(0);
+function countColumns() {
+    columnCount.value = 1 + breakpoints.filter((query) => query.matches).length;
+}
+countColumns();
+breakpoints.forEach((query) => query.addEventListener("change", countColumns));
+onUnmounted(() => breakpoints.forEach((query) => query.removeEventListener("change", countColumns)));
+
+// Each photo goes in the shortest column so far, so "Load more" only adds
+// photos below the ones shown. CSS columns rebalanced every photo instead.
+const columns = computed(() => {
+    const columns = Array.from({length: columnCount.value}, () => ({height: 0, photos: []}));
+    props.photos.forEach((photo, index) => {
+        const shortest = columns.reduce((a, b) => (b.height < a.height ? b : a));
+        shortest.photos.push({photo, index});
+        shortest.height += photo.height / photo.width;
+    });
+    return columns.map((column) => column.photos);
+});
 
 // Index of the photo open in the lightbox, or null.
 const open = ref(null);
@@ -73,11 +95,12 @@ function loadMore() {
             v-html="intro"
         />
 
-        <section v-if="photos.length" class="mt-16 columns-1 gap-3 sm:columns-2 md:columns-3">
+        <section v-if="photos.length" class="mt-16 flex items-start gap-3">
+            <div v-for="(column, c) in columns" :key="c" class="min-w-0 flex-1 space-y-3">
             <figure
-                v-for="(photo, index) in photos"
+                v-for="{photo, index} in column"
                 :key="photo.src"
-                class="group relative mb-3 break-inside-avoid overflow-hidden rounded-2xl bg-zinc-900"
+                class="group relative overflow-hidden rounded-2xl bg-zinc-900"
             >
                 <button
                     type="button"
@@ -103,6 +126,7 @@ function loadMore() {
                     <time v-if="photo.date" :datetime="photo.date" class="mt-1 block text-xs text-white/60">{{ longDate(photo.date) }}</time>
                 </figcaption>
             </figure>
+            </div>
         </section>
 
         <dialog
